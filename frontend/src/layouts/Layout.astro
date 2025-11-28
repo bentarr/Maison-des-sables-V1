@@ -1,0 +1,61 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr" class="bg-sable text-charbon scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Maison des Sables - Conciergerie de Luxe à Arcachon" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+		
+		<title>{title}</title>
+
+		<style is:global>
+			/* CSS Global pour le Smooth Scroll Lenis */
+			html.lenis { height: auto; }
+			.lenis.lenis-smooth { scroll-behavior: auto; }
+			.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+			.lenis.lenis-stopped { overflow: hidden; }
+			
+			/* Lissage des polices pour un rendu "Magazine" */
+			body {
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
+			
+			/* Selection de texte couleur Or */
+			::selection {
+				background-color: #A89060;
+				color: #F7F4EB;
+			}
+		</style>
+	</head>
+	<body>
+		<slot />
+
+		<script>
+			import Lenis from '@studio-freight/lenis'
+			const lenis = new Lenis({
+				duration: 1.2,
+				easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+				orientation: 'vertical',
+				smoothWheel: true,
+			})
+			function raf(time) {
+				lenis.raf(time)
+				requestAnimationFrame(raf)
+			}
+			requestAnimationFrame(raf)
+		</script>
+	</body>
+</html>
