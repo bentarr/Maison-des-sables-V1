@@ -22,13 +22,16 @@ import Layout from '../layouts/Layout.astro';
 				Services
 				<span class="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-300 ease-out group-hover:w-full"></span>
 			</a>
+            <a href="#contact" class="hover:text-white transition-colors duration-300 relative group py-2">
+				Contact
+				<span class="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-300 ease-out group-hover:w-full"></span>
+			</a>
 		</div>
 
 		<a id="client-btn" href="/login" class="hidden md:block group relative px-6 py-3 bg-or text-charbon font-sans text-sm font-semibold rounded-std overflow-hidden shadow-md shadow-or/20 hover:shadow-or/40 transition-all duration-500 hover:-translate-y-1">
 			<span class="relative z-10 group-hover:text-white transition-colors duration-500">Espace Client</span>
 			<div class="absolute inset-0 -translate-x-[150%] skew-x-12 bg-white/40 group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out z-0"></div>
 		</a>
-		
 
 		<button id="menu-burger" class="md:hidden text-sm uppercase tracking-widest font-medium">Menu</button>
 	</nav>
@@ -63,7 +66,6 @@ import Layout from '../layouts/Layout.astro';
 			</h1>
 
 			<div class="flex flex-col md:flex-row gap-6 mt-8">
-				
 				<a href="#villas" class="hero-btn opacity-0 group relative px-10 py-4 bg-or font-sans text-sm font-semibold rounded-std overflow-hidden shadow-lg shadow-or/20 hover:shadow-or/50 transition-all duration-500 hover:-translate-y-1">
 					<span class="relative z-10 group-hover:text-white transition-colors duration-500">Découvrir la Collection</span>
 					<div class="absolute inset-0 -translate-x-[150%] skew-x-12 bg-white/40 group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out z-0"></div>
@@ -73,7 +75,6 @@ import Layout from '../layouts/Layout.astro';
 					<span class="relative z-10 group-hover:text-charbon transition-colors duration-500">Nos Services</span>
 					<div class="absolute inset-0 bg-sable translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0"></div>
 				</a>
-
 			</div>
 		</div>
 
@@ -162,32 +163,101 @@ import Layout from '../layouts/Layout.astro';
 					<p class="font-sans text-charbon/60 reveal-text">Un accompagnement 360° pour votre résidence.</p>
 				</div>
 				<a href="/services" class="hidden md:block text-xs font-medium uppercase tracking-wide text-charbon border-b border-charbon/30 pb-1 hover:text-or hover:border-or transition-colors reveal-text">
-					Voir les détails
+					Voir tous les services
 				</a>
 			</div>
 
 			<div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6 h-auto md:h-[800px]">
+				
 				<div class="bento-card col-span-1 md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-std bg-charbon cursor-pointer">
-					<img src="/gestion.jpg" alt="Gestion Locative" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-50"/>
+					<img src="/gestion.jpg" alt="Gestion Locative" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-60"/>
 					<div class="absolute inset-0 p-10 flex flex-col justify-end text-sable">
 						<h4 class="font-serif text-3xl md:text-4xl mb-3 relative z-10">Gestion Locative</h4>
-						<p class="font-sans text-sm md:text-base text-sable/80 max-w-md relative z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-2 group-hover:translate-y-0">Optimisation des revenus, photos professionnelles, et sélection rigoureuse des voyageurs.</p>
+						<p class="font-sans text-sm md:text-base text-sable/80 max-w-md relative z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 text-sable-100/90 max-w-md relative z-10">Optimisation des revenus, photos professionnelles, et sélection rigoureuse des voyageurs.</p>
 						<span class="absolute top-8 right-8 w-10 h-10 rounded-full border border-sable/20 flex items-center justify-center text-sable group-hover:bg-or group-hover:border-or group-hover:text-charbon transition-all duration-300 z-10">↗</span>
 					</div>
 				</div>
+
 				<div class="bento-card col-span-1 md:col-span-1 relative group overflow-hidden rounded-std bg-white p-8 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300">
 					<div class="w-12 h-12 rounded-full bg-sable flex items-center justify-center text-or mb-4 border border-or/20"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg></div>
 					<div><h4 class="font-serif text-2xl text-charbon mb-2">Conciergerie 7j/7</h4><p class="font-sans text-sm text-charbon/60">Accueil, ménage hôtelier, linge de maison.</p></div>
 				</div>
+
 				<div class="bento-card col-span-1 md:col-span-1 relative group overflow-hidden rounded-std bg-or cursor-pointer">
 					<img src="/experience.jpg" alt="Expériences" class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-multiply group-hover:scale-110 transition-transform duration-700"/>
 					<div class="absolute inset-0 p-8 flex flex-col justify-center items-center text-center text-charbon z-10"><h4 class="font-serif text-3xl mb-2">Expériences</h4><p class="font-sans text-xs font-medium tracking-widest uppercase border-b border-charbon/30 pb-1">Sur-mesure</p></div>
 				</div>
-				<div class="bento-card col-span-1 md:col-span-1 relative group overflow-hidden rounded-std bg-charbon text-sable p-8 flex flex-col justify-between">
-					<div><h4 class="font-serif text-2xl mb-2 text-sable">Intendance</h4><p class="font-sans text-sm text-sable/60">Vigilance et maintenance à l'année.</p></div>
-					<div class="self-end opacity-50 group-hover:opacity-100 group-hover:text-or transition-all"><svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div>
+
+				<div class="bento-card col-span-1 md:col-span-1 relative group overflow-hidden rounded-std bg-charbon border border-or/20 p-8 flex flex-col justify-between cursor-pointer hover:bg-or/10 transition-colors duration-300">
+					<div>
+						<h4 class="font-serif text-2xl mb-2 text-or">Tarifs & Devis</h4>
+						<p class="font-sans text-sm text-sable/70">Consultez notre grille tarifaire détaillée et demandez une estimation.</p>
+					</div>
+					<div class="group/btn mt-6 relative w-full py-3 border border-or/30 text-or text-center font-sans text-xs font-semibold rounded-std overflow-hidden transition-all duration-300 hover:bg-or hover:text-charbon">
+						<span class="relative z-10">Découvrir les tarifs</span>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<section id="contact" class="bg-charbon text-sable py-32 px-6 md:px-12 relative overflow-hidden">
+		<div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');"></div>
+		
+		<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative z-10">
+			<div>
+				<span class="text-or text-xs font-sans tracking-[0.2em] uppercase mb-4 block reveal-text font-semibold">Parlons de vous</span>
+				<h3 class="font-serif text-4xl md:text-5xl mb-6 reveal-text">Un projet ? Une envie ?</h3>
+				<p class="font-sans text-sable/70 mb-10 text-lg reveal-text">
+					Nous sommes à votre écoute pour échanger sur vos besoins. Remplissez ce formulaire, nous vous répondrons sous 24h.
+				</p>
+				
+				<div class="space-y-6 reveal-text">
+					<div class="flex items-center gap-4">
+						<div class="w-10 h-10 rounded-full border border-or/30 flex items-center justify-center text-or">✉️</div>
+						<div>
+							<p class="text-xs uppercase tracking-widest text-sable/50">Email</p>
+							<p class="font-serif text-xl">bonjour@maisondesables.fr</p>
+						</div>
+					</div>
+					<div class="flex items-center gap-4">
+						<div class="w-10 h-10 rounded-full border border-or/30 flex items-center justify-center text-or">📞</div>
+						<div>
+							<p class="text-xs uppercase tracking-widest text-sable/50">Téléphone</p>
+							<p class="font-serif text-xl">+33 5 56 00 00 00</p>
+						</div>
+					</div>
 				</div>
 			</div>
+
+			<form class="bg-sable/5 backdrop-blur-sm p-10 rounded-std border border-sable/10 reveal-text">
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+					<div class="group">
+						<label class="block text-xs uppercase tracking-widest text-sable/50 mb-2 group-focus-within:text-or transition-colors">Nom</label>
+						<input type="text" class="w-full bg-transparent border-b border-sable/20 py-2 text-sable focus:outline-none focus:border-or transition-colors" placeholder="Votre nom">
+					</div>
+					<div class="group">
+						<label class="block text-xs uppercase tracking-widest text-sable/50 mb-2 group-focus-within:text-or transition-colors">Prénom</label>
+						<input type="text" class="w-full bg-transparent border-b border-sable/20 py-2 text-sable focus:outline-none focus:border-or transition-colors" placeholder="Votre prénom">
+					</div>
+				</div>
+				
+				<div class="mb-8 group">
+					<label class="block text-xs uppercase tracking-widest text-sable/50 mb-2 group-focus-within:text-or transition-colors">Email</label>
+					<input type="email" class="w-full bg-transparent border-b border-sable/20 py-2 text-sable focus:outline-none focus:border-or transition-colors" placeholder="votre@email.com">
+				</div>
+
+				<div class="mb-10 group">
+					<label class="block text-xs uppercase tracking-widest text-sable/50 mb-2 group-focus-within:text-or transition-colors">Message</label>
+					<textarea rows="4" class="w-full bg-transparent border-b border-sable/20 py-2 text-sable focus:outline-none focus:border-or transition-colors resize-none" placeholder="Dites-nous en plus sur votre projet..."></textarea>
+				</div>
+
+				<button type="submit" class="group relative w-full py-4 bg-or text-charbon font-sans text-sm font-semibold rounded-std overflow-hidden shadow-lg shadow-or/20 hover:shadow-or/40 transition-all duration-500 hover:-translate-y-1">
+					<span class="relative z-10 group-hover:text-white transition-colors">Envoyer ma demande</span>
+					<div class="absolute inset-0 -translate-x-[150%] skew-x-12 bg-white/40 group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out z-0"></div>
+				</button>
+			</form>
 		</div>
 	</section>
 
@@ -218,17 +288,11 @@ import Layout from '../layouts/Layout.astro';
 
 	gsap.registerPlugin(ScrollTrigger);
 
-	// 1. Intro Animation (Simplifiée & Nette)
+	// 1. Intro Animation
 	window.addEventListener('load', () => {
 		const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-		
 		tl.to(".hero-text", { y: 0, opacity: 1, duration: 1.2 })
-		  .to(".hero-title", { 
-		  	y: 0, 
-		  	opacity: 1, 
-		  	duration: 1.5, 
-		  	stagger: 0.2, 
-		  }, "-=0.8")
+		  .to(".hero-title", { y: 0, opacity: 1, duration: 1.5, stagger: 0.2 }, "-=0.8")
 		  .to(".hero-btn", { opacity: 1, duration: 1, stagger: 0.1 }, "-=0.8")
 		  .to(".hero-scroll", { opacity: 1, duration: 1 }, "-=0.5");
 	});
@@ -273,17 +337,15 @@ import Layout from '../layouts/Layout.astro';
 		scrollTrigger: { trigger: "#services", start: "top 80%" }
 	});
 
-	// 6. SMART HEADER GOLD (Texte Blanc Fixe)
+	// 6. SMART HEADER
 	const navbar = document.querySelector("#navbar");
 	const clientBtn = document.querySelector("#client-btn");
 
 	window.addEventListener("scroll", () => {
 		if (window.scrollY > 50) { 
-			// SCROLLED: BG OR, PADDING REDUIT, TEXTE RESTE BLANC
 			navbar.classList.add("bg-or/95", "shadow-md", "py-4", "backdrop-blur-md");
 			navbar.classList.remove("py-6");
 			
-			// Bouton devient plus subtil sur fond Or
 			if(clientBtn) {
 				clientBtn.classList.replace("border-sable/30", "border-white/30");
 				clientBtn.classList.remove("bg-or", "text-charbon");
@@ -292,9 +354,6 @@ import Layout from '../layouts/Layout.astro';
 				clientBtn.classList.remove("hover:bg-sable", "hover:text-charbon");
 			}
 		} else { 
-			// TOP: Transparent
-			navbar.classList.remove("bg-or/95", "shadow-md", "py-4", "backdrop-blur-md");
-			navbar.classList.add("py-6");
 			navbar.classList.remove("bg-or/95", "shadow-md", "py-4", "backdrop-blur-md");
 			navbar.classList.add("py-6");
 
