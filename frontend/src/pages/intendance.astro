@@ -1,0 +1,91 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Intendance & Résidence Secondaire | Maison des Sables">
+	
+	<nav class="fixed top-0 w-full z-50 px-6 md:px-12 py-8 flex justify-between items-center mix-blend-difference text-white transition-all duration-500">
+		<a href="/" class="font-serif text-xl tracking-wider font-semibold hover:text-or transition-colors">← Retour</a>
+		<a href="/" class="hidden md:block font-serif text-2xl tracking-wider font-bold">Maison des Sables</a>
+		<a href="/contact" class="border border-white/30 px-6 py-2 text-xs font-sans uppercase tracking-widest rounded-std hover:bg-white hover:text-charbon transition-all">Contact</a>
+	</nav>
+
+	<header class="relative h-[60vh] bg-charbon overflow-hidden flex items-center justify-center">
+		<img src="/gestion.jpg" alt="Intendance" class="absolute inset-0 w-full h-full object-cover opacity-50 grayscale-[20%]"/>
+		<div class="absolute inset-0 bg-gradient-to-b from-charbon/60 via-transparent to-sable"></div>
+		<div class="relative z-10 text-center px-4 mt-20">
+			<p class="text-or text-xs font-sans tracking-[0.3em] uppercase mb-4 animate-fade-in-up">Propriétaires Résidants</p>
+			<h1 class="font-serif text-5xl md:text-7xl text-sable mb-6 animate-fade-in-up delay-100">Intendance</h1>
+			<p class="text-sable/80 max-w-2xl mx-auto font-sans text-lg leading-relaxed animate-fade-in-up delay-200">
+				Profitez de votre résidence secondaire dès la première minute.<br>Nous veillons sur votre bien toute l'année.
+			</p>
+		</div>
+	</header>
+
+	<section class="bg-sable text-charbon py-24 px-6 md:px-12">
+		<div class="max-w-6xl mx-auto">
+			
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-16 mb-32 items-center">
+				<div>
+					<h3 class="font-serif text-3xl md:text-4xl mb-6">Sérénité Absolue</h3>
+					<p class="font-sans text-charbon/70 leading-relaxed mb-6">
+						Fini les arrivées dans une maison froide ou poussiéreuse. Fini les inquiétudes après une tempête. Nous sommes vos yeux et vos mains sur place.
+					</p>
+					<ul class="space-y-4 font-sans text-sm text-charbon/80">
+						<li class="flex items-center"><span class="w-1.5 h-1.5 bg-or rounded-full mr-3"></span>Visites de vigilance régulières (Int/Ext)</li>
+						<li class="flex items-center"><span class="w-1.5 h-1.5 bg-or rounded-full mr-3"></span>Aération, relève du courrier, arrosage</li>
+						<li class="flex items-center"><span class="w-1.5 h-1.5 bg-or rounded-full mr-3"></span>Préparation "Arrivée VIP" (Chauffage, Frigo, Lits)</li>
+						<li class="flex items-center"><span class="w-1.5 h-1.5 bg-or rounded-full mr-3"></span>Coordination artisans & entretien</li>
+					</ul>
+				</div>
+				<div class="bg-white p-8 rounded-[2rem] shadow-xl border border-charbon/5">
+					<h4 class="font-serif text-2xl mb-6 text-center">Nos Formules d'Abonnement</h4>
+					
+					<div class="space-y-6">
+						<div class="border border-charbon/10 rounded-std p-6 hover:border-or transition-colors cursor-pointer group">
+							<div class="flex justify-between items-center mb-2">
+								<h5 class="font-bold text-charbon">Vigilance Essentielle</h5>
+								<span class="text-or font-serif text-xl">dès 50€<span class="text-xs text-charbon/50">/mois</span></span>
+							</div>
+							<p class="text-xs text-charbon/60">2 visites/mois + Rapport photo + Gestion clés</p>
+						</div>
+
+						<div class="border border-or bg-or/5 rounded-std p-6 relative">
+							<div class="absolute -top-3 right-6 bg-or text-white text-[10px] font-bold px-2 py-1 rounded">POPULAIRE</div>
+							<div class="flex justify-between items-center mb-2">
+								<h5 class="font-bold text-charbon">Confort Total</h5>
+								<span class="text-or font-serif text-xl">dès 120€<span class="text-xs text-charbon/50">/mois</span></span>
+							</div>
+							<p class="text-xs text-charbon/60">4 visites/mois + Préparation arrivée + Gestion prestataires + Astreinte tempête</p>
+						</div>
+
+						<div class="border border-charbon/10 rounded-std p-6 hover:border-or transition-colors cursor-pointer">
+							<div class="flex justify-between items-center mb-2">
+								<h5 class="font-bold text-charbon">Prestige</h5>
+								<span class="text-or font-serif text-xl">Sur Devis</span>
+							</div>
+							<p class="text-xs text-charbon/60">Gestion intégrale sur-mesure + Conciergerie privée</p>
+						</div>
+					</div>
+					
+					<div class="mt-8 text-center">
+						<a href="/#contact" class="inline-block bg-charbon text-sable px-8 py-3 rounded-std font-sans text-xs font-bold uppercase tracking-widest hover:bg-or transition-colors">Souscrire</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+
+	<footer class="bg-charbon text-sable py-12 text-center border-t border-sable/10">
+		<p class="font-serif text-2xl mb-4">Maison des Sables</p>
+		<p class="text-xs font-sans opacity-50">Arcachon • Cap Ferret • Le Moulleau</p>
+	</footer>
+</Layout>
+
+<style>
+	.animate-fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; transform: translateY(20px); }
+	.delay-100 { animation-delay: 0.1s; }
+	.delay-200 { animation-delay: 0.2s; }
+	@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+</style>

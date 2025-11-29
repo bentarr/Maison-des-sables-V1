@@ -1,6 +1,6 @@
 ---
 // ==============================================================================
-// MAISON DES SABLES - PAGE D'ACCUEIL (V14 - FINAL SPACING FIX)
+// MAISON DES SABLES - PAGE D'ACCUEIL (V14 - LIENS ACTIFS)
 // ==============================================================================
 import Layout from '../layouts/Layout.astro';
 ---
@@ -121,15 +121,16 @@ import Layout from '../layouts/Layout.astro';
 						<span class="inline-block px-3 py-1 mb-4 border border-or/50 rounded-full text-[10px] font-bold uppercase tracking-widest text-or bg-charbon/20 backdrop-blur-md">Propriétaires Bailleurs</span>
 						<h3 class="font-serif text-3xl md:text-5xl mb-4 text-white">Gestion Locative</h3>
 						<p class="font-sans text-sm md:text-base text-sable/70 max-w-md opacity-0 h-0 group-hover:opacity-100 group-hover:h-auto transition-all duration-500 delay-100 leading-relaxed">
-							Optimisation des revenus et sérénité totale. Nous gérons la diffusion, la sélection des voyageurs et l'accueil 5 étoiles.
+							Optimisation des revenus et sérénité totale.
 						</p>
 					</div>
 					<div class="mt-6 border-t border-white/10 pt-6 flex justify-between items-end opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-200">
 						<div><p class="text-xs uppercase tracking-wider text-sable/50 mb-1">Modèle</p><p class="font-serif text-2xl text-white">Commission <span class="text-or">20%</span></p></div>
-						<span class="w-10 h-10 rounded-full bg-or text-charbon flex items-center justify-center text-lg hover:scale-110 transition-transform">→</span>
+						<a href="/gestion-locative" class="w-10 h-10 rounded-full bg-or text-charbon flex items-center justify-center text-lg hover:scale-110 transition-transform">→</a>
 					</div>
 				</div>
 			</div>
+			
 			<div class="group relative flex-1 hover:grow-[2] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden rounded-std cursor-pointer border border-charbon/5">
 				<img src="/gestion.jpg" alt="Intendance" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-90 grayscale-[30%]"/> 
 				<div class="absolute inset-0 bg-gradient-to-t from-charbon/95 via-charbon/40 to-transparent"></div>
@@ -138,15 +139,16 @@ import Layout from '../layouts/Layout.astro';
 						<span class="inline-block px-3 py-1 mb-4 border border-white/20 rounded-full text-[10px] font-bold uppercase tracking-widest text-sable bg-charbon/20 backdrop-blur-md">Résidence Secondaire</span>
 						<h3 class="font-serif text-3xl md:text-5xl mb-4 text-white">Intendance</h3>
 						<p class="font-sans text-sm md:text-base text-sable/70 max-w-md opacity-0 h-0 group-hover:opacity-100 group-hover:h-auto transition-all duration-500 delay-100 leading-relaxed">
-							Profitez de votre maison dès la première minute. Vigilance, entretien, préparation avant arrivée.
+							Vigilance et préparation avant votre arrivée.
 						</p>
 					</div>
 					<div class="mt-6 border-t border-white/10 pt-6 flex justify-between items-end opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-200">
 						<div><p class="text-xs uppercase tracking-wider text-sable/50 mb-1">Modèle</p><p class="font-serif text-2xl text-white">Abonnements</p></div>
-						<span class="w-10 h-10 rounded-full bg-sable text-charbon flex items-center justify-center text-lg hover:scale-110 transition-transform">→</span>
+						<a href="/intendance" class="w-10 h-10 rounded-full bg-sable text-charbon flex items-center justify-center text-lg hover:scale-110 transition-transform">→</a>
 					</div>
 				</div>
 			</div>
+			
 			<div class="group relative flex-1 hover:grow-[2] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden rounded-std cursor-pointer border border-charbon/5">
 				<img src="/experience.jpg" alt="Main dans la main" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-90 sepia-[20%]"/>
 				<div class="absolute inset-0 bg-gradient-to-t from-[#2C241B]/95 via-[#2C241B]/40 to-transparent"></div>
@@ -155,19 +157,19 @@ import Layout from '../layouts/Layout.astro';
 						<span class="inline-block px-3 py-1 mb-4 border border-or/30 rounded-full text-[10px] font-bold uppercase tracking-widest text-or bg-charbon/20 backdrop-blur-md">Aide & Accompagnement</span>
 						<h3 class="font-serif text-3xl md:text-5xl mb-4 text-white">Main dans la Main</h3>
 						<p class="font-sans text-sm md:text-base text-sable/70 max-w-md opacity-0 h-0 group-hover:opacity-100 group-hover:h-auto transition-all duration-500 delay-100 leading-relaxed">
-							Un service dédié à nos aînés avec bienveillance : compagnie, aide administrative et présence rassurante.
+							Un service dédié à nos aînés avec bienveillance.
 						</p>
 					</div>
 					<div class="mt-6 border-t border-white/10 pt-6 flex justify-between items-end opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-200">
 						<div><p class="text-xs uppercase tracking-wider text-sable/50 mb-1">Modèle</p><p class="font-serif text-2xl text-white">Forfaits & à la carte</p></div>
-						<span class="w-10 h-10 rounded-full bg-or text-charbon flex items-center justify-center text-lg hover:scale-110 transition-transform">→</span>
+						<a href="/accompagnement" class="w-10 h-10 rounded-full bg-or text-charbon flex items-center justify-center text-lg hover:scale-110 transition-transform">→</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<section id="villas" class="bg-sable text-charbon pt-40 pb-24 lg:py-0 lg:h-screen lg:overflow-hidden relative z-20 flex flex-col justify-center border-t border-charbon/5">
+	<section id="villas" class="bg-sable text-charbon pt-40 pb-24 lg:pt-48 lg:pb-0 lg:h-screen lg:overflow-hidden relative z-20 flex flex-col justify-start border-t border-charbon/5">
 		
 		<div class="max-w-[1800px] w-full mx-auto px-6 md:px-12 mb-12 flex items-end justify-between shrink-0">
 			<div>
