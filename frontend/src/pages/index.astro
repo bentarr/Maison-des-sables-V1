@@ -1,10 +1,12 @@
 ---
+// Import du Layout principal qui contient le <head>, les polices et le script de smooth scroll (Lenis)
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Maison des Sables | L'Exception sur le Bassin">
 	
 	<nav id="navbar" class="fixed top-0 w-full z-50 px-6 md:px-12 py-6 flex justify-between items-center text-sable transition-all duration-500 ease-in-out">
+		
 		<a href="/" class="font-serif text-2xl tracking-wider font-semibold z-50 hover:text-white transition-colors">
 			Maison des Sables
 		</a>
@@ -14,15 +16,15 @@ import Layout from '../layouts/Layout.astro';
 				Philosophie
 				<span class="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-300 ease-out group-hover:w-full"></span>
 			</a>
+			<a href="#services" class="hover:text-white transition-colors duration-300 relative group py-2">
+				Nos 3 Piliers
+				<span class="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-300 ease-out group-hover:w-full"></span>
+			</a>
 			<a href="#villas" class="hover:text-white transition-colors duration-300 relative group py-2">
 				Collection
 				<span class="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-300 ease-out group-hover:w-full"></span>
 			</a>
-			<a href="#services" class="hover:text-white transition-colors duration-300 relative group py-2">
-				Services
-				<span class="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-300 ease-out group-hover:w-full"></span>
-			</a>
-            <a href="#contact" class="hover:text-white transition-colors duration-300 relative group py-2">
+			<a href="#contact" class="hover:text-white transition-colors duration-300 relative group py-2">
 				Contact
 				<span class="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-300 ease-out group-hover:w-full"></span>
 			</a>
@@ -37,6 +39,7 @@ import Layout from '../layouts/Layout.astro';
 	</nav>
 
 	<main class="relative w-full h-screen overflow-hidden bg-charbon cursor-default">
+		
 		<div id="hero-bg" class="absolute inset-0 z-0 w-[110%] h-[110%] -left-[5%] -top-[5%]">
 			<img 
 				src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop" 
@@ -66,13 +69,12 @@ import Layout from '../layouts/Layout.astro';
 			</h1>
 
 			<div class="flex flex-col md:flex-row gap-6 mt-8">
-				<a href="#villas" class="hero-btn opacity-0 group relative px-10 py-4 bg-or font-sans text-sm font-semibold rounded-std overflow-hidden shadow-lg shadow-or/20 hover:shadow-or/50 transition-all duration-500 hover:-translate-y-1">
-					<span class="relative z-10 group-hover:text-white transition-colors duration-500">Découvrir la Collection</span>
+				<a href="#services" class="hero-btn opacity-0 group relative px-10 py-4 bg-or font-sans text-sm font-semibold rounded-std overflow-hidden shadow-lg shadow-or/20 hover:shadow-or/50 transition-all duration-500 hover:-translate-y-1">
+					<span class="relative z-10 group-hover:text-white transition-colors duration-500">Découvrir nos Services</span>
 					<div class="absolute inset-0 -translate-x-[150%] skew-x-12 bg-white/40 group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out z-0"></div>
 				</a>
-
-				<a href="#services" class="hero-btn opacity-0 group relative px-10 py-4 border border-sable/30 backdrop-blur-sm text-sable font-sans text-sm font-medium rounded-std overflow-hidden hover:border-sable transition-all duration-500 hover:-translate-y-1">
-					<span class="relative z-10 group-hover:text-charbon transition-colors duration-500">Nos Services</span>
+				<a href="#villas" class="hero-btn opacity-0 group relative px-10 py-4 border border-sable/30 backdrop-blur-sm text-sable font-sans text-sm font-medium rounded-std overflow-hidden hover:border-sable transition-all duration-500 hover:-translate-y-1">
+					<span class="relative z-10 group-hover:text-charbon transition-colors duration-500">Voir la Collection</span>
 					<div class="absolute inset-0 bg-sable translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0"></div>
 				</a>
 			</div>
@@ -97,8 +99,90 @@ import Layout from '../layouts/Layout.astro';
 		</div>
 	</section>
 
+	<section id="services" class="bg-sable py-24 px-4 md:px-8 relative z-10 overflow-hidden border-t border-charbon/5">
+		
+		<div class="max-w-7xl mx-auto text-center mb-20">
+			<span class="block text-or text-xs font-sans tracking-[0.2em] uppercase mb-4 font-semibold reveal-text">Notre Savoir-Faire</span>
+			<h3 class="font-serif text-4xl md:text-5xl text-charbon mb-4 reveal-text">3 Piliers d'Excellence</h3>
+			<p class="font-sans text-charbon/60 max-w-xl mx-auto reveal-text">
+				Une approche globale et humaine pour répondre à tous les moments de vie sur le Bassin.
+			</p>
+		</div>
+
+		<div class="max-w-[1600px] mx-auto h-[800px] flex flex-col md:flex-row gap-2">
+			
+			<div class="group relative flex-1 hover:grow-[2] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden rounded-std cursor-pointer border border-charbon/5">
+				<img src="/gestion.jpg" alt="Gestion Locative" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-90"/>
+				<div class="absolute inset-0 bg-gradient-to-t from-charbon/95 via-charbon/40 to-transparent"></div>
+				
+				<div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-end text-sable">
+					<div class="transform group-hover:-translate-y-4 transition-transform duration-500">
+						<span class="inline-block px-3 py-1 mb-4 border border-or/50 rounded-full text-[10px] font-bold uppercase tracking-widest text-or bg-charbon/20 backdrop-blur-md">Propriétaires Bailleurs</span>
+						<h3 class="font-serif text-3xl md:text-5xl mb-4 text-white">Gestion Locative</h3>
+						<p class="font-sans text-sm md:text-base text-sable/70 max-w-md opacity-0 h-0 group-hover:opacity-100 group-hover:h-auto transition-all duration-500 delay-100 leading-relaxed">
+							Optimisation des revenus et sérénité totale. Nous gérons la diffusion, la sélection des voyageurs et l'accueil 5 étoiles.
+						</p>
+					</div>
+					<div class="mt-6 border-t border-white/10 pt-6 flex justify-between items-end opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-200">
+						<div>
+							<p class="text-xs uppercase tracking-wider text-sable/50 mb-1">Modèle</p>
+							<p class="font-serif text-2xl text-white">Commission <span class="text-or">20%</span></p>
+						</div>
+						<span class="w-10 h-10 rounded-full bg-or text-charbon flex items-center justify-center text-lg hover:scale-110 transition-transform">→</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="group relative flex-1 hover:grow-[2] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden rounded-std cursor-pointer border border-charbon/5">
+				<img src="/gestion.jpg" alt="Intendance" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-90 grayscale-[30%]"/> 
+				<div class="absolute inset-0 bg-gradient-to-t from-charbon/95 via-charbon/40 to-transparent"></div>
+				
+				<div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-end text-sable">
+					<div class="transform group-hover:-translate-y-4 transition-transform duration-500">
+						<span class="inline-block px-3 py-1 mb-4 border border-white/20 rounded-full text-[10px] font-bold uppercase tracking-widest text-sable bg-charbon/20 backdrop-blur-md">Résidence Secondaire</span>
+						<h3 class="font-serif text-3xl md:text-5xl mb-4 text-white">Intendance</h3>
+						<p class="font-sans text-sm md:text-base text-sable/70 max-w-md opacity-0 h-0 group-hover:opacity-100 group-hover:h-auto transition-all duration-500 delay-100 leading-relaxed">
+							Profitez de votre maison dès la première minute. Vigilance, entretien et préparation avant arrivée.
+						</p>
+					</div>
+					<div class="mt-6 border-t border-white/10 pt-6 flex justify-between items-end opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-200">
+						<div>
+							<p class="text-xs uppercase tracking-wider text-sable/50 mb-1">Modèle</p>
+							<p class="font-serif text-2xl text-white">Abonnements</p>
+						</div>
+						<span class="w-10 h-10 rounded-full bg-sable text-charbon flex items-center justify-center text-lg hover:scale-110 transition-transform">→</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="group relative flex-1 hover:grow-[2] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden rounded-std cursor-pointer border border-charbon/5">
+				<img src="/experience.jpg" alt="Main dans la main" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-90 sepia-[20%]"/>
+				<div class="absolute inset-0 bg-gradient-to-t from-[#2C241B]/95 via-[#2C241B]/40 to-transparent"></div>
+				
+				<div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-end text-sable">
+					<div class="transform group-hover:-translate-y-4 transition-transform duration-500">
+						<span class="inline-block px-3 py-1 mb-4 border border-or/30 rounded-full text-[10px] font-bold uppercase tracking-widest text-or bg-charbon/20 backdrop-blur-md">Aide & Accompagnement</span>
+						<h3 class="font-serif text-3xl md:text-5xl mb-4 text-white">Main dans la Main</h3>
+						<p class="font-sans text-sm md:text-base text-sable/70 max-w-md opacity-0 h-0 group-hover:opacity-100 group-hover:h-auto transition-all duration-500 delay-100 leading-relaxed">
+							Un service dédié à nos aînés avec bienveillance : compagnie, aide administrative et présence rassurante.
+						</p>
+					</div>
+					<div class="mt-6 border-t border-white/10 pt-6 flex justify-between items-end opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-200">
+						<div>
+							<p class="text-xs uppercase tracking-wider text-sable/50 mb-1">Modèle</p>
+							<p class="font-serif text-2xl text-white">Forfaits & à la carte</p>
+						</div>
+						<span class="w-10 h-10 rounded-full bg-or text-charbon flex items-center justify-center text-lg hover:scale-110 transition-transform">→</span>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</section>
+
 	<section id="villas" class="bg-charbon text-sable overflow-hidden relative z-20">
 		<div id="villas-container" class="h-screen w-full flex flex-col justify-center px-6 md:px-12">
+			
 			<div class="mb-12 flex items-end justify-between">
 				<div>
 					<span class="text-or text-xs font-sans tracking-[0.2em] uppercase block mb-3 font-semibold">Collection 2025</span>
@@ -115,6 +199,7 @@ import Layout from '../layouts/Layout.astro';
 			</div>
 
 			<div id="villas-track" class="flex flex-col md:flex-row gap-8 md:gap-12 md:w-[300vw]">
+				
 				<div class="villa-card w-full md:w-[80vw] lg:w-[40vw] flex-shrink-0 group cursor-pointer">
 					<div class="relative overflow-hidden rounded-std h-[50vh] md:h-[60vh] mb-6">
 						<img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2071&auto=format&fit=crop" alt="Villa" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"/>
@@ -125,6 +210,7 @@ import Layout from '../layouts/Layout.astro';
 						<span class="font-sans text-lg text-or">dès 450€</span>
 					</div>
 				</div>
+
 				<div class="villa-card w-full md:w-[80vw] lg:w-[40vw] flex-shrink-0 group cursor-pointer">
 					<div class="relative overflow-hidden rounded-std h-[50vh] md:h-[60vh] mb-6">
 						<img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=2070&auto=format&fit=crop" alt="Villa" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"/>
@@ -135,6 +221,7 @@ import Layout from '../layouts/Layout.astro';
 						<span class="font-sans text-lg text-or">dès 620€</span>
 					</div>
 				</div>
+
 				<div class="villa-card w-full md:w-[80vw] lg:w-[40vw] flex-shrink-0 group cursor-pointer">
 					<div class="relative overflow-hidden rounded-std h-[50vh] md:h-[60vh] mb-6">
 						<img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop" alt="Villa" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"/>
@@ -145,56 +232,11 @@ import Layout from '../layouts/Layout.astro';
 						<span class="font-sans text-lg text-or">dès 350€</span>
 					</div>
 				</div>
+
 				<div class="w-full md:w-[30vw] flex-shrink-0 flex items-center justify-center border border-sable/10 rounded-std hover:bg-sable/5 hover:border-or/30 transition-all group cursor-pointer">
 					<div class="text-center">
 						<span class="block text-4xl mb-4 text-or group-hover:translate-x-2 transition-transform">→</span>
 						<p class="font-serif text-2xl text-sable">Explorer toute<br/>la Collection</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section id="services" class="bg-sable py-32 px-6 md:px-12 relative z-10">
-		<div class="max-w-7xl mx-auto">
-			<div class="mb-16 md:flex justify-between items-end">
-				<div>
-					<h3 class="font-serif text-4xl md:text-5xl text-charbon mb-4 reveal-text">L'Expertise</h3>
-					<p class="font-sans text-charbon/60 reveal-text">Un accompagnement 360° pour votre résidence.</p>
-				</div>
-				<a href="/services" class="hidden md:block text-xs font-medium uppercase tracking-wide text-charbon border-b border-charbon/30 pb-1 hover:text-or hover:border-or transition-colors reveal-text">
-					Voir tous les services
-				</a>
-			</div>
-
-			<div class="grid grid-cols-1 md:grid-cols-3 md:grid-rows-2 gap-6 h-auto md:h-[800px]">
-				
-				<div class="bento-card col-span-1 md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-std bg-charbon cursor-pointer">
-					<img src="/gestion.jpg" alt="Gestion Locative" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-60"/>
-					<div class="absolute inset-0 p-10 flex flex-col justify-end text-sable">
-						<h4 class="font-serif text-3xl md:text-4xl mb-3 relative z-10">Gestion Locative</h4>
-						<p class="font-sans text-sm md:text-base text-sable/80 max-w-md relative z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 text-sable-100/90 max-w-md relative z-10">Optimisation des revenus, photos professionnelles, et sélection rigoureuse des voyageurs.</p>
-						<span class="absolute top-8 right-8 w-10 h-10 rounded-full border border-sable/20 flex items-center justify-center text-sable group-hover:bg-or group-hover:border-or group-hover:text-charbon transition-all duration-300 z-10">↗</span>
-					</div>
-				</div>
-
-				<div class="bento-card col-span-1 md:col-span-1 relative group overflow-hidden rounded-std bg-white p-8 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300">
-					<div class="w-12 h-12 rounded-full bg-sable flex items-center justify-center text-or mb-4 border border-or/20"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg></div>
-					<div><h4 class="font-serif text-2xl text-charbon mb-2">Conciergerie 7j/7</h4><p class="font-sans text-sm text-charbon/60">Accueil, ménage hôtelier, linge de maison.</p></div>
-				</div>
-
-				<div class="bento-card col-span-1 md:col-span-1 relative group overflow-hidden rounded-std bg-or cursor-pointer">
-					<img src="/experience.jpg" alt="Expériences" class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-multiply group-hover:scale-110 transition-transform duration-700"/>
-					<div class="absolute inset-0 p-8 flex flex-col justify-center items-center text-center text-charbon z-10"><h4 class="font-serif text-3xl mb-2">Expériences</h4><p class="font-sans text-xs font-medium tracking-widest uppercase border-b border-charbon/30 pb-1">Sur-mesure</p></div>
-				</div>
-
-				<div class="bento-card col-span-1 md:col-span-1 relative group overflow-hidden rounded-std bg-charbon border border-or/20 p-8 flex flex-col justify-between cursor-pointer hover:bg-or/10 transition-colors duration-300">
-					<div>
-						<h4 class="font-serif text-2xl mb-2 text-or">Tarifs & Devis</h4>
-						<p class="font-sans text-sm text-sable/70">Consultez notre grille tarifaire détaillée et demandez une estimation.</p>
-					</div>
-					<div class="group/btn mt-6 relative w-full py-3 border border-or/30 text-or text-center font-sans text-xs font-semibold rounded-std overflow-hidden transition-all duration-300 hover:bg-or hover:text-charbon">
-						<span class="relative z-10">Découvrir les tarifs</span>
 					</div>
 				</div>
 
@@ -206,6 +248,7 @@ import Layout from '../layouts/Layout.astro';
 		<div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');"></div>
 		
 		<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center relative z-10">
+			
 			<div>
 				<span class="text-or text-xs font-sans tracking-[0.2em] uppercase mb-4 block reveal-text font-semibold">Parlons de vous</span>
 				<h3 class="font-serif text-4xl md:text-5xl mb-6 reveal-text">Un projet ? Une envie ?</h3>
@@ -263,21 +306,45 @@ import Layout from '../layouts/Layout.astro';
 
 	<footer class="bg-sable text-charbon pt-24 pb-12 px-6 relative z-10 border-t border-charbon/5">
 		<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-charbon/10 pb-12 mb-12">
-			<div class="md:col-span-2"><h5 class="font-serif text-3xl mb-6">Maison des Sables</h5><p class="font-sans text-sm text-charbon/60 max-w-sm leading-relaxed">Conciergerie haut de gamme basée à Arcachon. L'alliance du luxe discret et de l'authenticité.</p></div>
-			<div><h6 class="font-sans text-xs uppercase tracking-widest mb-6 font-bold text-or">Navigation</h6><ul class="space-y-4 font-sans text-sm text-charbon/70"><li><a href="#villas" class="hover:text-or transition-colors">Nos Villas</a></li><li><a href="#services" class="hover:text-or transition-colors">Nos Services</a></li><li><a href="/login" class="hover:text-or transition-colors">Espace Propriétaire</a></li></ul></div>
-			<div><h6 class="font-sans text-xs uppercase tracking-widest mb-6 font-bold text-or">Contact</h6><ul class="space-y-4 font-sans text-sm text-charbon/70"><li>bonjour@maisondesables.fr</li><li>+33 5 56 00 00 00</li></ul></div>
+			<div class="md:col-span-2">
+				<h5 class="font-serif text-3xl mb-6">Maison des Sables</h5>
+				<p class="font-sans text-sm text-charbon/60 max-w-sm leading-relaxed">
+					Conciergerie haut de gamme basée à Arcachon. L'alliance du luxe discret et de l'authenticité.
+				</p>
+			</div>
+			<div>
+				<h6 class="font-sans text-xs uppercase tracking-widest mb-6 font-bold text-or">Navigation</h6>
+				<ul class="space-y-4 font-sans text-sm text-charbon/70">
+					<li><a href="#villas" class="hover:text-or transition-colors">Nos Villas</a></li>
+					<li><a href="#services" class="hover:text-or transition-colors">Nos Services</a></li>
+					<li><a href="/login" class="hover:text-or transition-colors">Espace Propriétaire</a></li>
+				</ul>
+			</div>
+			<div>
+				<h6 class="font-sans text-xs uppercase tracking-widest mb-6 font-bold text-or">Contact</h6>
+				<ul class="space-y-4 font-sans text-sm text-charbon/70">
+					<li>bonjour@maisondesables.fr</li>
+					<li>+33 5 56 00 00 00</li>
+				</ul>
+			</div>
 		</div>
-		<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-widest text-charbon/40 font-sans"><p>© 2025 Maison des Sables.</p><p>Design & Dev par Gemini</p></div>
+		<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-widest text-charbon/40 font-sans">
+			<p>© 2025 Maison des Sables.</p>
+			<p>Design & Dev par Gemini</p>
+		</div>
 	</footer>
 
 </Layout>
 
 <style>
+	/* Animation respiration Hero */
 	@keyframes breathe {
 		0%, 100% { transform: scale(1); }
 		50% { transform: scale(1.03); }
 	}
 	.animate-breathe { animation: breathe 18s infinite ease-in-out; }
+	
+	/* Cacher scrollbars */
 	.no-scrollbar::-webkit-scrollbar { display: none; }
 	.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 </style>
@@ -304,7 +371,7 @@ import Layout from '../layouts/Layout.astro';
 		gsap.to("#hero-bg", { x: -mouseX * 20, y: -mouseY * 20, duration: 1.5, ease: "power2.out" });
 	});
 
-	// 3. Reveal Textes
+	// 3. Reveal Textes (Apparition au scroll)
 	const textElements = document.querySelectorAll('.reveal-text');
 	textElements.forEach(el => {
 		gsap.fromTo(el, 
@@ -313,36 +380,35 @@ import Layout from '../layouts/Layout.astro';
 		);
 	});
 
-	// 4. Scroll Horizontal
+	// 4. Scroll Horizontal (Villas)
 	let mm = gsap.matchMedia();
 	mm.add("(min-width: 768px)", () => {
 		let sections = gsap.utils.toArray(".villa-card");
 		let track = document.querySelector("#villas-track");
-		gsap.to(track, {
-			xPercent: -100 + (100 / (sections.length + 1)),
-			ease: "none",
-			scrollTrigger: {
-				trigger: "#villas",
-				pin: true,
-				scrub: 1,
-				start: "top top",
-				end: "+=3000",
-			}
-		});
+		
+		// Si la section existe, on l'anime
+		if(track) {
+			gsap.to(track, {
+				xPercent: -100 + (100 / (sections.length + 1)),
+				ease: "none",
+				scrollTrigger: {
+					trigger: "#villas",
+					pin: true,
+					scrub: 1,
+					start: "top top",
+					end: "+=3000",
+				}
+			});
+		}
 	});
 
-	// 5. Bento Grid
-	gsap.from(".bento-card", {
-		y: 60, opacity: 0, duration: 1, stagger: 0.15, ease: "power3.out",
-		scrollTrigger: { trigger: "#services", start: "top 80%" }
-	});
-
-	// 6. SMART HEADER
+	// 5. Smart Header Logic
 	const navbar = document.querySelector("#navbar");
 	const clientBtn = document.querySelector("#client-btn");
 
 	window.addEventListener("scroll", () => {
 		if (window.scrollY > 50) { 
+			// Mode Scrollé (Fond Or)
 			navbar.classList.add("bg-or/95", "shadow-md", "py-4", "backdrop-blur-md");
 			navbar.classList.remove("py-6");
 			
@@ -354,6 +420,7 @@ import Layout from '../layouts/Layout.astro';
 				clientBtn.classList.remove("hover:bg-sable", "hover:text-charbon");
 			}
 		} else { 
+			// Mode Top (Transparent)
 			navbar.classList.remove("bg-or/95", "shadow-md", "py-4", "backdrop-blur-md");
 			navbar.classList.add("py-6");
 
