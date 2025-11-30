@@ -1,0 +1,140 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Connexion | Maison des Sables">
+
+	<main class="min-h-screen w-full grid grid-cols-1 lg:grid-cols-2 bg-sable">
+		
+		<div class="hidden lg:block relative h-full w-full bg-charbon overflow-hidden">
+			<img 
+				src="/gestion.jpg" 
+				alt="Intérieur Luxe" 
+				class="absolute inset-0 w-full h-full object-cover opacity-80 animate-slow-zoom"
+			/>
+			<div class="absolute inset-0 bg-charbon/40 mix-blend-multiply"></div>
+			<div class="absolute inset-0 bg-gradient-to-t from-charbon/90 via-transparent to-transparent"></div>
+			
+			<div class="absolute bottom-16 left-16 max-w-md text-sable z-10">
+				<p class="font-serif text-4xl leading-tight mb-4">"Le véritable luxe, c'est de ne se soucier de rien."</p>
+				<div class="w-12 h-[1px] bg-or mb-4"></div>
+				<p class="text-xs font-sans uppercase tracking-widest opacity-70">Espace Propriétaire & Voyageur</p>
+			</div>
+		</div>
+
+		<div class="w-full h-full flex flex-col justify-between p-8 md:p-12 lg:p-24 relative">
+			
+			<div class="w-full flex justify-start">
+				<a href="/" class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-charbon/40 hover:text-or transition-colors group">
+					<span class="group-hover:-translate-x-1 transition-transform">←</span> Retour au site
+				</a>
+			</div>
+
+			<div class="w-full max-w-md mx-auto my-12 animate-fade-in-up">
+				
+				<div class="w-full max-w-md mx-auto my-12 animate-fade-in-up relative z-10">
+                    <div class="text-center mb-8">
+                        <a href="/" class="block mb-2 hover:opacity-80 transition-opacity">
+						    <img 
+							    src="/logo.jpg" 
+							    alt="Logo Maison des Sables" 
+							    class="h-40 mx-auto object-contain mix-blend-multiply scale-[2.5]"
+						    />
+                        </a>
+
+                    <h1 class="font-serif text-4xl text-charbon mb-3 relative z-20">Bienvenue</h1>
+					<p class="text-charbon/60 text-sm relative z-20">Connectez-vous pour gérer vos séjours ou votre bien.</p>
+                    
+				</div>
+
+				<form class="space-y-8" id="login-form">
+					
+					<div class="group relative">
+						<input 
+							type="email" 
+							id="email" 
+							class="peer w-full bg-transparent border-b border-charbon/20 py-3 text-charbon focus:outline-none focus:border-or transition-colors placeholder-transparent" 
+							placeholder="Email"
+							required
+						/>
+						<label 
+							for="email" 
+							class="absolute left-0 -top-3.5 text-xs text-charbon/50 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-charbon/40 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-or"
+						>
+							Adresse Email
+						</label>
+					</div>
+
+					<div class="group relative">
+						<input 
+							type="password" 
+							id="password" 
+							class="peer w-full bg-transparent border-b border-charbon/20 py-3 text-charbon focus:outline-none focus:border-or transition-colors placeholder-transparent" 
+							placeholder="Mot de passe"
+							required
+						/>
+						<label 
+							for="password" 
+							class="absolute left-0 -top-3.5 text-xs text-charbon/50 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-charbon/40 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-or"
+						>
+							Mot de passe
+						</label>
+						<button type="button" class="absolute right-0 top-3 text-[10px] uppercase tracking-widest text-charbon/40 hover:text-charbon transition-colors">
+							Oublié ?
+						</button>
+					</div>
+
+					<button type="submit" class="group relative w-full py-4 bg-charbon text-sable font-sans text-sm font-semibold rounded-std overflow-hidden shadow-lg shadow-charbon/20 hover:shadow-charbon/40 transition-all duration-500 hover:-translate-y-1">
+						<span class="relative z-10 group-hover:text-white transition-colors">Se connecter</span>
+						<div class="absolute inset-0 -translate-x-[150%] skew-x-12 bg-or group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out z-0"></div>
+						
+						<div id="btn-loader" class="hidden absolute inset-0 bg-charbon flex items-center justify-center z-20">
+							<svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+								<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+								<path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+							</svg>
+						</div>
+					</button>
+
+				</form>
+
+				<div class="mt-12 text-center border-t border-charbon/10 pt-8">
+					<p class="text-charbon/60 text-sm mb-4">Pas encore client ?</p>
+					<a href="/#contact" class="text-xs font-bold uppercase tracking-widest border-b border-charbon pb-1 hover:text-or hover:border-or transition-colors">
+						Demander une adhésion
+					</a>
+				</div>
+			</div>
+
+			<div class="w-full text-center">
+				<p class="text-[10px] text-charbon/30 uppercase tracking-widest">© 2025 Maison des Sables • Sécurité SSL</p>
+			</div>
+
+		</div>
+
+	</main>
+
+</Layout>
+
+<style>
+	.animate-slow-zoom { animation: zoom 30s infinite alternate ease-in-out; }
+	.animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; transform: translateY(20px); }
+	@keyframes zoom { from { transform: scale(1); } to { transform: scale(1.15); } }
+	@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+</style>
+
+<script>
+	const form = document.getElementById('login-form');
+	const btnLoader = document.getElementById('btn-loader');
+
+	if(form) {
+		form.addEventListener('submit', (e) => {
+			e.preventDefault();
+			if(btnLoader) btnLoader.classList.remove('hidden');
+			setTimeout(() => {
+				alert("Connexion au serveur à venir...");
+				if(btnLoader) btnLoader.classList.add('hidden');
+			}, 1500);
+		});
+	}
+</script>
