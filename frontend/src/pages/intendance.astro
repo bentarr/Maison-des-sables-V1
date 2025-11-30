@@ -7,85 +7,299 @@ import Layout from '../layouts/Layout.astro';
 	<nav class="fixed top-0 w-full z-50 px-6 md:px-12 py-8 flex justify-between items-center mix-blend-difference text-white transition-all duration-500">
 		<a href="/" class="font-serif text-xl tracking-wider font-semibold hover:text-or transition-colors">← Retour</a>
 		<a href="/" class="hidden md:block font-serif text-2xl tracking-wider font-bold">Maison des Sables</a>
-		<a href="/contact" class="border border-white/30 px-6 py-2 text-xs font-sans uppercase tracking-widest rounded-std hover:bg-white hover:text-charbon transition-all">Contact</a>
+		<a href="#contact" class="border border-white/30 px-6 py-2 text-xs font-sans uppercase tracking-widest rounded-std hover:bg-white hover:text-charbon transition-all">Contact</a>
 	</nav>
 
-	<header class="relative h-[60vh] bg-charbon overflow-hidden flex items-center justify-center">
-		<img src="/gestion.jpg" alt="Intendance" class="absolute inset-0 w-full h-full object-cover opacity-50 grayscale-[20%]"/>
+	<header class="relative h-[70vh] bg-charbon overflow-hidden flex items-center justify-center">
+		<div class="absolute inset-0 overflow-hidden">
+			<img src="/gestion.jpg" alt="Intendance" class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale-[20%] scale-105 animate-slow-zoom"/>
+		</div>
 		<div class="absolute inset-0 bg-gradient-to-b from-charbon/60 via-transparent to-sable"></div>
-		<div class="relative z-10 text-center px-4 mt-20">
-			<p class="text-or text-xs font-sans tracking-[0.3em] uppercase mb-4 animate-fade-in-up">Propriétaires Résidants</p>
-			<h1 class="font-serif text-5xl md:text-7xl text-sable mb-6 animate-fade-in-up delay-100">Intendance</h1>
-			<p class="text-sable/80 max-w-2xl mx-auto font-sans text-lg leading-relaxed animate-fade-in-up delay-200">
-				Profitez de votre résidence secondaire dès la première minute.<br>Nous veillons sur votre bien toute l'année.
+		<div class="relative z-10 text-center px-4 mt-20 max-w-4xl">
+			<span class="inline-block py-1 px-3 border border-white/20 rounded-full text-[10px] font-sans tracking-[0.2em] uppercase text-white/80 mb-6 backdrop-blur-md">Propriétaires Résidants</span>
+			<h1 class="font-serif text-5xl md:text-8xl text-sable mb-8 leading-tight">Votre Maison,<br/><span class="italic text-or">Toujours Prête.</span></h1>
+			<p class="text-sable/80 max-w-xl mx-auto font-sans text-lg leading-relaxed">
+				Ne gâchez plus vos arrivées. Nous veillons, aérons et préparons votre résidence secondaire pour que chaque séjour soit des vacances dès la première seconde.
 			</p>
 		</div>
 	</header>
 
-	<section class="bg-sable text-charbon py-24 px-6 md:px-12">
-		<div class="max-w-6xl mx-auto">
+	<section class="bg-sable text-charbon py-32 px-6 md:px-12">
+		<div class="max-w-7xl mx-auto">
 			
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-16 mb-32 items-center">
-				<div>
-					<h3 class="font-serif text-3xl md:text-4xl mb-6">Sérénité Absolue</h3>
-					<p class="font-sans text-charbon/70 leading-relaxed mb-6">
-						Fini les arrivées dans une maison froide ou poussiéreuse. Fini les inquiétudes après une tempête. Nous sommes vos yeux et vos mains sur place.
-					</p>
-					<ul class="space-y-4 font-sans text-sm text-charbon/80">
-						<li class="flex items-center"><span class="w-1.5 h-1.5 bg-or rounded-full mr-3"></span>Visites de vigilance régulières (Int/Ext)</li>
-						<li class="flex items-center"><span class="w-1.5 h-1.5 bg-or rounded-full mr-3"></span>Aération, relève du courrier, arrosage</li>
-						<li class="flex items-center"><span class="w-1.5 h-1.5 bg-or rounded-full mr-3"></span>Préparation "Arrivée VIP" (Chauffage, Frigo, Lits)</li>
-						<li class="flex items-center"><span class="w-1.5 h-1.5 bg-or rounded-full mr-3"></span>Coordination artisans & entretien</li>
-					</ul>
-				</div>
-				<div class="bg-white p-8 rounded-[2rem] shadow-xl border border-charbon/5">
-					<h4 class="font-serif text-2xl mb-6 text-center">Nos Formules d'Abonnement</h4>
+			<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
+				
+				<div class="lg:col-span-5 flex flex-col justify-center space-y-8">
+					<h3 class="text-xs font-bold uppercase tracking-widest text-charbon/40 mb-4">Nos Prestations</h3>
 					
-					<div class="space-y-6">
-						<div class="border border-charbon/10 rounded-std p-6 hover:border-or transition-colors cursor-pointer group">
-							<div class="flex justify-between items-center mb-2">
-								<h5 class="font-bold text-charbon">Vigilance Essentielle</h5>
-								<span class="text-or font-serif text-xl">dès 50€<span class="text-xs text-charbon/50">/mois</span></span>
-							</div>
-							<p class="text-xs text-charbon/60">2 visites/mois + Rapport photo + Gestion clés</p>
+					<div class="service-trigger group cursor-pointer opacity-100 transition-opacity duration-300" data-target="img-1">
+						<div class="flex items-center justify-between border-b border-charbon/10 pb-4 mb-4 group-hover:border-or transition-colors">
+							<h4 class="font-serif text-3xl md:text-4xl text-charbon group-hover:text-or transition-colors">Vigilance</h4>
+							<span class="text-or opacity-0 group-hover:opacity-100 transition-opacity text-2xl">→</span>
 						</div>
-
-						<div class="border border-or bg-or/5 rounded-std p-6 relative">
-							<div class="absolute -top-3 right-6 bg-or text-white text-[10px] font-bold px-2 py-1 rounded">POPULAIRE</div>
-							<div class="flex justify-between items-center mb-2">
-								<h5 class="font-bold text-charbon">Confort Total</h5>
-								<span class="text-or font-serif text-xl">dès 120€<span class="text-xs text-charbon/50">/mois</span></span>
-							</div>
-							<p class="text-xs text-charbon/60">4 visites/mois + Préparation arrivée + Gestion prestataires + Astreinte tempête</p>
-						</div>
-
-						<div class="border border-charbon/10 rounded-std p-6 hover:border-or transition-colors cursor-pointer">
-							<div class="flex justify-between items-center mb-2">
-								<h5 class="font-bold text-charbon">Prestige</h5>
-								<span class="text-or font-serif text-xl">Sur Devis</span>
-							</div>
-							<p class="text-xs text-charbon/60">Gestion intégrale sur-mesure + Conciergerie privée</p>
+						<div class="service-details text-sm text-charbon/70 leading-relaxed space-y-2 pl-2 border-l-2 border-or/20 group-hover:border-or transition-colors">
+							<p>Passages réguliers pour garantir la sécurité et l'intégrité de votre bien.</p>
+							<ul class="list-disc list-inside opacity-80">
+								<li>Rapport photo systématique</li>
+								<li>Relève du courrier & Aération</li>
+								<li>Vérification des ouvertures</li>
+							</ul>
 						</div>
 					</div>
+
+					<div class="service-trigger group cursor-pointer opacity-50 hover:opacity-100 transition-opacity duration-300" data-target="img-2">
+						<div class="flex items-center justify-between border-b border-charbon/10 pb-4 mb-4 group-hover:border-or transition-colors">
+							<h4 class="font-serif text-3xl md:text-4xl text-charbon group-hover:text-or transition-colors">Arrivée VIP</h4>
+							<span class="text-or opacity-0 group-hover:opacity-100 transition-opacity text-2xl">→</span>
+						</div>
+						<div class="service-details hidden group-hover:block text-sm text-charbon/70 leading-relaxed space-y-2 pl-2 border-l-2 border-or/20 group-hover:border-or">
+							<p>Une maison chaude et accueillante dès que vous franchissez le seuil.</p>
+							<ul class="list-disc list-inside opacity-80">
+								<li>Chauffage allumé & Lits faits</li>
+								<li>Frigo rempli (selon liste)</li>
+								<li>Ménage de printemps avant saison</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="service-trigger group cursor-pointer opacity-50 hover:opacity-100 transition-opacity duration-300" data-target="img-3">
+						<div class="flex items-center justify-between border-b border-charbon/10 pb-4 mb-4 group-hover:border-or transition-colors">
+							<h4 class="font-serif text-3xl md:text-4xl text-charbon group-hover:text-or transition-colors">Coordination</h4>
+							<span class="text-or opacity-0 group-hover:opacity-100 transition-opacity text-2xl">→</span>
+						</div>
+						<div class="service-details hidden group-hover:block text-sm text-charbon/70 leading-relaxed space-y-2 pl-2 border-l-2 border-or/20 group-hover:border-or">
+							<p>Gestion complète des prestataires pour un extérieur impeccable.</p>
+							<ul class="list-disc list-inside opacity-80">
+								<li>Gestion jardiniers & piscinistes</li>
+								<li>Accès artisans pour travaux</li>
+								<li>Suivi de chantier</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="lg:col-span-7 relative h-[500px] lg:h-[600px] rounded-[2rem] overflow-hidden shadow-2xl">
+					<img id="img-1" src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2070&auto=format&fit=crop" class="service-img absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-105 opacity-100" alt="Vigilance"/>
 					
-					<div class="mt-8 text-center">
-						<a href="/#contact" class="inline-block bg-charbon text-sable px-8 py-3 rounded-std font-sans text-xs font-bold uppercase tracking-widest hover:bg-or transition-colors">Souscrire</a>
+					<img id="img-2" src="https://images.unsplash.com/photo-1616594039964-408e4080ce37?q=80&w=2071&auto=format&fit=crop" class="service-img absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-100 opacity-0" alt="Preparation"/>
+					
+					<img id="img-3" src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop" class="service-img absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-100 opacity-0" alt="Jardin"/>
+					
+					<div class="absolute inset-0 bg-charbon/10 mix-blend-multiply pointer-events-none"></div>
+					<div class="absolute bottom-8 left-8 bg-white/90 backdrop-blur text-charbon px-6 py-3 rounded-std text-xs font-bold uppercase tracking-widest shadow-lg">
+						Maison des Sables • Service Premium
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<section class="bg-white py-24 px-6 md:px-12 border-t border-charbon/5">
+		<div class="max-w-7xl mx-auto">
+			<div class="text-center mb-16">
+				<span class="text-or text-xs font-sans tracking-[0.2em] uppercase mb-4 block">Abonnements</span>
+				<h3 class="font-serif text-4xl md:text-5xl text-charbon">Choisissez votre Sérénité</h3>
+				<p class="mt-6 text-charbon/60">Cliquez sur une formule pour la sélectionner.</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+				
+				<div class="plan-card group relative bg-sable p-10 rounded-[2rem] border border-transparent hover:border-or/50 cursor-pointer transition-all duration-300 hover:-translate-y-2" data-plan="Formule Essentiel">
+					<div class="flex justify-between items-start mb-8">
+						<h4 class="font-bold uppercase tracking-widest text-sm text-charbon/60">Essentiel</h4>
+						<div class="check-circle w-6 h-6 rounded-full border border-charbon/20 flex items-center justify-center transition-colors group-hover:bg-or group-hover:border-or">
+							<span class="check-icon text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity">✓</span>
+						</div>
+					</div>
+					<p class="text-5xl font-serif text-charbon mb-2">50€<span class="text-base text-charbon/40 font-sans">/mois</span></p>
+					<p class="text-sm text-charbon/60 mb-8 min-h-[3em]">Pour garder un œil sur votre bien.</p>
+					<ul class="space-y-4 text-sm text-charbon/80 border-t border-charbon/5 pt-8">
+						<li class="flex items-center"><span class="text-or mr-2">✓</span> 2 visites de vigilance / mois</li>
+						<li class="flex items-center"><span class="text-or mr-2">✓</span> Rapport photo</li>
+						<li class="flex items-center"><span class="text-or mr-2">✓</span> Gestion des clés</li>
+					</ul>
+				</div>
+
+				<div class="plan-card group relative bg-charbon p-10 rounded-[2rem] shadow-2xl transform md:-translate-y-4 border border-charbon cursor-pointer transition-all duration-300 hover:border-or" data-plan="Formule Confort Total">
+					<div class="absolute top-0 right-0 bg-or text-white text-[10px] font-bold px-4 py-2 rounded-bl-[1rem]">POPULAIRE</div>
+					<div class="flex justify-between items-start mb-8">
+						<h4 class="font-bold uppercase tracking-widest text-sm text-or">Confort Total</h4>
+						<div class="check-circle w-6 h-6 rounded-full border border-white/20 flex items-center justify-center transition-colors group-hover:bg-or group-hover:border-or">
+							<span class="check-icon text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity">✓</span>
+						</div>
+					</div>
+					<p class="text-5xl font-serif text-white mb-2">120€<span class="text-base text-white/40 font-sans">/mois</span></p>
+					<p class="text-white/60 text-sm mb-8 min-h-[3em]">La formule idéale pour profiter sans contraintes.</p>
+					<ul class="space-y-4 text-sm text-white/90 border-t border-white/10 pt-8">
+						<li class="flex items-center"><span class="text-or mr-2">✓</span> 4 visites de vigilance / mois</li>
+						<li class="flex items-center"><span class="text-or mr-2">✓</span> Préparation arrivée (x2/an)</li>
+						<li class="flex items-center"><span class="text-or mr-2">✓</span> Relève courrier & Arrosage</li>
+						<li class="flex items-center"><span class="text-or mr-2">✓</span> Astreinte tempête 24/7</li>
+					</ul>
+				</div>
+
+				<div class="plan-card group relative bg-sable p-10 rounded-[2rem] border border-transparent hover:border-or/50 cursor-pointer transition-all duration-300 hover:-translate-y-2" data-plan="Formule Prestige (Sur Devis)">
+					<div class="flex justify-between items-start mb-8">
+						<h4 class="font-bold uppercase tracking-widest text-sm text-charbon/60">Prestige</h4>
+						<div class="check-circle w-6 h-6 rounded-full border border-charbon/20 flex items-center justify-center transition-colors group-hover:bg-or group-hover:border-or">
+							<span class="check-icon text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity">✓</span>
+						</div>
+					</div>
+					<p class="text-4xl font-serif text-charbon mb-2 mt-2">Sur Devis</p>
+					<p class="text-sm text-charbon/60 mb-8 min-h-[3em]">Gestion intégrale 100% sur-mesure.</p>
+					<ul class="space-y-4 text-sm text-charbon/80 border-t border-charbon/5 pt-8">
+						<li class="flex items-center"><span class="text-or mr-2">✓</span> Visites illimitées</li>
+						<li class="flex items-center"><span class="text-or mr-2">✓</span> Conciergerie privée incluse</li>
+						<li class="flex items-center"><span class="text-or mr-2">✓</span> Suivi de travaux</li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<section id="contact" class="bg-sable text-charbon py-24 px-6 md:px-12 border-t border-charbon/5 scroll-mt-20">
+		<div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
+			<div>
+				<span class="text-or text-xs font-sans tracking-[0.2em] uppercase mb-4 block">Souscrire</span>
+				<h3 class="font-serif text-3xl md:text-4xl mb-6">Mise en place rapide</h3>
+				<p class="font-sans text-charbon/70 mb-8 leading-relaxed">
+					Une fois le formulaire envoyé, nous vous contactons pour organiser la première visite technique et la remise des clés.
+				</p>
+				<div class="space-y-8 mt-12">
+					<div class="flex items-start gap-6">
+						<div class="w-12 h-12 rounded-full bg-white border border-or/20 flex items-center justify-center text-or shrink-0">✉️</div>
+						<div><p class="text-xs uppercase tracking-widest text-charbon/40 mb-1">Email</p><a href="mailto:bonjour@maisondesables.fr" class="font-serif text-xl text-charbon hover:text-or transition-colors">bonjour@maisondesables.fr</a></div>
+					</div>
+					<div class="flex items-start gap-6">
+						<div class="w-12 h-12 rounded-full bg-white border border-or/20 flex items-center justify-center text-or shrink-0">📞</div>
+						<div><p class="text-xs uppercase tracking-widest text-charbon/40 mb-1">Téléphone</p><a href="tel:+33556000000" class="font-serif text-xl text-charbon hover:text-or transition-colors">+33 5 56 00 00 00</a></div>
 					</div>
 				</div>
 			</div>
 
+			<form class="space-y-6 bg-white p-10 rounded-[2rem] shadow-lg border border-charbon/5">
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+					<div class="group"><label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Nom</label><input type="text" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all" required/></div>
+					<div class="group"><label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Téléphone</label><input type="tel" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all" required/></div>
+				</div>
+				<div class="group"><label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Email</label><input type="email" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all" required/></div>
+				<div class="group">
+					<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Formule Sélectionnée</label>
+					<input type="text" id="selected-plan-input" class="w-full bg-or/10 border-b border-or p-3 text-charbon font-bold outline-none" value="Aucune formule sélectionnée" readonly/>
+				</div>
+				<div class="group"><label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Commentaires</label><textarea rows="3" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all resize-none"></textarea></div>
+				<button class="w-full bg-charbon text-sable py-4 rounded-std font-bold uppercase tracking-widest hover:bg-or hover:text-white transition-colors shadow-lg">Envoyer ma demande</button>
+			</form>
 		</div>
 	</section>
 
-	<footer class="bg-charbon text-sable py-12 text-center border-t border-sable/10">
+	<footer class="bg-charbon text-sable py-12 text-center border-t border-white/10">
 		<p class="font-serif text-2xl mb-4">Maison des Sables</p>
-		<p class="text-xs font-sans opacity-50">Arcachon • Cap Ferret • Le Moulleau</p>
 	</footer>
 </Layout>
 
 <style>
 	.animate-fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; transform: translateY(20px); }
+	.animate-slow-zoom { animation: zoom 20s infinite alternate; }
 	.delay-100 { animation-delay: 0.1s; }
 	.delay-200 { animation-delay: 0.2s; }
 	@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+	@keyframes zoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 </style>
+
+<script>
+	// SCRIPTS : INTERACTIVE SWITCHER & PLANS
+	['astro:page-load', 'load'].forEach(event => {
+		window.addEventListener(event, () => {
+			
+			// 1. INTERACTIVE IMAGE SWITCHER
+			const triggers = document.querySelectorAll('.service-trigger');
+			const images = document.querySelectorAll('.service-img');
+
+			triggers.forEach(trigger => {
+				trigger.addEventListener('mouseenter', () => {
+					// Reset opacity triggers
+					triggers.forEach(t => {
+						t.classList.remove('opacity-100');
+						t.classList.add('opacity-50');
+						// Hide details
+						const details = t.querySelector('.service-details');
+						if(details) details.classList.add('hidden');
+					});
+
+					// Active trigger
+					trigger.classList.remove('opacity-50');
+					trigger.classList.add('opacity-100');
+					// Show details
+					const details = trigger.querySelector('.service-details');
+					if(details) details.classList.remove('hidden');
+
+					// Switch Image
+					// @ts-ignore
+					const targetId = trigger.dataset.target;
+					images.forEach(img => {
+						img.classList.remove('opacity-100', 'scale-105');
+						img.classList.add('opacity-0', 'scale-100');
+					});
+					const targetImg = document.getElementById(targetId);
+					if(targetImg) {
+						targetImg.classList.remove('opacity-0', 'scale-100');
+						targetImg.classList.add('opacity-100', 'scale-105');
+					}
+				});
+			});
+
+			// 2. PLANS SELECTION
+			const cards = document.querySelectorAll('.plan-card');
+			const formInput = document.getElementById('selected-plan-input');
+			const contactSection = document.getElementById('contact');
+
+			cards.forEach(card => {
+				card.addEventListener('click', () => {
+					// @ts-ignore
+					const planName = card.dataset.plan;
+
+					// Reset
+					cards.forEach(c => {
+						c.classList.remove('ring-2', 'ring-or', 'scale-105', 'opacity-100');
+						c.classList.add('opacity-50');
+						const circle = c.querySelector('.check-circle');
+						const icon = c.querySelector('.check-icon');
+						if(circle) {
+							circle.classList.remove('bg-or', 'border-or');
+							if(c.classList.contains('bg-charbon')) circle.classList.add('border-white/20');
+							else circle.classList.add('border-charbon/20');
+						}
+						if(icon) {
+							icon.classList.remove('opacity-100');
+							icon.classList.add('opacity-0');
+						}
+					});
+
+					// Active
+					card.classList.remove('opacity-50');
+					card.classList.add('ring-2', 'ring-or', 'scale-105', 'opacity-100');
+					const activeCircle = card.querySelector('.check-circle');
+					const activeIcon = card.querySelector('.check-icon');
+					if(activeCircle) {
+						activeCircle.classList.remove('border-charbon/20', 'border-white/20');
+						activeCircle.classList.add('bg-or', 'border-or');
+					}
+					if(activeIcon) {
+						activeIcon.classList.remove('opacity-0');
+						activeIcon.classList.add('opacity-100');
+					}
+
+					// Input & Scroll
+					// @ts-ignore
+					if(formInput) { formInput.value = planName; formInput.parentElement.classList.add('animate-pulse'); setTimeout(() => formInput.parentElement.classList.remove('animate-pulse'), 1000); }
+					if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
+				});
+			});
+
+		});
+	});
+</script>
