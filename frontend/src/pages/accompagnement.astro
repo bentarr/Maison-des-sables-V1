@@ -1,4 +1,7 @@
 ---
+// ==============================================================================
+// PAGE : ACCOMPAGNEMENT (V4 - DESIGN GRILLE MAGAZINE)
+// ==============================================================================
 import Layout from '../layouts/Layout.astro';
 ---
 
@@ -25,108 +28,68 @@ import Layout from '../layouts/Layout.astro';
 		</div>
 	</header>
 
-	<section class="bg-sable text-charbon py-32 px-4 md:px-12">
+	<section class="bg-sable text-charbon py-24 px-6 md:px-12">
 		<div class="max-w-[1600px] mx-auto">
 			
-			<div class="text-center mb-20">
-				<h3 class="font-serif text-4xl md:text-6xl mb-6">Une Présence de Confiance</h3>
+			<div class="text-center mb-16">
+				<span class="text-or text-xs font-sans tracking-[0.2em] uppercase mb-4 block">Une Présence de Confiance</span>
+				<h3 class="font-serif text-4xl md:text-6xl mb-6">Pour chaque instant</h3>
 				<p class="font-sans text-charbon/60 max-w-2xl mx-auto text-lg">
-					Plus qu'un service, nous tissons un lien. Passez la souris sur nos piliers d'accompagnement pour découvrir comment nous pouvons aider.
+					Nous tissons un lien unique. Sélectionnez un service pour nous faire part de vos besoins.
 				</p>
 			</div>
 
-			<div class="flex flex-col lg:flex-row h-[800px] lg:h-[600px] gap-4">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 				
-				<div class="group relative flex-1 lg:hover:flex-[3] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden rounded-[2rem] cursor-pointer shadow-sm hover:shadow-xl bg-sable border border-charbon/10">
-					<img src="/main_dans_la_main.png" class="absolute inset-0 w-full h-full object-contain opacity-0 group-hover:opacity-30 transition-all duration-700 p-12 scale-110 group-hover:scale-100" alt="Compagnie"/>
-					
-					<div class="absolute inset-0 bg-charbon opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-					<div class="absolute inset-0 bg-gradient-to-t from-charbon via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-					
-					<div class="absolute inset-0 p-8 flex flex-col justify-between items-center lg:items-start relative z-10 transition-colors duration-700 text-charbon group-hover:text-sable">
-						<div class="w-12 h-12 rounded-full border border-charbon/20 group-hover:border-white/20 flex items-center justify-center text-xl mb-4 bg-charbon/5 group-hover:bg-white/5 backdrop-blur-sm transition-colors duration-700">☕️</div>
-						
-						<div class="text-center lg:text-left w-full">
-							<h4 class="font-serif text-2xl lg:text-3xl mb-4 whitespace-nowrap transform lg:origin-bottom-left lg:-rotate-90 lg:group-hover:rotate-0 lg:translate-y-0 transition-all duration-500">Compagnie</h4>
-							
-							<div class="h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 overflow-hidden transition-all duration-700 delay-100">
-								<p class="font-sans text-sm leading-relaxed mb-6 max-w-sm text-sable/80">
-									Rompre l'isolement par des moments simples et joyeux : lecture, jeux de société, promenades au bord de l'eau ou simplement partager un thé.
-								</p>
-								<button class="select-service-btn text-xs font-bold uppercase tracking-widest border-b border-or pb-1 hover:text-or transition-colors" data-service="Compagnie">
-									Sélectionner ce besoin
-								</button>
-							</div>
-						</div>
+				<div class="service-card group bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-charbon/5 hover:-translate-y-2" data-service="Compagnie">
+					<div class="h-56 p-10 bg-charbon/5 flex items-center justify-center relative overflow-hidden">
+						<img src="/main_dans_la_main.png" class="w-full h-full object-contain opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-700" alt="Compagnie"/>
+					</div>
+					<div class="p-8">
+						<h4 class="font-serif text-2xl mb-4 text-charbon">Compagnie</h4>
+						<p class="text-sm text-charbon/70 leading-relaxed mb-6 h-20">
+							Rompre l'isolement par des moments simples : lecture, jeux, promenades ou partage d'un thé.
+						</p>
+						<span class="text-xs font-bold uppercase tracking-widest text-or border-b border-or/20 pb-1 group-hover:border-or transition-colors">Choisir</span>
 					</div>
 				</div>
 
-				<div class="group relative flex-1 lg:hover:flex-[3] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden rounded-[2rem] cursor-pointer shadow-sm hover:shadow-xl bg-sable border border-charbon/10">
-					<img src="/main_dans_la_main.png" class="absolute inset-0 w-full h-full object-contain opacity-0 group-hover:opacity-30 transition-all duration-700 p-12 scale-110 group-hover:scale-100" alt="Quotidien"/>
-					<div class="absolute inset-0 bg-charbon opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-					<div class="absolute inset-0 bg-gradient-to-t from-charbon via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-					
-					<div class="absolute inset-0 p-8 flex flex-col justify-between items-center lg:items-start relative z-10 transition-colors duration-700 text-charbon group-hover:text-sable">
-						<div class="w-12 h-12 rounded-full border border-charbon/20 group-hover:border-white/20 flex items-center justify-center text-xl mb-4 bg-charbon/5 group-hover:bg-white/5 backdrop-blur-sm transition-colors duration-700">🛒</div>
-						
-						<div class="text-center lg:text-left w-full">
-							<h4 class="font-serif text-2xl lg:text-3xl mb-4 whitespace-nowrap transform lg:origin-bottom-left lg:-rotate-90 lg:group-hover:rotate-0 transition-all duration-500">Quotidien</h4>
-							
-							<div class="h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 overflow-hidden transition-all duration-700 delay-100">
-								<p class="font-sans text-sm leading-relaxed mb-6 max-w-sm text-sable/80">
-									Faciliter la vie de tous les jours : petites courses, passage à la pharmacie, préparation de repas légers, aide au rangement.
-								</p>
-								<button class="select-service-btn text-xs font-bold uppercase tracking-widest border-b border-or pb-1 hover:text-or transition-colors" data-service="Aide Quotidien">
-									Sélectionner ce besoin
-								</button>
-							</div>
-						</div>
+				<div class="service-card group bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-charbon/5 hover:-translate-y-2" data-service="Aide Quotidien">
+					<div class="h-56 p-10 bg-charbon/5 flex items-center justify-center relative overflow-hidden">
+						<img src="/main_dans_la_main.png" class="w-full h-full object-contain opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-700" alt="Quotidien"/>
+					</div>
+					<div class="p-8">
+						<h4 class="font-serif text-2xl mb-4 text-charbon">Quotidien</h4>
+						<p class="text-sm text-charbon/70 leading-relaxed mb-6 h-20">
+							Faciliter la vie de tous les jours : petites courses, pharmacie, aide au rangement léger.
+						</p>
+						<span class="text-xs font-bold uppercase tracking-widest text-or border-b border-or/20 pb-1 group-hover:border-or transition-colors">Choisir</span>
 					</div>
 				</div>
 
-				<div class="group relative flex-1 lg:hover:flex-[3] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden rounded-[2rem] cursor-pointer shadow-sm hover:shadow-xl bg-sable border border-charbon/10">
-					<img src="/main_dans_la_main.png" class="absolute inset-0 w-full h-full object-contain opacity-0 group-hover:opacity-30 transition-all duration-700 p-12 scale-110 group-hover:scale-100" alt="Administratif"/>
-					<div class="absolute inset-0 bg-charbon opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-					<div class="absolute inset-0 bg-gradient-to-t from-charbon via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-					
-					<div class="absolute inset-0 p-8 flex flex-col justify-between items-center lg:items-start relative z-10 transition-colors duration-700 text-charbon group-hover:text-sable">
-						<div class="w-12 h-12 rounded-full border border-charbon/20 group-hover:border-white/20 flex items-center justify-center text-xl mb-4 bg-charbon/5 group-hover:bg-white/5 backdrop-blur-sm transition-colors duration-700">📝</div>
-						
-						<div class="text-center lg:text-left w-full">
-							<h4 class="font-serif text-2xl lg:text-3xl mb-4 whitespace-nowrap transform lg:origin-bottom-left lg:-rotate-90 lg:group-hover:rotate-0 transition-all duration-500">Administratif</h4>
-							
-							<div class="h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 overflow-hidden transition-all duration-700 delay-100">
-								<p class="font-sans text-sm leading-relaxed mb-6 max-w-sm text-sable/80">
-									Sérénité papier : aide au tri du courrier, prise de rendez-vous médicaux, classement de documents, démarches en ligne.
-								</p>
-								<button class="select-service-btn text-xs font-bold uppercase tracking-widest border-b border-or pb-1 hover:text-or transition-colors" data-service="Aide Administrative">
-									Sélectionner ce besoin
-								</button>
-							</div>
-						</div>
+				<div class="service-card group bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-charbon/5 hover:-translate-y-2" data-service="Aide Administrative">
+					<div class="h-56 p-10 bg-charbon/5 flex items-center justify-center relative overflow-hidden">
+						<img src="/main_dans_la_main.png" class="w-full h-full object-contain opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-700" alt="Administratif"/>
+					</div>
+					<div class="p-8">
+						<h4 class="font-serif text-2xl mb-4 text-charbon">Administratif</h4>
+						<p class="text-sm text-charbon/70 leading-relaxed mb-6 h-20">
+							Sérénité papier : aide au tri du courrier, prise de rendez-vous médicaux, classement.
+						</p>
+						<span class="text-xs font-bold uppercase tracking-widest text-or border-b border-or/20 pb-1 group-hover:border-or transition-colors">Choisir</span>
 					</div>
 				</div>
 
-				<div class="group relative flex-1 lg:hover:flex-[3] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden rounded-[2rem] cursor-pointer shadow-sm hover:shadow-xl bg-sable border border-charbon/10">
-					<img src="/main_dans_la_main.png" class="absolute inset-0 w-full h-full object-contain opacity-0 group-hover:opacity-30 transition-all duration-700 p-12 scale-110 group-hover:scale-100" alt="Numérique"/>
-					<div class="absolute inset-0 bg-charbon opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-					<div class="absolute inset-0 bg-gradient-to-t from-charbon via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-					
-					<div class="absolute inset-0 p-8 flex flex-col justify-between items-center lg:items-start relative z-10 transition-colors duration-700 text-charbon group-hover:text-sable">
-						<div class="w-12 h-12 rounded-full border border-charbon/20 group-hover:border-white/20 flex items-center justify-center text-xl mb-4 bg-charbon/5 group-hover:bg-white/5 backdrop-blur-sm transition-colors duration-700">💻</div>
-						
-						<div class="text-center lg:text-left w-full">
-							<h4 class="font-serif text-2xl lg:text-3xl mb-4 whitespace-nowrap transform lg:origin-bottom-left lg:-rotate-90 lg:group-hover:rotate-0 transition-all duration-500">Numérique</h4>
-							
-							<div class="h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 overflow-hidden transition-all duration-700 delay-100">
-								<p class="font-sans text-sm leading-relaxed mb-6 max-w-sm text-sable/80">
-									Rester connecté avec la famille : configuration tablette/téléphone, aide aux appels visio, envoi de photos aux petits-enfants.
-								</p>
-								<button class="select-service-btn text-xs font-bold uppercase tracking-widest border-b border-or pb-1 hover:text-or transition-colors" data-service="Aide Numérique">
-									Sélectionner ce besoin
-								</button>
-							</div>
-						</div>
+				<div class="service-card group bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-charbon/5 hover:-translate-y-2" data-service="Aide Numérique">
+					<div class="h-56 p-10 bg-charbon/5 flex items-center justify-center relative overflow-hidden">
+						<img src="/main_dans_la_main.png" class="w-full h-full object-contain opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-700" alt="Numérique"/>
+					</div>
+					<div class="p-8">
+						<h4 class="font-serif text-2xl mb-4 text-charbon">Numérique</h4>
+						<p class="text-sm text-charbon/70 leading-relaxed mb-6 h-20">
+							Rester connecté avec la famille : aide tablette, téléphone, visio avec les petits-enfants.
+						</p>
+						<span class="text-xs font-bold uppercase tracking-widest text-or border-b border-or/20 pb-1 group-hover:border-or transition-colors">Choisir</span>
 					</div>
 				</div>
 
@@ -280,6 +243,20 @@ import Layout from '../layouts/Layout.astro';
 	['astro:page-load', 'load'].forEach(event => {
 		window.addEventListener(event, () => {
 			
+			// 1. LOGIQUE CLIC SUR LES SERVICES (NOUVEAU)
+			const serviceCards = document.querySelectorAll('.service-card');
+			const inputInterest = document.getElementById('input-interest') as HTMLInputElement;
+			const contactSection = document.getElementById('contact');
+
+			serviceCards.forEach(card => {
+				card.addEventListener('click', () => {
+					// @ts-ignore
+					const serviceName = card.dataset.service;
+					fillForm(`Service : ${serviceName}`);
+				});
+			});
+
+			// 2. LOGIQUE SWITCHER TARIFS
 			const btnPonctuel = document.getElementById('btn-ponctuel');
 			const btnAbonnement = document.getElementById('btn-abonnement');
 			const contentPonctuel = document.getElementById('content-ponctuel');
@@ -305,18 +282,7 @@ import Layout from '../layouts/Layout.astro';
 				});
 			}
 
-			const inputInterest = document.getElementById('input-interest') as HTMLInputElement;
-			const contactSection = document.getElementById('contact');
-
-			document.querySelectorAll('.select-service-btn').forEach(btn => {
-				btn.addEventListener('click', (e) => {
-					e.stopPropagation();
-					// @ts-ignore
-					const service = btn.dataset.service;
-					fillForm(`Service : ${service}`);
-				});
-			});
-
+			// 3. CLIC SUR LES TARIFS
 			document.querySelectorAll('.plan-card').forEach(card => {
 				card.addEventListener('click', () => {
 					// @ts-ignore
