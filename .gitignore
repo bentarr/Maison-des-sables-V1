@@ -8,7 +8,7 @@ lerna-debug.log*
 .pnpm-debug.log*
 
 # build output
-dist/
+#dist/
 # generated types
 .astro/
 
