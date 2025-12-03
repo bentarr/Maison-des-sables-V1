@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/silo7074/preprod.maison-des-sables.fr/public_html/home/silo7074/preprod.maison-des-sables.fr/public_html
+    - /bin/cp -R frontend/dist/* $DEPLOYPATH
