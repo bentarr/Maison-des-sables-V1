@@ -25,65 +25,65 @@ import Layout from '../layouts/Layout.astro';
 
 	<section class="bg-sable text-charbon py-32 px-6 md:px-12">
 		<div class="max-w-7xl mx-auto">
-			<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
+			
+			<div class="text-center mb-16">
+				<span class="text-or text-xs font-sans tracking-[0.2em] uppercase mb-4 block">Notre Expertise</span>
+				<h3 class="font-serif text-4xl md:text-6xl mb-6">L'Art de la Performance</h3>
+				<p class="font-sans text-charbon/60 max-w-2xl mx-auto text-lg">
+					Une approche complète pour valoriser votre patrimoine.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 				
-				<div class="lg:col-span-5 flex flex-col justify-center space-y-8">
-					<h3 class="text-xs font-bold uppercase tracking-widest text-charbon/40 mb-4">Notre Expertise</h3>
-					
-					<div class="service-trigger group cursor-pointer opacity-100 transition-opacity duration-300" data-target="img-1">
-						<div class="flex items-center justify-between border-b border-charbon/10 pb-4 mb-4 group-hover:border-or transition-colors">
-							<h4 class="font-serif text-3xl md:text-5xl text-charbon group-hover:text-or transition-colors">Commercialisation</h4>
-							<span class="text-or opacity-0 group-hover:opacity-100 transition-opacity text-2xl">→</span>
-						</div>
-						<div class="service-details text-sm text-charbon/70 leading-relaxed space-y-2 pl-2 border-l-2 border-or/20 group-hover:border-or transition-colors">
-							<p>Nous créons l'envie dès le premier clic pour attirer les meilleurs voyageurs.</p>
-							<ul class="list-disc list-inside opacity-80">
-								<li>Shooting photo professionnel</li>
-								<li>Rédaction d'annonce multilingue</li>
-								<li>Diffusion Airbnb, Booking & Direct</li>
-							</ul>
-						</div>
+				<div class="bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-charbon/5 group hover:-translate-y-2">
+					<div class="h-64 overflow-hidden relative">
+						<img src="/gestion.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Commercialisation"/>
 					</div>
-
-					<div class="service-trigger group cursor-pointer opacity-50 hover:opacity-100 transition-opacity duration-300" data-target="img-2">
-						<div class="flex items-center justify-between border-b border-charbon/10 pb-4 mb-4 group-hover:border-or transition-colors">
-							<h4 class="font-serif text-3xl md:text-5xl text-charbon group-hover:text-or transition-colors">Yield Management</h4>
-							<span class="text-or opacity-0 group-hover:opacity-100 transition-opacity text-2xl">→</span>
-						</div>
-						<div class="service-details hidden group-hover:block text-sm text-charbon/70 leading-relaxed space-y-2 pl-2 border-l-2 border-or/20 group-hover:border-or">
-							<p>Nous ajustons vos tarifs quotidiennement pour maximiser le taux d'occupation.</p>
-							<ul class="list-disc list-inside opacity-80">
-								<li>Algorithme de prix dynamique</li>
-								<li>Analyse de la concurrence locale</li>
-								<li>Stratégie haute et basse saison</li>
-							</ul>
-						</div>
-					</div>
-
-					<div class="service-trigger group cursor-pointer opacity-50 hover:opacity-100 transition-opacity duration-300" data-target="img-3">
-						<div class="flex items-center justify-between border-b border-charbon/10 pb-4 mb-4 group-hover:border-or transition-colors">
-							<h4 class="font-serif text-3xl md:text-5xl text-charbon group-hover:text-or transition-colors">Expérience 5★</h4>
-							<span class="text-or opacity-0 group-hover:opacity-100 transition-opacity text-2xl">→</span>
-						</div>
-						<div class="service-details hidden group-hover:block text-sm text-charbon/70 leading-relaxed space-y-2 pl-2 border-l-2 border-or/20 group-hover:border-or">
-							<p>Un accueil et un service dignes des plus grands hôtels pour fidéliser la clientèle.</p>
-							<ul class="list-disc list-inside opacity-80">
-								<li>Ménage & Linge de qualité hôtelière</li>
-								<li>Accueil physique personnalisé</li>
-								<li>Assistance voyageurs 7j/7</li>
-							</ul>
-						</div>
+					<div class="p-10">
+						<h4 class="font-serif text-2xl mb-4 text-charbon">Commercialisation</h4>
+						<p class="text-sm text-charbon/70 leading-relaxed mb-6">
+							Nous créons l'envie dès le premier clic : shooting pro, rédaction multilingue et diffusion optimisée sur les plateformes premium.
+						</p>
+						<ul class="space-y-2 text-xs text-charbon/60 uppercase tracking-wide">
+							<li>• Shooting Photo</li>
+							<li>• Annonce Multilingue</li>
+							<li>• Diffusion Airbnb / Booking</li>
+						</ul>
 					</div>
 				</div>
 
-				<div class="lg:col-span-7 relative h-[500px] lg:h-[600px] rounded-[2rem] overflow-hidden shadow-2xl">
-					<img id="img-1" src="/gestion.jpg" class="service-img absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-105 opacity-100" alt="Commercialisation"/>
-					<img id="img-2" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2071&auto=format&fit=crop" class="service-img absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-100 opacity-0" alt="Finance"/>
-					<img id="img-3" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop" class="service-img absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-100 opacity-0" alt="Luxe"/>
-					
-					<div class="absolute inset-0 bg-charbon/10 mix-blend-multiply pointer-events-none"></div>
-					<div class="absolute bottom-8 left-8 bg-white/90 backdrop-blur text-charbon px-6 py-3 rounded-std text-xs font-bold uppercase tracking-widest shadow-lg">
-						Performance & Sérénité
+				<div class="bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-charbon/5 group hover:-translate-y-2">
+					<div class="h-64 overflow-hidden relative">
+						<img src="/gestion.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[30%]" alt="Yield Management"/>
+					</div>
+					<div class="p-10">
+						<h4 class="font-serif text-2xl mb-4 text-charbon">Yield Management</h4>
+						<p class="text-sm text-charbon/70 leading-relaxed mb-6">
+							Nous ajustons vos tarifs quotidiennement pour maximiser le taux d'occupation et le prix moyen par nuitée.
+						</p>
+						<ul class="space-y-2 text-xs text-charbon/60 uppercase tracking-wide">
+							<li>• Prix Dynamiques</li>
+							<li>• Analyse Concurrence</li>
+							<li>• Stratégie Saisonnère</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-charbon/5 group hover:-translate-y-2">
+					<div class="h-64 overflow-hidden relative">
+						<img src="/experience.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 sepia-[20%]" alt="Expérience 5*"/>
+					</div>
+					<div class="p-10">
+						<h4 class="font-serif text-2xl mb-4 text-charbon">Expérience 5★</h4>
+						<p class="text-sm text-charbon/70 leading-relaxed mb-6">
+							Un accueil et un service dignes des plus grands hôtels pour fidéliser la clientèle et garantir des avis élogieux.
+						</p>
+						<ul class="space-y-2 text-xs text-charbon/60 uppercase tracking-wide">
+							<li>• Ménage Hôtelier</li>
+							<li>• Accueil Physique</li>
+							<li>• Assistance 7j/7</li>
+						</ul>
 					</div>
 				</div>
 
@@ -242,27 +242,6 @@ import Layout from '../layouts/Layout.astro';
 	['astro:page-load', 'load'].forEach(event => {
 		window.addEventListener(event, () => {
 			
-			// 1. INTERACTIVE SWITCHER
-			const triggers = document.querySelectorAll('.service-trigger');
-			const images = document.querySelectorAll('.service-img');
-
-			triggers.forEach(trigger => {
-				trigger.addEventListener('mouseenter', () => {
-					triggers.forEach(t => {
-						t.classList.remove('opacity-100'); t.classList.add('opacity-50');
-						const d = t.querySelector('.service-details'); if(d) d.classList.add('hidden');
-					});
-					trigger.classList.remove('opacity-50'); trigger.classList.add('opacity-100');
-					const det = trigger.querySelector('.service-details'); if(det) det.classList.remove('hidden');
-
-					// @ts-ignore
-					const targetId = trigger.dataset.target;
-					images.forEach(img => { img.classList.remove('opacity-100', 'scale-105'); img.classList.add('opacity-0', 'scale-100'); });
-					const targetImg = document.getElementById(targetId);
-					if(targetImg) { targetImg.classList.remove('opacity-0', 'scale-100'); targetImg.classList.add('opacity-100', 'scale-105'); }
-				});
-			});
-
 			// 2. SIMULATEUR LOGIQUE
 			const surfaceRange = document.getElementById('surface-range') as HTMLInputElement;
 			const surfaceVal = document.getElementById('surface-val');
