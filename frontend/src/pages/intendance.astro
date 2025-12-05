@@ -1,6 +1,6 @@
 ---
 // ==============================================================================
-// PAGE : INTENDANCE (V4 - DESIGN GRILLE MAGAZINE CLAIRE)
+// PAGE : INTENDANCE (V4 - CONNECTÉE)
 // ==============================================================================
 import Layout from '../layouts/Layout.astro';
 ---
@@ -175,20 +175,32 @@ import Layout from '../layouts/Layout.astro';
 				</div>
 			</div>
 
-			<form class="space-y-6 bg-white p-10 rounded-[2rem] shadow-lg border border-charbon/5">
+			<form id="contact-form" class="space-y-6 bg-white p-10 rounded-[2rem] shadow-lg border border-charbon/5">
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-					<div class="group"><label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Nom</label><input type="text" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all" required/></div>
-					<div class="group"><label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Téléphone</label><input type="tel" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all" required/></div>
+					<div class="group">
+						<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Nom</label>
+						<input type="text" name="name" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all" required/>
+					</div>
+					<div class="group">
+						<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Téléphone</label>
+						<input type="tel" name="phone" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all" required/>
+					</div>
 				</div>
-				<div class="group"><label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Email</label><input type="email" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all" required/></div>
+				<div class="group">
+					<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Email</label>
+					<input type="email" name="email" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all" required/>
+				</div>
 				
 				<div class="group">
 					<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Formule Sélectionnée</label>
-					<input type="text" id="selected-plan-input" class="w-full bg-or/10 border-b border-or p-3 text-charbon font-bold outline-none" value="Aucune formule sélectionnée" readonly/>
+					<input type="text" name="property_details" id="selected-plan-input" class="w-full bg-or/10 border-b border-or p-3 text-charbon font-bold outline-none" value="Aucune formule sélectionnée" readonly/>
 				</div>
 
-				<div class="group"><label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Commentaires additionnels</label><textarea rows="3" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all resize-none"></textarea></div>
-				<button class="w-full bg-charbon text-sable py-4 rounded-std font-bold uppercase tracking-widest hover:bg-or hover:text-white transition-colors shadow-lg hover:shadow-or/30">Envoyer ma demande</button>
+				<div class="group">
+					<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Commentaires additionnels</label>
+					<textarea name="message" rows="3" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all resize-none"></textarea>
+				</div>
+				<button type="submit" class="w-full bg-charbon text-sable py-4 rounded-std font-bold uppercase tracking-widest hover:bg-or hover:text-white transition-colors shadow-lg hover:shadow-or/30">Envoyer ma demande</button>
 			</form>
 		</div>
 	</section>
@@ -210,7 +222,38 @@ import Layout from '../layouts/Layout.astro';
 	['astro:page-load', 'load'].forEach(event => {
 		window.addEventListener(event, () => {
 			
-			// 1. GESTION CLIC SERVICES (NOUVEAU)
+			// --- 1. CONNEXION CERVEAU ---
+			const form = document.getElementById('contact-form') as HTMLFormElement;
+			if (form) {
+				form.addEventListener('submit', async (e) => {
+					e.preventDefault(); 
+					const formData = new FormData(form);
+					const data = Object.fromEntries(formData);
+
+					// @ts-ignore
+					data.service_name = "Intendance"; 
+					
+					try {
+						const response = await fetch('http://localhost:5000/api/contact/lead', {
+							method: 'POST',
+							headers: { 'Content-Type': 'application/json' },
+							body: JSON.stringify(data)
+						});
+						const result = await response.json();
+						if (response.ok) {
+							alert("✅ Demande envoyée ! Nous vous recontacterons très vite.");
+							form.reset();
+						} else {
+							alert("❌ Erreur : " + (result.error || "Problème inconnu"));
+						}
+					} catch (error) {
+						console.error(error);
+						alert("❌ Impossible de contacter le serveur.");
+					}
+				});
+			}
+
+			// --- 2. UI LOGIQUE ---
 			const serviceCards = document.querySelectorAll('.service-card');
 			const formInput = document.getElementById('selected-plan-input') as HTMLInputElement;
 			const contactSection = document.getElementById('contact');
@@ -228,7 +271,7 @@ import Layout from '../layouts/Layout.astro';
 				});
 			});
 
-			// 2. SÉLECTION DES PRIX (ABONNEMENTS)
+			// SÉLECTION DES PRIX (ABONNEMENTS)
 			const cards = document.querySelectorAll('.plan-card');
 
 			cards.forEach(card => {

@@ -1,6 +1,6 @@
 ---
 // ==============================================================================
-// MAISON DES SABLES - PAGE D'ACCUEIL (V15 - CENTRAGE & MODERNISATION)
+// MAISON DES SABLES - PAGE D'ACCUEIL (V15 - CONNECTÉE)
 // ==============================================================================
 import Layout from '../layouts/Layout.astro';
 ---
@@ -41,17 +41,17 @@ import Layout from '../layouts/Layout.astro';
 
 	<main class="relative w-full h-screen overflow-hidden bg-charbon cursor-default">
 		<div id="hero-bg" class="absolute inset-0 z-0 w-[110%] h-[110%] -left-[5%] -top-[5%]">
-			<video 
-				autoplay 
-				loop 
-				muted 
-				playsinline 
+			<video 
+				autoplay 
+				loop 
+				muted 
+				playsinline 
 				class="w-full h-full object-cover opacity-90"
 			>
 				<source src="/beach_video.mp4" type="video/mp4" />
 				<img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop" alt="Plage" class="w-full h-full object-cover" />
 			</video>
-			<div class="absolute inset-0 bg-charbon/30 mix-blend-multiply"></div> 
+			<div class="absolute inset-0 bg-charbon/30 mix-blend-multiply"></div> 
 			<div class="absolute inset-0 bg-gradient-to-b from-charbon/50 via-transparent to-charbon/90"></div>
 			<div class="absolute inset-0 opacity-[0.07] mix-blend-overlay pointer-events-none" style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');"></div>
 		</div>
@@ -97,7 +97,7 @@ import Layout from '../layouts/Layout.astro';
 				"Nous ne gérons pas simplement des clés, nous cultivons <span class="italic text-or">l'élégance</span> de vos séjours."
 			</h2>
 			<p class="font-sans text-charbon/70 text-lg leading-relaxed max-w-2xl mx-auto reveal-text font-light">
-				Maison des Sables est née d'une volonté : offrir une expérience sans couture sur le Bassin. 
+				Maison des Sables est née d'une volonté : offrir une expérience sans couture sur le Bassin. 
 				Dans un monde bruyant, nous choisissons la discrétion, le service invisible et le raffinement.
 			</p>
 		</div>
@@ -132,7 +132,7 @@ import Layout from '../layouts/Layout.astro';
 			</div>
 			
 			<div class="group relative flex-1 hover:grow-[2] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden rounded-std cursor-pointer border border-charbon/5">
-				<img src="/gestion.jpg" alt="Intendance" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-90 grayscale-[30%]"/> 
+				<img src="/gestion.jpg" alt="Intendance" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-90 grayscale-[30%]"/> 
 				<div class="absolute inset-0 bg-gradient-to-t from-charbon/95 via-charbon/40 to-transparent"></div>
 				<div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-end text-sable">
 					<div class="transform group-hover:-translate-y-4 transition-transform duration-500">
@@ -254,24 +254,24 @@ import Layout from '../layouts/Layout.astro';
 				</div>
 			</div>
 
-			<form class="bg-white shadow-lg p-10 rounded-std border border-charbon/5 reveal-text">
+			<form id="contact-form" class="bg-white shadow-lg p-10 rounded-std border border-charbon/5 reveal-text">
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
 					<div class="group">
 						<label class="block text-xs uppercase tracking-widest text-charbon/50 mb-2 group-focus-within:text-or transition-colors">Nom</label>
-						<input type="text" class="w-full bg-transparent border-b border-charbon/20 py-2 text-charbon focus:outline-none focus:border-or transition-colors" placeholder="Votre nom">
+						<input type="text" name="lastname" class="w-full bg-transparent border-b border-charbon/20 py-2 text-charbon focus:outline-none focus:border-or transition-colors" placeholder="Votre nom" required>
 					</div>
 					<div class="group">
 						<label class="block text-xs uppercase tracking-widest text-charbon/50 mb-2 group-focus-within:text-or transition-colors">Prénom</label>
-						<input type="text" class="w-full bg-transparent border-b border-charbon/20 py-2 text-charbon focus:outline-none focus:border-or transition-colors" placeholder="Votre prénom">
+						<input type="text" name="firstname" class="w-full bg-transparent border-b border-charbon/20 py-2 text-charbon focus:outline-none focus:border-or transition-colors" placeholder="Votre prénom" required>
 					</div>
 				</div>
 				<div class="mb-8 group">
 					<label class="block text-xs uppercase tracking-widest text-charbon/50 mb-2 group-focus-within:text-or transition-colors">Email</label>
-					<input type="email" class="w-full bg-transparent border-b border-charbon/20 py-2 text-charbon focus:outline-none focus:border-or transition-colors" placeholder="votre@email.com">
+					<input type="email" name="email" class="w-full bg-transparent border-b border-charbon/20 py-2 text-charbon focus:outline-none focus:border-or transition-colors" placeholder="votre@email.com" required>
 				</div>
 				<div class="mb-10 group">
 					<label class="block text-xs uppercase tracking-widest text-charbon/50 mb-2 group-focus-within:text-or transition-colors">Message</label>
-					<textarea rows="4" class="w-full bg-transparent border-b border-charbon/20 py-2 text-charbon focus:outline-none focus:border-or transition-colors resize-none" placeholder="Dites-nous en plus sur votre projet..."></textarea>
+					<textarea name="message" rows="4" class="w-full bg-transparent border-b border-charbon/20 py-2 text-charbon focus:outline-none focus:border-or transition-colors resize-none" placeholder="Dites-nous en plus sur votre projet..."></textarea>
 				</div>
 				<button type="submit" class="group relative w-full py-4 bg-charbon text-sable font-sans text-sm font-semibold rounded-std overflow-hidden shadow-lg shadow-charbon/20 hover:shadow-charbon/40 transition-all duration-500 hover:-translate-y-1">
 					<span class="relative z-10 group-hover:text-white transition-colors">Envoyer ma demande</span>
@@ -309,11 +309,49 @@ import Layout from '../layouts/Layout.astro';
 	gsap.registerPlugin(ScrollTrigger);
 
 	window.addEventListener('load', () => {
+		
+		// --- 1. CONNEXION CERVEAU ---
+		const form = document.getElementById('contact-form') as HTMLFormElement;
+		if (form) {
+			form.addEventListener('submit', async (e) => {
+				e.preventDefault(); 
+				const formData = new FormData(form);
+				const data: any = Object.fromEntries(formData);
+
+				// Astuce : On combine Nom + Prénom en un seul champ 'name'
+				data.name = `${data.lastname} ${data.firstname}`;
+				delete data.lastname;
+				delete data.firstname;
+
+				data.service_name = "Contact Accueil"; 
+				
+				try {
+					const response = await fetch('http://localhost:5000/api/contact/lead', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify(data)
+					});
+					const result = await response.json();
+					if (response.ok) {
+						alert("✅ Message envoyé !");
+						form.reset();
+					} else {
+						alert("❌ Erreur : " + (result.error || "Problème inconnu"));
+					}
+				} catch (error) {
+					console.error(error);
+					alert("❌ Impossible de contacter le serveur.");
+				}
+			});
+		}
+
+
+		// --- 2. ANIMATIONS EXISTANTES ---
 		const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 		tl.to(".hero-text", { y: 0, opacity: 1, duration: 1.2 })
-		  .to(".hero-title", { y: 0, opacity: 1, duration: 1.5, stagger: 0.2 }, "-=0.8")
-		  .to(".hero-btn", { opacity: 1, duration: 1, stagger: 0.1 }, "-=0.8")
-		  .to(".hero-scroll", { opacity: 1, duration: 1 }, "-=0.5");
+		  .to(".hero-title", { y: 0, opacity: 1, duration: 1.5, stagger: 0.2 }, "-=0.8")
+		  .to(".hero-btn", { opacity: 1, duration: 1, stagger: 0.1 }, "-=0.8")
+		  .to(".hero-scroll", { opacity: 1, duration: 1 }, "-=0.5");
 
 		// FIX SCROLL HORIZONTAL
 		let mm = gsap.matchMedia();
@@ -352,7 +390,7 @@ import Layout from '../layouts/Layout.astro';
 
 	const textElements = document.querySelectorAll('.reveal-text');
 	textElements.forEach(el => {
-		gsap.fromTo(el, 
+		gsap.fromTo(el, 
 			{ y: 40, opacity: 0 },
 			{ y: 0, opacity: 1, duration: 1, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 85%" } }
 		);
@@ -362,7 +400,8 @@ import Layout from '../layouts/Layout.astro';
 	const clientBtn = document.querySelector("#client-btn");
 
 	window.addEventListener("scroll", () => {
-		if (window.scrollY > 50) { 
+		// @ts-ignore
+		if (window.scrollY > 50) { 
 			navbar.classList.add("bg-or/95", "shadow-md", "py-4", "backdrop-blur-md");
 			navbar.classList.remove("py-6");
 			if(clientBtn) {
@@ -372,7 +411,7 @@ import Layout from '../layouts/Layout.astro';
 				clientBtn.classList.add("bg-white", "text-or");
 				clientBtn.classList.remove("hover:bg-sable", "hover:text-charbon");
 			}
-		} else { 
+		} else { 
 			navbar.classList.remove("bg-or/95", "shadow-md", "py-4", "backdrop-blur-md");
 			navbar.classList.add("py-6");
 			if(clientBtn) {

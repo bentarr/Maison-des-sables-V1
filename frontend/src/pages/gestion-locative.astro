@@ -198,20 +198,36 @@ import Layout from '../layouts/Layout.astro';
 				</div>
 			</div>
 
-			<form class="space-y-6 bg-white p-10 rounded-[2rem] shadow-lg border border-charbon/5">
+			<form id="contact-form" class="space-y-6 bg-white p-10 rounded-[2rem] shadow-lg border border-charbon/5">
+				
+				<input type="hidden" name="property_type" id="hidden-type" value="">
+				<input type="hidden" name="surface" id="hidden-surface" value="">
+				
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-					<div class="group"><label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Nom</label><input type="text" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all" required/></div>
-					<div class="group"><label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Téléphone</label><input type="tel" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all" required/></div>
+					<div class="group">
+						<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Nom</label>
+						<input type="text" name="name" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all" required/>
+					</div>
+					<div class="group">
+						<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Téléphone</label>
+						<input type="tel" name="phone" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all" required/>
+					</div>
 				</div>
-				<div class="group"><label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Email</label><input type="email" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all" required/></div>
+				<div class="group">
+					<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Email</label>
+					<input type="email" name="email" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all" required/>
+				</div>
 				
 				<div class="group">
 					<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Type de bien & Estimation</label>
-					<input type="text" id="input-type-bien" class="w-full bg-or/10 border-b border-or p-3 text-charbon font-bold outline-none" placeholder="Utilisez le simulateur ci-dessus..." />
+					<input type="text" name="property_details" id="input-type-bien" class="w-full bg-or/10 border-b border-or p-3 text-charbon font-bold outline-none" placeholder="Utilisez le simulateur ci-dessus..." />
 				</div>
 
-				<div class="group"><label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Expliquer votre projet</label><textarea rows="3" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all resize-none"></textarea></div>
-				<button class="w-full bg-charbon text-sable py-4 rounded-std font-bold uppercase tracking-widest hover:bg-or hover:text-white transition-colors shadow-lg">Demander mon estimation</button>
+				<div class="group">
+					<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Expliquer votre projet</label>
+					<textarea name="message" rows="3" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all resize-none"></textarea>
+				</div>
+				<button type="submit" class="w-full bg-charbon text-sable py-4 rounded-std font-bold uppercase tracking-widest hover:bg-or hover:text-white transition-colors shadow-lg">Demander mon estimation</button>
 			</form>
 
 		</div>
@@ -242,7 +258,42 @@ import Layout from '../layouts/Layout.astro';
 	['astro:page-load', 'load'].forEach(event => {
 		window.addEventListener(event, () => {
 			
-			// 2. SIMULATEUR LOGIQUE
+			// --- 1. GESTION DU FORMULAIRE ---
+			const form = document.getElementById('contact-form') as HTMLFormElement;
+
+			if (form) {
+				form.addEventListener('submit', async (e) => {
+					e.preventDefault(); 
+
+					const formData = new FormData(form);
+					const data = Object.fromEntries(formData);
+
+					// @ts-ignore
+					data.service_name = "Gestion Locative"; 
+					
+					try {
+						const response = await fetch('http://localhost:5000/api/contact/lead', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify(data)
+						});
+
+						const result = await response.json();
+
+						if (response.ok) {
+							alert("✅ Demande envoyée ! Nous vous recontacterons très vite.");
+							form.reset();
+						} else {
+							alert("❌ Erreur : " + (result.error || "Problème inconnu"));
+						}
+					} catch (error) {
+						console.error(error);
+						alert("❌ Impossible de contacter le serveur (Vérifie qu'il est allumé !)");
+					}
+				});
+			}
+
+			// --- 2. LOGIQUE DU SIMULATEUR ---
 			const surfaceRange = document.getElementById('surface-range') as HTMLInputElement;
 			const surfaceVal = document.getElementById('surface-val');
 			const revenueDisplay = document.getElementById('revenue-display');
@@ -250,15 +301,20 @@ import Layout from '../layouts/Layout.astro';
 			const locationSelect = document.getElementById('location-select') as HTMLSelectElement;
 			const disclaimerText = document.getElementById('disclaimer-text');
 			const ctaSimulator = document.getElementById('cta-simulator');
+			
 			const inputTypeBien = document.getElementById('input-type-bien') as HTMLInputElement;
+			// Nouveaux éléments à remplir pour la BDD
+			const hiddenType = document.getElementById('hidden-type') as HTMLInputElement;
+			const hiddenSurface = document.getElementById('hidden-surface') as HTMLInputElement;
+
 			const contactSection = document.getElementById('contact');
 
 			let currentMode = 'saison';
 
 			// BASES DE PRIX 2025 (Estimation €/m2)
-			const PRIX_SAISON_M2_SEMAINE = 25; 
+			const PRIX_SAISON_M2_SEMAINE = 25; 
 			const PRIX_ANNUEL_M2_MOIS = 18;
-			const SEMAINES_SAISON = 17; 
+			const SEMAINES_SAISON = 17; 
 
 			modeBtns.forEach(btn => {
 				btn.addEventListener('click', () => {
@@ -289,9 +345,7 @@ import Layout from '../layouts/Layout.astro';
 				let netRevenue = 0;
 
 				if (currentMode === 'saison') {
-					// Formule Saisonnière (Brut)
-					grossRevenue = surface * PRIX_SAISON_M2_SEMAINE * SEMAINES_SAISON * locationMultiplier; 
-					// Net (Brut - 20%)
+					grossRevenue = surface * PRIX_SAISON_M2_SEMAINE * SEMAINES_SAISON * locationMultiplier; 
 					netRevenue = grossRevenue * 0.8;
 
 					if(disclaimerText) {
@@ -302,9 +356,7 @@ import Layout from '../layouts/Layout.astro';
 						`;
 					}
 				} else {
-					// Formule Annuelle (Brut)
 					grossRevenue = surface * PRIX_ANNUEL_M2_MOIS * 12 * locationMultiplier;
-					// Net (Brut - 20% si gestion intégrale, souvent moins en annuel mais gardons la logique)
 					netRevenue = grossRevenue * 0.8;
 
 					if(disclaimerText) {
@@ -323,18 +375,22 @@ import Layout from '../layouts/Layout.astro';
 					const modeLabel = currentMode === 'saison' ? "Saisonnière" : "Annuelle";
 					const locationLabel = locationSelect.options[locationSelect.selectedIndex].text.split('(')[0].trim();
 					
+					// Remplissage du champ visible
 					if(inputTypeBien) {
-						// On ne met plus l'estimation chiffrée dans le champ texte
 						inputTypeBien.value = `Location ${modeLabel} à ${locationLabel} - ${surfaceRange.value}m²`;
 						inputTypeBien.parentElement.classList.add('animate-pulse');
 						setTimeout(() => inputTypeBien.parentElement.classList.remove('animate-pulse'), 1000);
 					}
+
+					// Remplissage des champs invisibles pour la BDD
+					if(hiddenType) hiddenType.value = currentMode === 'saison' ? "Saisonnier" : "Annuel";
+					if(hiddenSurface) hiddenSurface.value = surfaceRange.value;
 					
 					if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
 				});
 			}
 
-			calculate(); 
+			calculate(); 
 		});
 	});
 </script>
