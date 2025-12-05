@@ -1,7 +1,7 @@
-// reservations.js (MISE À JOUR)
+// reservations.js (MISE À JOUR COMPLÈTE)
 
-// NOUVEL IMPORT
 const { createNotification } = require('./notifications');
+const { sendTransactionalEmail } = require('./emailService'); // NOUVEL IMPORT
 
 
 const createReservationFromRequest = async (pool, requestData) => {
@@ -34,23 +34,31 @@ const assignProviderToReservation = async (req, res, pool) => {
     try {
         const { id } = req.params;
         const { provider_id } = req.body;
+        const io = req.io; // RÉCUPÉRER L'OBJET SOCKET.IO
 
         if (!provider_id) {
             return res.status(400).json({ error: "L'ID du prestataire est manquant." });
         }
 
-        const providerCheck = await pool.query('SELECT id, name FROM service_providers WHERE id = $1 AND is_active = TRUE', [provider_id]);
+        // Récupérer le nom du prestataire et l'email du propriétaire
+        const providerCheck = await pool.query('SELECT sp.id, sp.name, u.email, r.user_id FROM service_providers sp JOIN reservations r ON r.provider_id IS NULL WHERE sp.id = $1 AND sp.is_active = TRUE AND r.id = $2', [provider_id, id]);
+        
         if (providerCheck.rows.length === 0) {
-            return res.status(404).json({ error: "Prestataire non trouvé ou inactif." });
+             // On peut séparer les erreurs pour plus de clarté, mais ici on garde la simplicité
+             return res.status(404).json({ error: "Prestataire non trouvé, inactif, ou Réservation déjà assignée." });
         }
+        
         const providerName = providerCheck.rows[0].name;
+        const userEmail = providerCheck.rows[0].email;
+        const userId = providerCheck.rows[0].user_id;
+
 
         // Mise à jour de la réservation
         const result = await pool.query(
             `UPDATE reservations
              SET provider_id = $1, status = 'in_progress', assigned_at = NOW(), updated_at = NOW()
              WHERE id = $2 AND status = 'assigned'
-             RETURNING id, status, provider_id, scheduled_date, user_id`, // <-- On récupère user_id pour la notification
+             RETURNING id, status, provider_id, scheduled_date`, 
             [provider_id, id]
         );
 
@@ -60,13 +68,18 @@ const assignProviderToReservation = async (req, res, pool) => {
         
         const reservationDetails = result.rows[0];
 
-        // --- NOUVEAU : NOTIFICATION POUR LE CLIENT ---
-        // Utilisation de toLocaleDateString() nécessite un objet Date, mais PostgreSQL renvoie souvent une chaîne.
-        // Pour les tests, on utilise une chaîne simple:
+        // --- NOTIFICATION & EMAIL ---
         const scheduledDateStr = reservationDetails.scheduled_date.toISOString().substring(0, 10);
         const message = `Votre service a été assigné ! Le prestataire (${providerName}) interviendra le ${scheduledDateStr}.`;
         
-        await createNotification(pool, reservationDetails.user_id, message, 'reservation', reservationDetails.id);
+        // 1. Notification In-App (WebSockets)
+        await createNotification(pool, userId, message, 'reservation', reservationDetails.id, io); 
+        
+        // 2. Email
+        const emailSubject = "📢 Prestataire assigné à votre service Maison des Sables !";
+        const emailBody = `<p>Bonjour,</p><p>Bonne nouvelle ! Le prestataire **${providerName}** a été assigné à votre réservation (Service planifié pour le ${scheduledDateStr}).</p><p>Consultez votre espace client pour suivre l'avancement.</p>`;
+        await sendTransactionalEmail(userEmail, emailSubject, emailBody);
+
 
         console.log(`🔗 Réservation ID ${id} assignée au prestataire ID ${provider_id}. Statut: in_progress.`);
         res.json({ success: true, message: "Prestataire assigné avec succès.", reservation: reservationDetails });
@@ -82,7 +95,6 @@ const getAllReservations = async (req, res, pool) => {
     try {
         console.log("🗓️ Récupération du Calendrier Maître (Admin)...");
 
-        // Jointure complexe pour récupérer le maximum d'informations pertinentes
         const allReservations = await pool.query(
             `SELECT
                 r.id, 
@@ -124,7 +136,6 @@ const getUserReservations = async (req, res, pool) => {
 
         console.log(`🗓️ Récupération des réservations pour le Client ID: ${user_id}...`);
 
-        // Sélectionne uniquement les réservations où l'utilisateur est le propriétaire (r.user_id = $1)
         const userReservations = await pool.query(
             `SELECT
                 r.id, 

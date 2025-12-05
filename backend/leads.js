@@ -2,8 +2,8 @@
 
 // On importe la fonction d'automatisation
 const { createReservationFromRequest } = require('./reservations'); 
-// NOUVEL IMPORT
 const { createNotification } = require('./notifications');
+const { sendTransactionalEmail } = require('./emailService'); // NOUVEL IMPORT
 
 // ---------------------------------------------------
 // 1. GESTION DES PROSPECTS (Non connectés)
@@ -209,6 +209,7 @@ const updateRequestStatus = async (req, res, pool) => {
     try {
         const { id } = req.params;
         const { status } = req.body; 
+        const io = req.io; // RÉCUPÉRER L'OBJET SOCKET.IO
 
         if (!id || !status) {
             return res.status(400).json({ error: "ID de demande ou statut manquant." });
@@ -234,19 +235,35 @@ const updateRequestStatus = async (req, res, pool) => {
 
         const updatedRequest = result.rows[0];
 
-        // --- NOUVEAU : NOTIFICATION POUR LE CLIENT ---
-        if (status === 'rejected') {
-            await createNotification(pool, updatedRequest.user_id, "Votre demande a été refusée.", 'alert');
-        } else if (status === 'validated') {
-            await createNotification(pool, updatedRequest.user_id, "Votre demande a été acceptée et est en cours de planification.", 'success');
-        }
+        // Récupérer l'email de l'utilisateur pour l'email transactionnel
+        const userResult = await pool.query('SELECT email FROM users WHERE id = $1', [updatedRequest.user_id]);
+        const userEmail = userResult.rows[0] ? userResult.rows[0].email : null;
+
+
+        // --- LOGIQUE NOTIFICATION & EMAIL ---
+        let emailSubject, emailBody;
         
+        if (status === 'rejected') {
+            await createNotification(pool, updatedRequest.user_id, "Votre demande a été refusée.", 'alert', null, io); // NOTIF IN-APP
+            emailSubject = "❌ Mise à jour de votre demande Maison des Sables";
+            emailBody = `<p>Bonjour,</p><p>Après examen, nous avons dû **refuser** votre demande de service planifiée pour le ${updatedRequest.scheduled_date.toISOString().substring(0, 10)}. Veuillez nous contacter pour plus de détails.</p>`;
+        } else if (status === 'validated') {
+            await createNotification(pool, updatedRequest.user_id, "Votre demande a été acceptée et est en cours de planification.", 'success', null, io); // NOTIF IN-APP
+            emailSubject = "✅ Votre demande Maison des Sables est acceptée !";
+            emailBody = `<p>Bonjour,</p><p>Votre demande de service planifiée pour le ${updatedRequest.scheduled_date.toISOString().substring(0, 10)} a été **acceptée** par notre équipe.</p><p>Une réservation a été créée et un prestataire vous sera bientôt assigné. Consultez votre espace client pour les détails.</p>`;
+        }
+
+        if (userEmail && emailSubject) {
+            await sendTransactionalEmail(userEmail, emailSubject, emailBody); // EMAIL
+        }
+
+
         // --- LOGIQUE D'AUTOMATISATION ---
         if (updatedRequest.status === 'validated') {
             console.log(`Demande ${id} validée. Tentative de création de réservation...`);
             
             // Appel de la fonction d'automatisation
-            const reservationResult = await createReservationFromRequest(pool, updatedRequest);
+            const reservationResult = await createReservationFromRequest(pool, updatedRequest, io);
 
             if (reservationResult.success) {
                 res.json({ 

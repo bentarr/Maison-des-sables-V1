@@ -1,8 +1,10 @@
-// server.js (MISE À JOUR)
+// server.js (MISE À JOUR COMPLÈTE)
 
 const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
+const http = require('http'); // NOUVEAU
+const { Server } = require('socket.io'); // NOUVEAU
 require('dotenv').config();
 
 // --- IMPORTS DES MODULES ---
@@ -13,11 +15,40 @@ const { getUserProperties, getAllProperties, createProperty, updateProperty, del
 const { getAllServices, createService, updateService, deleteService } = require('./services'); 
 const { createProvider, getAllProviders, updateProvider, deleteProvider } = require('./service_providers'); 
 const { createReservationFromRequest, assignProviderToReservation, getAllReservations, getUserReservations } = require('./reservations'); 
-// NOUVEL IMPORT
 const { createNotification, getNotificationsByUserId, markNotificationsAsRead } = require('./notifications');
+const { generateOwnerNetRevenueReport } = require('./financials'); // NOUVEL IMPORT
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// --- CONFIGURATION SOCKET.IO ---
+const server = http.createServer(app); // Créer un serveur HTTP à partir de l'app Express
+const io = new Server(server, { // Initialiser Socket.IO
+    cors: {
+        origin: "*", // A AJUSTER pour la production (URL de votre Front-end)
+        methods: ["GET", "POST"]
+    }
+});
+
+// Exposer 'io' à toutes les requêtes (middleware) pour qu'il soit accessible dans les contrôleurs
+app.use((req, res, next) => {
+    req.io = io;
+    next();
+});
+
+// Gestion des connexions Socket.IO
+io.on('connection', (socket) => {
+    console.log(`📡 Utilisateur connecté: ${socket.id}`);
+    
+    // Ceci est la logique Front-end : dès qu'un utilisateur s'authentifie, il doit rejoindre sa "room"
+    // socket.on('authenticate', (userId) => { socket.join(userId); });
+
+    socket.on('disconnect', () => {
+        console.log(`🔌 Utilisateur déconnecté: ${socket.id}`);
+    });
+});
+// ------------------------------------
+
 
 // --- CONNEXION BDD ---
 const pool = new Pool({
@@ -116,11 +147,17 @@ app.get('/api/client/reservations', protect('client'), (req, res) => getUserRese
 
 // --- ROUTES NOTIFICATIONS (Client/Admin) ---
 
-// 27. NOUVEAU : Récupérer les notifications
+// 27. Récupérer les notifications
 app.get('/api/notifications', protect('client'), (req, res) => getNotificationsByUserId(req, res, pool));
 
-// 28. NOUVEAU : Marquer les notifications comme lues
+// 28. Marquer les notifications comme lues
 app.put('/api/notifications/read', protect('client'), (req, res) => markNotificationsAsRead(req, res, pool));
+
+
+// --- ROUTES FINANCIÈRES (Client) ---
+
+// 29. NOUVEAU : Client : Génération du rapport de revenus nets
+app.get('/api/client/reports/net-revenue', protect('client'), (req, res) => generateOwnerNetRevenueReport(req, res, pool));
 
 
 // --- ROUTES ADMIN (Autres) ---
@@ -148,6 +185,7 @@ app.delete('/api/requests/cancel/:id', protect('client'), (req, res) => cancelRe
 
 
 // --- DÉMARRAGE ---
-app.listen(PORT, () => {
-    console.log(`🚀 Serveur lancé sur http://localhost:${PORT}`);
+// ATTENTION : On démarre le serveur HTTP, pas l'app Express
+server.listen(PORT, () => {
+    console.log(`🚀 Serveur Maison des Sables en ligne sur http://localhost:${PORT}`);
 });

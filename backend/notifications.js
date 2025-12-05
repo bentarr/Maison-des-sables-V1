@@ -7,8 +7,9 @@
  * @param {string} message - Le contenu du message.
  * @param {string} type - Le type de notification ('alert', 'success', 'reservation').
  * @param {number} [reservationId=null] - L'ID de la réservation associée (optionnel).
+ * @param {object} io - L'objet Socket.IO (pour la mise à jour en temps réel).
  */
-const createNotification = async (pool, userId, message, type, reservationId = null) => {
+const createNotification = async (pool, userId, message, type, reservationId = null, io) => {
     try {
         if (!userId || !message || !type) {
             console.error("❌ Erreur: Paramètres de notification manquants.");
@@ -18,12 +19,27 @@ const createNotification = async (pool, userId, message, type, reservationId = n
         const result = await pool.query(
             `INSERT INTO notifications (user_id, message, type, related_reservation_id)
              VALUES ($1, $2, $3, $4)
-             RETURNING id`,
+             RETURNING id, created_at, is_read`,
             [userId, message, type, reservationId]
         );
+        
+        const newNotification = { 
+            id: result.rows[0].id, 
+            message, 
+            type, 
+            created_at: result.rows[0].created_at, 
+            is_read: result.rows[0].is_read,
+            related_reservation_id: reservationId
+        };
+        
+        // --- EMISSION SOCKET.IO (Temps Réel) ---
+        if (io) {
+            // Envoie la notification à tous les clients qui écoutent la 'room' de cet utilisateur
+            io.to(userId).emit('new_notification', newNotification); 
+        }
 
         console.log(`🛎️ Notification créée pour l'utilisateur ID ${userId} : ${message.substring(0, 30)}...`);
-        return { success: true, notificationId: result.rows[0].id };
+        return { success: true, notification: newNotification };
 
     } catch (err) {
         console.error("❌ Erreur createNotification :", err.message);
@@ -61,7 +77,7 @@ const getNotificationsByUserId = async (req, res, pool) => {
 const markNotificationsAsRead = async (req, res, pool) => {
     try {
         const userId = req.user.user_id;
-        const { notificationId } = req.body; // Peut être null pour tout marquer
+        const { notificationId } = req.body; 
 
         let query;
         let values = [userId];
