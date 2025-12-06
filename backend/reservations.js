@@ -1,114 +1,102 @@
-// reservations.js (MISE À JOUR COMPLÈTE)
+// backend/reservations.js (VERSION CORRIGÉE ET COMPLÈTE)
 
 const { createNotification } = require('./notifications');
-const { sendTransactionalEmail } = require('./emailService'); // NOUVEL IMPORT
+const { sendTransactionalEmail } = require('./emailService');
 
-
-const createReservationFromRequest = async (pool, requestData) => {
-    // ... (Logique inchangée) ...
+// --- CRÉATION AUTOMATIQUE ---
+const createReservationFromRequest = async (pool, requestData, io) => {
     const initialStatus = 'assigned'; 
 
     try {
         const { id, user_id, property_id, service_id, scheduled_date, notes } = requestData;
 
-        console.log(`⏳ Tentative de création de réservation pour la demande ID: ${id}...`);
+        console.log(`⏳ Création réservation (Demande ID: ${id})...`);
 
         const newReservation = await pool.query(
             `INSERT INTO reservations (request_id, user_id, property_id, service_id, scheduled_date, notes, status)
              VALUES ($1, $2, $3, $4, $5, $6, $7)
              RETURNING id, status, request_id`,
-            [id, user_id, property_id, service_id, scheduled_date, notes, initialStatus]
+            [id, user_id, property_id || null, service_id, scheduled_date, notes, initialStatus]
         );
 
-        console.log(`✅ Réservation créée : ID ${newReservation.rows[0].id} à partir de la demande ID ${id}.`);
-        
+        console.log(`✅ Réservation créée : ID ${newReservation.rows[0].id}`);
         return { success: true, reservation: newReservation.rows[0] };
 
     } catch (err) {
-        console.error(`❌ Erreur dans createReservationFromRequest pour demande ID ${requestData.id}:`, err.message);
+        console.error(`❌ Erreur createReservationFromRequest :`, err.message);
         return { success: false, error: err.message };
     }
 };
 
+// --- ASSIGNATION & MODIFICATION PRESTATAIRE ---
 const assignProviderToReservation = async (req, res, pool) => {
     try {
         const { id } = req.params;
         const { provider_id } = req.body;
-        const io = req.io; // RÉCUPÉRER L'OBJET SOCKET.IO
+        const io = req.io;
 
-        if (!provider_id) {
-            return res.status(400).json({ error: "L'ID du prestataire est manquant." });
-        }
+        if (!provider_id) return res.status(400).json({ error: "ID prestataire manquant." });
 
-        // Récupérer le nom du prestataire et l'email du propriétaire
-        const providerCheck = await pool.query('SELECT sp.id, sp.name, u.email, r.user_id FROM service_providers sp JOIN reservations r ON r.provider_id IS NULL WHERE sp.id = $1 AND sp.is_active = TRUE AND r.id = $2', [provider_id, id]);
-        
-        if (providerCheck.rows.length === 0) {
-             // On peut séparer les erreurs pour plus de clarté, mais ici on garde la simplicité
-             return res.status(404).json({ error: "Prestataire non trouvé, inactif, ou Réservation déjà assignée." });
-        }
+        // Vérification du prestataire
+        const providerCheck = await pool.query('SELECT id, name FROM service_providers WHERE id = $1 AND is_active = TRUE', [provider_id]);
+        if (providerCheck.rows.length === 0) return res.status(404).json({ error: "Prestataire introuvable." });
         
         const providerName = providerCheck.rows[0].name;
-        const userEmail = providerCheck.rows[0].email;
-        const userId = providerCheck.rows[0].user_id;
 
-
-        // Mise à jour de la réservation
+        // MISE À JOUR : Correction ici pour permettre la modification (OR status = 'in_progress')
         const result = await pool.query(
             `UPDATE reservations
              SET provider_id = $1, status = 'in_progress', assigned_at = NOW(), updated_at = NOW()
-             WHERE id = $2 AND status = 'assigned'
-             RETURNING id, status, provider_id, scheduled_date`, 
+             WHERE id = $2 AND (status = 'assigned' OR status = 'in_progress')
+             RETURNING id, status, provider_id, scheduled_date, user_id`, 
             [provider_id, id]
         );
 
-        if (result.rowCount === 0) {
-            return res.status(404).json({ error: "Réservation non trouvée ou déjà en cours de traitement." });
-        }
+        if (result.rowCount === 0) return res.status(404).json({ error: "Réservation introuvable ou déjà traitée." });
         
         const reservationDetails = result.rows[0];
 
-        // --- NOTIFICATION & EMAIL ---
+        // --- NOTIFICATIONS ---
         const scheduledDateStr = reservationDetails.scheduled_date.toISOString().substring(0, 10);
-        const message = `Votre service a été assigné ! Le prestataire (${providerName}) interviendra le ${scheduledDateStr}.`;
+        const message = `Mise à jour : Prestataire (${providerName}) assigné pour le ${scheduledDateStr}.`;
         
-        // 1. Notification In-App (WebSockets)
-        await createNotification(pool, userId, message, 'reservation', reservationDetails.id, io); 
+        // 1. Notification In-App
+        await createNotification(pool, reservationDetails.user_id, message, 'reservation', reservationDetails.id, io); 
         
-        // 2. Email
-        const emailSubject = "📢 Prestataire assigné à votre service Maison des Sables !";
-        const emailBody = `<p>Bonjour,</p><p>Bonne nouvelle ! Le prestataire **${providerName}** a été assigné à votre réservation (Service planifié pour le ${scheduledDateStr}).</p><p>Consultez votre espace client pour suivre l'avancement.</p>`;
-        await sendTransactionalEmail(userEmail, emailSubject, emailBody);
+        // 2. Email Transactionnel
+        const userRes = await pool.query('SELECT email FROM users WHERE id = $1', [reservationDetails.user_id]);
+        if(userRes.rows.length > 0) {
+             const emailSubject = "📢 Mise à jour prestataire !";
+             const emailBody = `<p>Le prestataire **${providerName}** a été assigné (ou mis à jour) pour votre réservation du ${scheduledDateStr}.</p>`;
+             await sendTransactionalEmail(userRes.rows[0].email, emailSubject, emailBody);
+        }
 
-
-        console.log(`🔗 Réservation ID ${id} assignée au prestataire ID ${provider_id}. Statut: in_progress.`);
         res.json({ success: true, message: "Prestataire assigné avec succès.", reservation: reservationDetails });
 
     } catch (err) {
         console.error("❌ Erreur assignProviderToReservation :", err.message);
-        res.status(500).json({ success: false, error: "Erreur lors de l'assignation du prestataire." });
+        res.status(500).json({ success: false, error: "Erreur serveur." });
     }
 };
 
+// --- VUE CALENDRIER ADMIN (Toutes les réservations) ---
 const getAllReservations = async (req, res, pool) => {
-    // ... (Logique Admin inchangée) ...
     try {
-        console.log("🗓️ Récupération du Calendrier Maître (Admin)...");
+        console.log("🗓️ Récupération Calendrier Maître (Admin)...");
 
         const allReservations = await pool.query(
             `SELECT
-                r.id, 
-                r.scheduled_date, 
-                r.status, 
-                r.notes,
-                r.created_at,
-                p.address AS property_address,
+                r.id, r.scheduled_date, r.status, r.notes, r.created_at,
+                p.address AS property_address,    -- Peut être NULL (Lifestyle)
                 s.name AS service_name,
                 u.email AS owner_email,
-                sp.name AS provider_name
+                u.first_name AS client_firstname, -- POUR LA MODALE
+                u.last_name AS client_lastname,   -- POUR LA MODALE
+                sp.name AS provider_name,
+                sp.id AS provider_id              -- POUR LA PRÉSÉLECTION
             FROM
                 reservations r
-            JOIN
+            LEFT JOIN -- LEFT JOIN obligatoire pour les services sans maison
                 properties p ON r.property_id = p.id
             JOIN
                 services s ON r.service_id = s.id
@@ -124,30 +112,25 @@ const getAllReservations = async (req, res, pool) => {
 
     } catch (err) {
         console.error("❌ Erreur getAllReservations :", err.message);
-        res.status(500).json({ success: false, error: "Erreur lors de la récupération des réservations." });
+        res.status(500).json({ success: false, error: "Erreur récupération." });
     }
 };
 
-
+// --- VUE CALENDRIER CLIENT (Ses réservations uniquement) ---
 const getUserReservations = async (req, res, pool) => {
-    // ... (Logique Client inchangée) ...
     try {
         const user_id = req.user.user_id; 
-
-        console.log(`🗓️ Récupération des réservations pour le Client ID: ${user_id}...`);
+        console.log(`🗓️ Réservations Client ID: ${user_id}...`);
 
         const userReservations = await pool.query(
             `SELECT
-                r.id, 
-                r.scheduled_date, 
-                r.status, 
-                r.notes,
+                r.id, r.scheduled_date, r.status, r.notes,
                 p.address AS property_address,
                 s.name AS service_name,
                 sp.name AS provider_name
             FROM
                 reservations r
-            JOIN
+            LEFT JOIN 
                 properties p ON r.property_id = p.id
             JOIN
                 services s ON r.service_id = s.id
@@ -161,17 +144,16 @@ const getUserReservations = async (req, res, pool) => {
         );
 
         if (userReservations.rows.length === 0) {
-            return res.status(200).json({ message: "Aucune réservation trouvée pour ce client.", reservations: [] });
+            return res.status(200).json({ message: "Aucune réservation.", reservations: [] });
         }
 
         res.json(userReservations.rows);
 
     } catch (err) {
         console.error("❌ Erreur getUserReservations :", err.message);
-        res.status(500).json({ success: false, error: "Erreur lors de la récupération des réservations du client." });
+        res.status(500).json({ success: false, error: "Erreur récupération." });
     }
 };
-
 
 module.exports = {
     createReservationFromRequest,

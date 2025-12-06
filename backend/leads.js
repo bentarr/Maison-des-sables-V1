@@ -3,7 +3,7 @@
 // On importe la fonction d'automatisation
 const { createReservationFromRequest } = require('./reservations'); 
 const { createNotification } = require('./notifications');
-const { sendTransactionalEmail } = require('./emailService'); // NOUVEL IMPORT
+const { sendTransactionalEmail } = require('./emailService');
 
 // ---------------------------------------------------
 // 1. GESTION DES PROSPECTS (Non connectés)
@@ -11,20 +11,31 @@ const { sendTransactionalEmail } = require('./emailService'); // NOUVEL IMPORT
 
 const handleNewLead = async (req, res, pool) => {
     try {
-        // 1. On récupère les infos du formulaire
         const { email, name, phone, message, service_name, type_bien, surface } = req.body;
+        // On récupère l'instance Socket.IO
+        const io = req.io; 
 
         console.log("📩 Nouveau prospect reçu :", email);
 
-        // 2. ON STOCKE JUSTE LA DEMANDE (Pas de création de compte User)
-        // On met tout dans la table 'leads' qui sert de boîte de réception
         await pool.query(
             `INSERT INTO leads (email, name, phone, type_bien, surface, service_interest, message)
              VALUES ($1, $2, $3, $4, $5, $6, $7)`,
             [email, name, phone, type_bien, surface, service_name, message]
         );
 
-        // 3. On répond au site que c'est bien reçu
+        // Notifier les admins
+        const admins = await pool.query("SELECT id FROM users WHERE role = 'admin'");
+        for (const admin of admins.rows) {
+            await createNotification(
+                pool, 
+                admin.id, 
+                `Nouveau prospect (Lead) reçu : ${name}`, 
+                'info', 
+                null, 
+                io
+            );
+        }
+
         res.json({ success: true, message: "Demande transmise à l'équipe." });
 
     } catch (err) {
@@ -44,25 +55,60 @@ const handleNewRequest = async (req, res, pool) => {
     try {
         const user_id = req.user.user_id; 
         const { property_id, service_id, scheduled_date, notes } = req.body; 
+        const io = req.io; 
 
-        if (!property_id || !service_id || !scheduled_date) {
-            return res.status(400).json({ error: "Champs manquants (bien, service, ou date)." });
+        if (!service_id || !scheduled_date) {
+            return res.status(400).json({ error: "Champs manquants (service ou date)." });
         }
 
-        console.log(`✨ Nouvelle requête de service pour l'utilisateur ID: ${user_id}`);
-
-        // Insertion dans la BDD (table 'requests')
+        // Insertion dans la BDD
         const newRequest = await pool.query(
             `INSERT INTO requests (user_id, property_id, service_id, scheduled_date, notes, status)
              VALUES ($1, $2, $3, $4, $5, 'pending')
              RETURNING id, status`,
-            [user_id, property_id, service_id, scheduled_date, notes]
+            [user_id, property_id || null, service_id, scheduled_date, notes] 
         );
+
+        const requestId = newRequest.rows[0].id;
+
+        // ---------------------------------------------------------
+        // ✨ NOTIFICATION INTELLIGENTE
+        // ---------------------------------------------------------
+        
+        // 1. On récupère les infos pour faire un beau message
+        const userInfo = await pool.query("SELECT first_name, last_name FROM users WHERE id = $1", [user_id]);
+        const serviceInfo = await pool.query("SELECT name FROM services WHERE id = $1", [service_id]);
+
+        const userName = userInfo.rows[0] ? `${userInfo.rows[0].first_name} ${userInfo.rows[0].last_name}` : "Un client";
+        const serviceName = serviceInfo.rows[0] ? serviceInfo.rows[0].name : "Service";
+        
+        // On formate la date proprement (ex: 12/12)
+        const dateObj = new Date(scheduled_date);
+        const dateStr = dateObj.toLocaleDateString('fr-FR');
+
+        const message = `Nouvelle demande : ${userName} souhaite "${serviceName}" le ${dateStr}.`;
+
+        // 2. Envoi aux admins
+        const adminUsers = await pool.query("SELECT id FROM users WHERE role = 'admin'");
+
+        if (adminUsers.rows.length > 0) {
+            for (const admin of adminUsers.rows) {
+                await createNotification(
+                    pool,
+                    admin.id,                                      
+                    message, // <--- Le message est maintenant personnalisé !
+                    'alert',                                       
+                    null,
+                    io                                             
+                );
+            }
+        }
+        // ---------------------------------------------------------
 
         res.status(201).json({ 
             success: true, 
-            message: "Votre demande de service a été enregistrée et est en attente de validation.", 
-            requestId: newRequest.rows[0].id 
+            message: "Votre demande de service a été enregistrée.", 
+            requestId: requestId 
         });
 
     } catch (err) {
@@ -80,7 +126,6 @@ const getUserRequests = async (req, res, pool) => {
         
         console.log(`📑 Récupération des requêtes pour l'utilisateur ID: ${user_id}`);
 
-        // Requête pour récupérer les demandes de service de cet utilisateur.
         const userRequests = await pool.query(
             `SELECT
                 r.id,
@@ -88,11 +133,11 @@ const getUserRequests = async (req, res, pool) => {
                 r.notes,
                 r.status,
                 r.created_at,
-                p.address AS property_address,
+                p.address AS property_address, 
                 s.name AS service_name
             FROM
                 requests r
-            JOIN
+            LEFT JOIN 
                 properties p ON r.property_id = p.id
             JOIN
                 services s ON r.service_id = s.id
@@ -127,7 +172,6 @@ const cancelRequest = async (req, res, pool) => {
             return res.status(400).json({ error: "L'ID de la demande est manquant." });
         }
 
-        // Requête de mise à jour sécurisée : vérifie l'ID de la demande ET l'ID de l'utilisateur.
         const result = await pool.query(
             `UPDATE requests
              SET status = 'cancelled', updated_at = NOW()
@@ -151,7 +195,7 @@ const cancelRequest = async (req, res, pool) => {
 
 
 // ---------------------------------------------------
-// 3. GESTION ADMIN (Vérification du rôle 'admin' par le middleware)
+// 3. GESTION ADMIN
 // ---------------------------------------------------
 
 const getAllLeads = async (req, res, pool) => {
@@ -173,23 +217,22 @@ const getAllLeads = async (req, res, pool) => {
  */
 const getAllRequests = async (req, res, pool) => {
     try {
-        // L'Admin doit voir toutes les infos de la requête, y compris qui l'a demandée (user_id)
         const allRequests = await pool.query(
             `SELECT
                 r.id, r.scheduled_date, r.notes, r.status, r.created_at,
-                p.address AS property_address,
+                p.address AS property_address, 
                 s.name AS service_name,
                 u.email AS user_email,
                 u.first_name,
                 u.last_name
             FROM
                 requests r
-            JOIN
+            LEFT JOIN 
                 properties p ON r.property_id = p.id
             JOIN
                 services s ON r.service_id = s.id
             JOIN
-                users u ON r.user_id = u.id -- JOINTURE avec la table users pour savoir qui est le client
+                users u ON r.user_id = u.id
             ORDER BY
                 r.created_at DESC`
         );
@@ -209,7 +252,7 @@ const updateRequestStatus = async (req, res, pool) => {
     try {
         const { id } = req.params;
         const { status } = req.body; 
-        const io = req.io; // RÉCUPÉRER L'OBJET SOCKET.IO
+        const io = req.io;
 
         if (!id || !status) {
             return res.status(400).json({ error: "ID de demande ou statut manquant." });
@@ -220,7 +263,6 @@ const updateRequestStatus = async (req, res, pool) => {
             return res.status(400).json({ error: "Statut invalide." });
         }
 
-        // Mise à jour de la demande et récupération des données nécessaires
         const result = await pool.query(
             `UPDATE requests
              SET status = $1, updated_at = NOW()
@@ -235,7 +277,7 @@ const updateRequestStatus = async (req, res, pool) => {
 
         const updatedRequest = result.rows[0];
 
-        // Récupérer l'email de l'utilisateur pour l'email transactionnel
+        // Récupérer l'email de l'utilisateur
         const userResult = await pool.query('SELECT email FROM users WHERE id = $1', [updatedRequest.user_id]);
         const userEmail = userResult.rows[0] ? userResult.rows[0].email : null;
 
@@ -244,17 +286,17 @@ const updateRequestStatus = async (req, res, pool) => {
         let emailSubject, emailBody;
         
         if (status === 'rejected') {
-            await createNotification(pool, updatedRequest.user_id, "Votre demande a été refusée.", 'alert', null, io); // NOTIF IN-APP
+            await createNotification(pool, updatedRequest.user_id, "Votre demande a été refusée.", 'alert', null, io);
             emailSubject = "❌ Mise à jour de votre demande Maison des Sables";
             emailBody = `<p>Bonjour,</p><p>Après examen, nous avons dû **refuser** votre demande de service planifiée pour le ${updatedRequest.scheduled_date.toISOString().substring(0, 10)}. Veuillez nous contacter pour plus de détails.</p>`;
         } else if (status === 'validated') {
-            await createNotification(pool, updatedRequest.user_id, "Votre demande a été acceptée et est en cours de planification.", 'success', null, io); // NOTIF IN-APP
+            await createNotification(pool, updatedRequest.user_id, "Votre demande a été acceptée et est en cours de planification.", 'success', null, io);
             emailSubject = "✅ Votre demande Maison des Sables est acceptée !";
             emailBody = `<p>Bonjour,</p><p>Votre demande de service planifiée pour le ${updatedRequest.scheduled_date.toISOString().substring(0, 10)} a été **acceptée** par notre équipe.</p><p>Une réservation a été créée et un prestataire vous sera bientôt assigné. Consultez votre espace client pour les détails.</p>`;
         }
 
         if (userEmail && emailSubject) {
-            await sendTransactionalEmail(userEmail, emailSubject, emailBody); // EMAIL
+            await sendTransactionalEmail(userEmail, emailSubject, emailBody);
         }
 
 
@@ -262,7 +304,6 @@ const updateRequestStatus = async (req, res, pool) => {
         if (updatedRequest.status === 'validated') {
             console.log(`Demande ${id} validée. Tentative de création de réservation...`);
             
-            // Appel de la fonction d'automatisation
             const reservationResult = await createReservationFromRequest(pool, updatedRequest, io);
 
             if (reservationResult.success) {
@@ -280,7 +321,6 @@ const updateRequestStatus = async (req, res, pool) => {
                 });
             }
         } else {
-             // Si le statut est 'rejected' ou autre, on répond sans automatisation
             console.log(`✅ Demande ID: ${id} mise à jour au statut: ${status}`);
             res.json({ success: true, message: `Statut mis à jour à '${status}'.`, request: updatedRequest });
         }

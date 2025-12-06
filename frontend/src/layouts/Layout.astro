@@ -7,7 +7,7 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="fr" class="bg-sable text-charbon scroll-smooth">
+<html lang="fr" class="bg-[#F9F7F2] text-[#2C2C2C] scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Maison des Sables - Conciergerie de Luxe à Arcachon" />
@@ -16,11 +16,18 @@ const { title } = Astro.props;
 		
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
 		
 		<title>{title}</title>
 
 		<style is:global>
+			/* Définition des variables de couleurs globales */
+			:root {
+				--color-sable: #F9F7F2;
+				--color-charbon: #2C2C2C;
+				--color-or: #B47C5E;
+			}
+
 			/* CSS Global pour le Smooth Scroll Lenis */
 			html.lenis { height: auto; }
 			.lenis.lenis-smooth { scroll-behavior: auto; }
@@ -29,14 +36,38 @@ const { title } = Astro.props;
 			
 			/* Lissage des polices pour un rendu "Magazine" */
 			body {
+				font-family: 'Manrope', sans-serif;
 				-webkit-font-smoothing: antialiased;
 				-moz-osx-font-smoothing: grayscale;
+				background-color: var(--color-sable);
+				color: var(--color-charbon);
+			}
+
+			/* Les titres utilisent la police Serif par défaut */
+			h1, h2, h3, h4, h5, h6 {
+				font-family: 'Playfair Display', serif;
 			}
 			
 			/* Selection de texte couleur Or */
 			::selection {
-				background-color: #A89060;
-				color: #F7F4EB;
+				background-color: var(--color-or);
+				color: #FFFFFF;
+			}
+
+			/* Utilitaires pour les scrollbars personnalisées (utilisés dans le dashboard) */
+			::-webkit-scrollbar {
+				width: 6px;
+				height: 6px;
+			}
+			::-webkit-scrollbar-track {
+				background: transparent;
+			}
+			::-webkit-scrollbar-thumb {
+				background: rgba(44, 44, 44, 0.1);
+				border-radius: 10px;
+			}
+			::-webkit-scrollbar-thumb:hover {
+				background: rgba(44, 44, 44, 0.3);
 			}
 		</style>
 	</head>
@@ -44,17 +75,21 @@ const { title } = Astro.props;
 		<slot />
 
 		<script>
+			// @ts-ignore
 			import Lenis from '@studio-freight/lenis'
+			
 			const lenis = new Lenis({
 				duration: 1.2,
 				easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
 				orientation: 'vertical',
 				smoothWheel: true,
 			})
+
 			function raf(time) {
 				lenis.raf(time)
 				requestAnimationFrame(raf)
 			}
+
 			requestAnimationFrame(raf)
 		</script>
 	</body>

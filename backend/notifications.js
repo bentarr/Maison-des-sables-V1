@@ -1,11 +1,11 @@
-// notifications.js (NOUVEAU FICHIER)
+// notifications.js
 
 /**
  * [SYSTEME] Crée une nouvelle notification dans la table 'notifications'.
  * @param {object} pool - Le pool de connexion à la BDD.
  * @param {number} userId - L'ID de l'utilisateur destinataire.
  * @param {string} message - Le contenu du message.
- * @param {string} type - Le type de notification ('alert', 'success', 'reservation').
+ * @param {string} type - Le type de notification ('alert', 'success', 'reservation', 'info').
  * @param {number} [reservationId=null] - L'ID de la réservation associée (optionnel).
  * @param {object} io - L'objet Socket.IO (pour la mise à jour en temps réel).
  */
@@ -100,8 +100,35 @@ const markNotificationsAsRead = async (req, res, pool) => {
     }
 };
 
+/**
+ * [CLIENT/ADMIN] Supprime une notification spécifique.
+ * NOUVELLE FONCTION
+ */
+const deleteNotification = async (req, res, pool) => {
+    try {
+        const userId = req.user.user_id;
+        const { id } = req.params;
+
+        const result = await pool.query(
+            "DELETE FROM notifications WHERE id = $1 AND user_id = $2 RETURNING id",
+            [id, userId]
+        );
+
+        if (result.rowCount === 0) {
+            return res.status(404).json({ error: "Notification introuvable ou non autorisée." });
+        }
+
+        res.json({ success: true, message: "Notification supprimée." });
+
+    } catch (err) {
+        console.error("❌ Erreur deleteNotification :", err.message);
+        res.status(500).json({ success: false, error: "Erreur serveur." });
+    }
+};
+
 module.exports = {
     createNotification,
     getNotificationsByUserId,
     markNotificationsAsRead,
+    deleteNotification
 };

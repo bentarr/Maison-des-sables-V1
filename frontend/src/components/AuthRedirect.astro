@@ -1,0 +1,55 @@
+---
+// src/components/AuthRedirect.astro (SCRIPT FINAL CORRIGÉ)
+import { getAuthData } from '../services/authService';
+
+export interface Props {
+    requiredRole: 'admin' | 'client' | 'public';
+}
+
+const { requiredRole } = Astro.props;
+
+// Pas de logique côté serveur, tout est dans le script client
+---
+
+<script define:vars={{ requiredRole: requiredRole }}>
+    import { getAuthData } from '../services/authService';
+    
+    const container = document.getElementById('secure-app-container');
+    
+    // Fonction qui exécute la vérification
+    const checkAuthAndRedirect = () => {
+        const { token, role } = getAuthData();
+        
+        // Cas 1 : L'utilisateur n'est pas connecté (Pas de token)
+        if (!token) {
+            if (requiredRole !== 'public') {
+                window.location.href = '/login';
+                return true; // Redirection effectuée
+            }
+        }
+
+        // Cas 2 : Le rôle est incorrect
+        if (requiredRole !== 'public' && token && role !== requiredRole) {
+            const target = (role === 'admin') ? '/admin' : '/client';
+            window.location.href = target;
+            return true;
+        }
+
+        // Cas 3 : La page de login est visitée par un utilisateur déjà connecté
+        if (requiredRole === 'public' && token) {
+            const target = (role === 'admin') ? '/admin' : '/client';
+            window.location.href = target;
+            return true;
+        }
+        
+        return false; // Pas de redirection nécessaire, contenu OK
+    };
+    
+    // On exécute la vérification
+    if (!checkAuthAndRedirect()) {
+        // Si la vérification est passée (Pas de redirection), on affiche le contenu
+        if (container) {
+            container.classList.remove('hidden');
+        }
+    }
+</script>
