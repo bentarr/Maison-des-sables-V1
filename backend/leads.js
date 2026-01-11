@@ -3,7 +3,8 @@
 // On importe la fonction d'automatisation
 const { createReservationFromRequest } = require('./reservations'); 
 const { createNotification } = require('./notifications');
-const { sendTransactionalEmail } = require('./emailService');
+// MODIFICATION : Import de sendNewLeadEmail
+const { sendTransactionalEmail, sendNewLeadEmail } = require('./emailService');
 
 // ---------------------------------------------------
 // 1. GESTION DES PROSPECTS (Non connectés)
@@ -11,16 +12,21 @@ const { sendTransactionalEmail } = require('./emailService');
 
 const handleNewLead = async (req, res, pool) => {
     try {
-        const { email, name, phone, message, service_name, type_bien, surface } = req.body;
+        // MODIFICATION : On récupère property_details (le champ input du simulateur)
+        const { email, name, phone, message, service_name, type_bien, surface, property_details, property_type } = req.body;
         // On récupère l'instance Socket.IO
         const io = req.io; 
 
         console.log("📩 Nouveau prospect reçu :", email);
 
+        // Harmonisation : Si property_type existe (page gestion), on l'utilise, sinon on prend type_bien
+        const finalType = type_bien || property_type;
+        const finalSurface = surface || null;
+
         await pool.query(
             `INSERT INTO leads (email, name, phone, type_bien, surface, service_interest, message)
              VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-            [email, name, phone, type_bien, surface, service_name, message]
+            [email, name, phone, finalType, finalSurface, service_name, message]
         );
 
         // Notifier les admins
@@ -35,6 +41,18 @@ const handleNewLead = async (req, res, pool) => {
                 io
             );
         }
+
+        // ✨ ENVOI DU MAIL : On passe property_details à la fonction
+        sendNewLeadEmail({ 
+            email, 
+            name, 
+            phone, 
+            message, 
+            service_name, 
+            property_details 
+        }).catch(err => {
+            console.error("🔴 Erreur envoi mail notification Lead:", err.message);
+        });
 
         res.json({ success: true, message: "Demande transmise à l'équipe." });
 

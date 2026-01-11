@@ -1,139 +1,181 @@
 ---
+// ==============================================================================
+// MAISON DES SABLES - GESTION LOCATIVE (V6 - SIMULATEUR DÉTAILLÉ)
+// ==============================================================================
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Gestion Locative | Maison des Sables">
 	
-	<nav class="fixed top-0 w-full z-50 px-6 md:px-12 py-8 flex justify-between items-center mix-blend-difference text-white transition-all duration-500">
-		<a href="/" class="font-serif text-xl tracking-wider font-semibold hover:text-or transition-colors">← Retour</a>
+	<nav id="navbar" class="fixed top-0 w-full z-50 px-6 md:px-12 py-8 flex justify-between items-center text-white transition-all duration-500 ease-in-out">
+		<a href="/" class="font-serif text-xl tracking-wider font-semibold hover:text-or transition-colors flex items-center gap-2">
+			<span class="text-sm">←</span> Retour
+		</a>
 		<a href="/" class="hidden md:block font-serif text-2xl tracking-wider font-bold">Maison des Sables</a>
-		<a href="#contact" class="border border-white/30 px-6 py-2 text-xs font-sans uppercase tracking-widest rounded-std hover:bg-white hover:text-charbon transition-all">Contact</a>
+		<a href="#contact" class="group relative px-6 py-2 border border-white/30 text-xs font-sans uppercase tracking-widest rounded-std overflow-hidden hover:border-white transition-all">
+			<span class="relative z-10 group-hover:text-charbon transition-colors">Contact</span>
+			<div class="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0"></div>
+		</a>
 	</nav>
 
-	<header class="relative h-[70vh] bg-charbon overflow-hidden flex items-center justify-center">
-		<img src="/gestion.jpg" alt="Gestion Locative" class="absolute inset-0 w-full h-full object-cover opacity-60 scale-105 animate-slow-zoom"/>
-		<div class="absolute inset-0 bg-gradient-to-b from-charbon/60 via-transparent to-sable"></div>
+	<header class="relative h-[85vh] bg-charbon overflow-hidden flex items-center justify-center">
+		<div class="absolute inset-0 z-0">
+			<img src="/gestion_locative.png" alt="Gestion Locative" class="w-full h-full object-cover opacity-50 scale-105 animate-slow-zoom"/>
+			<div class="absolute inset-0 bg-gradient-to-b from-charbon/70 via-transparent to-[#F9F7F2]"></div>
+		</div>
 		
-		<div class="relative z-10 text-center px-4 mt-20 max-w-4xl">
-			<span class="inline-block py-1 px-3 border border-white/20 rounded-full text-[10px] font-sans tracking-[0.2em] uppercase text-white/80 mb-6 backdrop-blur-md">Propriétaires Bailleurs</span>
-			<h1 class="font-serif text-6xl md:text-8xl lg:text-9xl text-sable mb-8 leading-tight">Maximisez<br/><span class="italic text-or">Vos Revenus.</span></h1>
-			<p class="text-sable/80 max-w-xl mx-auto font-sans text-lg leading-relaxed">
+		<div class="relative z-10 text-center px-4 max-w-5xl">
+			<span class="inline-block py-1 px-4 border border-or/40 rounded-full text-[10px] font-sans tracking-[0.3em] uppercase text-or mb-8 backdrop-blur-md font-bold reveal-text">Propriétaires</span>
+			<h1 class="font-serif text-6xl md:text-8xl lg:text-[10rem] text-charbon mb-8 leading-[0.9]">
+				<div class="overflow-hidden"><span class="block reveal-text">Maximisez</span></div>
+				<div class="overflow-hidden mt-2"><span class="block reveal-text italic text-or">Vos Revenus.</span></div>
+			</h1>
+			<p class="text-charbon/70 max-w-2xl mx-auto font-sans text-xl leading-relaxed reveal-text font-light">
 				Confiez-nous votre bien. Nous transformons votre résidence secondaire en un actif performant grâce à une gestion hôtelière d'excellence.
 			</p>
 		</div>
 	</header>
 
-	<section class="bg-sable text-charbon py-32 px-6 md:px-12">
-		<div class="max-w-7xl mx-auto">
+	<section class="bg-[#F9F7F2] text-charbon py-32 px-6 md:px-12 relative overflow-hidden">
+		<div class="max-w-[1400px] mx-auto relative z-10">
 			
-			<div class="text-center mb-16">
-				<span class="text-or text-xs font-sans tracking-[0.2em] uppercase mb-4 block">Notre Expertise</span>
-				<h3 class="font-serif text-4xl md:text-6xl mb-6">L'Art de la Performance</h3>
-				<p class="font-sans text-charbon/60 max-w-2xl mx-auto text-lg">
-					Une approche complète pour valoriser votre patrimoine.
-				</p>
+			<div class="text-center mb-24">
+				<span class="text-or text-xs font-sans tracking-[0.3em] uppercase mb-4 block font-bold reveal-text">L'Art de la Performance</span>
+				<h3 class="font-serif text-4xl md:text-6xl mb-6 reveal-text text-charbon">Notre Expertise</h3>
+				<div class="w-20 h-px bg-or/30 mx-auto reveal-text"></div>
 			</div>
 
-			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+			<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12 justify-items-center">
 				
-				<div class="bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-charbon/5 group hover:-translate-y-2">
-					<div class="h-64 overflow-hidden relative">
-						<img src="/gestion.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Commercialisation"/>
+				<div class="bg-white w-full max-w-lg rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700 border border-charbon/5 group hover:-translate-y-4">
+					<div class="h-80 overflow-hidden relative">
+						<img src="/card1.png" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 group-hover:brightness-110 group-hover:contrast-110" alt="Commercialisation"/>
+						<div class="absolute inset-0 bg-charbon/10 group-hover:bg-transparent transition-colors"></div>
 					</div>
-					<div class="p-10">
-						<h4 class="font-serif text-2xl mb-4 text-charbon">Commercialisation</h4>
-						<p class="text-sm text-charbon/70 leading-relaxed mb-6">
-							Nous créons l'envie dès le premier clic : shooting pro, rédaction multilingue et diffusion optimisée sur les plateformes premium.
+					<div class="p-12">
+						<h4 class="font-serif text-3xl mb-6 text-charbon leading-tight">Rayonnement & Prestige</h4>
+						<p class="text-lg text-charbon/60 leading-relaxed mb-8 font-light">
+							Nous assurons une visibilité premium de votre bien, garantissant un positionnement idéal sur le marché locatif d'Arcachon.
 						</p>
-						<ul class="space-y-2 text-xs text-charbon/60 uppercase tracking-wide">
-							<li>• Shooting Photo</li>
-							<li>• Annonce Multilingue</li>
-							<li>• Diffusion Airbnb / Booking</li>
+						<ul class="space-y-4">
+							<li class="flex items-start gap-3 text-xs uppercase tracking-widest text-or font-bold leading-normal">
+								<span class="w-2 h-2 rounded-full bg-or mt-1 shrink-0"></span> 
+								<span>Shooting photo professionnel & drone.</span>
+							</li>
+							<li class="flex items-start gap-3 text-xs uppercase tracking-widest text-or font-bold leading-normal">
+								<span class="w-2 h-2 rounded-full bg-or mt-1 shrink-0"></span> 
+								<span>Rédaction d'annonces multilingues.</span>
+							</li>
+							<li class="flex items-start gap-3 text-xs uppercase tracking-widest text-or font-bold leading-normal">
+								<span class="w-2 h-2 rounded-full bg-or mt-1 shrink-0"></span> 
+								<span>Diffusion premium (Airbnb, Booking...).</span>
+							</li>
 						</ul>
 					</div>
 				</div>
 
-				<div class="bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-charbon/5 group hover:-translate-y-2">
-					<div class="h-64 overflow-hidden relative">
-						<img src="/gestion.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[30%]" alt="Yield Management"/>
+				<div class="bg-white w-full max-w-lg rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700 border border-charbon/5 group hover:-translate-y-4">
+					<div class="h-80 overflow-hidden relative">
+						<img src="/card2.png" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 group-hover:brightness-110 group-hover:contrast-110" alt="Yield Management"/>
+						<div class="absolute inset-0 bg-charbon/10 group-hover:bg-transparent transition-colors"></div>
 					</div>
-					<div class="p-10">
-						<h4 class="font-serif text-2xl mb-4 text-charbon">Yield Management</h4>
-						<p class="text-sm text-charbon/70 leading-relaxed mb-6">
-							Nous ajustons vos tarifs quotidiennement pour maximiser le taux d'occupation et le prix moyen par nuitée.
+					<div class="p-12">
+						<h4 class="font-serif text-3xl mb-6 text-charbon leading-tight">Pilotage des Revenus</h4>
+						<p class="text-lg text-charbon/60 leading-relaxed mb-8 font-light">
+							Nous pilotons la rentabilité de votre résidence en temps réel, garantissant le meilleur revenu locatif possible toute l'année.
 						</p>
-						<ul class="space-y-2 text-xs text-charbon/60 uppercase tracking-wide">
-							<li>• Prix Dynamiques</li>
-							<li>• Analyse Concurrence</li>
-							<li>• Stratégie Saisonnère</li>
+						<ul class="space-y-4">
+							<li class="flex items-start gap-3 text-xs uppercase tracking-widest text-or font-bold leading-normal">
+								<span class="w-2 h-2 rounded-full bg-or mt-1 shrink-0"></span> 
+								<span>Tarification dynamique quotidienne.</span>
+							</li>
+							<li class="flex items-start gap-3 text-xs uppercase tracking-widest text-or font-bold leading-normal">
+								<span class="w-2 h-2 rounded-full bg-or mt-1 shrink-0"></span> 
+								<span>Veille concurrentielle du marché.</span>
+							</li>
+							<li class="flex items-start gap-3 text-xs uppercase tracking-widest text-or font-bold leading-normal">
+								<span class="w-2 h-2 rounded-full bg-or mt-1 shrink-0"></span> 
+								<span>Optimisation du taux d'occupation.</span>
+							</li>
 						</ul>
 					</div>
 				</div>
 
-				<div class="bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-charbon/5 group hover:-translate-y-2">
-					<div class="h-64 overflow-hidden relative">
-						<img src="/experience.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 sepia-[20%]" alt="Expérience 5*"/>
+				<div class="bg-white w-full max-w-lg rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700 border border-charbon/5 group hover:-translate-y-4">
+					<div class="h-80 overflow-hidden relative">
+						<img src="/card3.png" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 group-hover:brightness-110 group-hover:contrast-110" alt="Expérience"/>
+						<div class="absolute inset-0 bg-charbon/10 group-hover:bg-transparent transition-colors"></div>
 					</div>
-					<div class="p-10">
-						<h4 class="font-serif text-2xl mb-4 text-charbon">Expérience 5★</h4>
-						<p class="text-sm text-charbon/70 leading-relaxed mb-6">
-							Un accueil et un service dignes des plus grands hôtels pour fidéliser la clientèle et garantir des avis élogieux.
+					<div class="p-12">
+						<h4 class="font-serif text-3xl mb-6 text-charbon leading-tight">L'Art de l'Hospitalité</h4>
+						<p class="text-lg text-charbon/60 leading-relaxed mb-8 font-light">
+							Nous orchestrons un séjour d'exception pour vos hôtes, faisant de chaque location une recommandation mémorable.
 						</p>
-						<ul class="space-y-2 text-xs text-charbon/60 uppercase tracking-wide">
-							<li>• Ménage Hôtelier</li>
-							<li>• Accueil Physique</li>
-							<li>• Assistance 7j/7</li>
+						<ul class="space-y-4">
+							<li class="flex items-start gap-3 text-xs uppercase tracking-widest text-or font-bold leading-normal">
+								<span class="w-2 h-2 rounded-full bg-or mt-1 shrink-0"></span> 
+								<span>Check-in / Check-out personnalisés.</span>
+							</li>
+							<li class="flex items-start gap-3 text-xs uppercase tracking-widest text-or font-bold leading-normal">
+								<span class="w-2 h-2 rounded-full bg-or mt-1 shrink-0"></span> 
+								<span>Gestion du linge de maison.</span>
+							</li>
+							<li class="flex items-start gap-3 text-xs uppercase tracking-widest text-or font-bold leading-normal">
+								<span class="w-2 h-2 rounded-full bg-or mt-1 shrink-0"></span> 
+								<span>Ménage hôtelier & maintenance générale.</span>
+							</li>
 						</ul>
 					</div>
 				</div>
 
 			</div>
 		</div>
+		<div class="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-multiply" style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');"></div>
 	</section>
 
-	<section class="bg-white py-24 px-6 md:px-12 border-t border-charbon/5">
+	<section class="bg-white py-32 px-6 md:px-12 border-t border-charbon/5">
 		<div class="max-w-7xl mx-auto">
 			
-			<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+			<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-center">
 				
-				<div>
-					<span class="text-or text-xs font-sans tracking-[0.2em] uppercase mb-4 block">Transparence Totale</span>
-					<h3 class="font-serif text-4xl md:text-6xl text-charbon mb-8">20% <span class="text-2xl text-charbon/50 font-sans align-middle">TTC</span></h3>
-					<p class="text-xl font-serif text-charbon mb-6">Commission sur revenus générés.</p>
-					<p class="font-sans text-charbon/70 leading-relaxed mb-8 text-sm">
-						Pas de frais d'entrée, pas de frais fixes mensuels. Notre rémunération est indexée sur votre réussite. Nous ne gagnons de l'argent que si vous en gagnez.
+				<div class="reveal-text">
+					<span class="text-or text-xs font-sans tracking-[0.3em] uppercase mb-4 block font-bold">Transparence Totale</span>
+					<h3 class="font-serif text-5xl md:text-7xl text-charbon mb-8">20% <span class="text-2xl text-charbon/30 font-sans align-middle uppercase tracking-widest">TTC</span></h3>
+					<p class="text-3xl font-serif text-charbon mb-8 italic">Commission sur revenus générés.</p>
+					<p class="font-sans text-charbon/60 leading-relaxed mb-10 text-xl font-light">
+						Pas de frais d'entrée, pas de frais fixes mensuels. Notre rémunération est indexée sur votre réussite : nous ne gagnons de l'argent que si vous en gagnez.
 					</p>
 					
-					<div class="space-y-4 border-t border-charbon/10 pt-8">
-						<div class="flex items-center gap-4">
-							<span class="w-8 h-8 rounded-full bg-or/10 flex items-center justify-center text-or font-bold">✓</span>
-							<span class="text-sm text-charbon/80">Gestion intégrale des réservations</span>
+					<div class="space-y-6 border-t border-charbon/10 pt-10">
+						<div class="flex items-center gap-6 group">
+							<span class="w-10 h-10 rounded-full border border-or/30 flex items-center justify-center text-or group-hover:bg-or group-hover:text-white transition-all font-bold">✓</span>
+							<span class="text-charbon/80 text-lg font-medium tracking-wide">Gestion intégrale des réservations</span>
 						</div>
-						<div class="flex items-center gap-4">
-							<span class="w-8 h-8 rounded-full bg-or/10 flex items-center justify-center text-or font-bold">✓</span>
-							<span class="text-sm text-charbon/80">Check-in / Check-out & Ménage</span>
+						<div class="flex items-center gap-6 group">
+							<span class="w-10 h-10 rounded-full border border-or/30 flex items-center justify-center text-or group-hover:bg-or group-hover:text-white transition-all font-bold">✓</span>
+							<span class="text-charbon/80 text-lg font-medium tracking-wide">Check-in / Check-out & Logistique</span>
 						</div>
-						<div class="flex items-center gap-4">
-							<span class="w-8 h-8 rounded-full bg-or/10 flex items-center justify-center text-or font-bold">✓</span>
-							<span class="text-sm text-charbon/80">Maintenance mineure incluse</span>
+						<div class="flex items-center gap-6 group">
+							<span class="w-10 h-10 rounded-full border border-or/30 flex items-center justify-center text-or group-hover:bg-or group-hover:text-white transition-all font-bold">✓</span>
+							<span class="text-charbon/80 text-lg font-medium tracking-wide">Maintenance technique incluse</span>
 						</div>
 					</div>
 				</div>
 
-				<div class="bg-charbon text-sable p-10 rounded-[2rem] shadow-2xl relative overflow-hidden">
-					<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');"></div>
+				<div class="bg-charbon text-sable p-10 md:p-16 rounded-[3rem] shadow-2xl relative overflow-hidden reveal-text">
+					<div class="absolute inset-0 opacity-[0.07] pointer-events-none" style="background-image: url('https://grainy-gradients.vercel.app/noise.svg');"></div>
 					
-					<h4 class="font-serif text-2xl mb-8 relative z-10">Simulez vos revenus</h4>
+					<h4 class="font-serif text-4xl mb-12 relative z-10">Estimez vos revenus</h4>
 					
-					<div class="mb-6 relative z-10">
-						<label class="text-xs uppercase tracking-widest text-sable/60 mb-2 block">Localisation du bien</label>
+					<div class="mb-10 relative z-10">
+						<label class="text-xs uppercase tracking-[0.2em] text-sable/40 mb-3 block font-bold">Localisation du bien</label>
 						<div class="relative">
-							<select id="location-select" class="w-full bg-sable/10 border border-sable/20 text-sable py-3 px-4 rounded-std appearance-none focus:outline-none focus:border-or transition-colors cursor-pointer">
+							<select id="location-select" class="w-full bg-white/5 border border-white/10 text-sable py-4 px-6 rounded-xl appearance-none focus:outline-none focus:border-or transition-colors cursor-pointer font-sans text-base">
 								<option value="1.5">Cap Ferret (Presqu'île)</option>
-								<option value="1.3">Moulleau / Pyla-sur-Mer / Pereire</option>
+								<option value="1.3">Moulleau / Pyla / Pereire</option>
 								<option value="1" selected>Arcachon Centre / Aiguillon</option>
 								<option value="0.85">La Teste / Gujan-Mestras</option>
-								<option value="0.7">+ 10km (Teich, Biganos, Mios)</option>
+								<option value="0.7">Teich / Biganos / Mios</option>
 							</select>
 							<div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-or">
 								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -141,35 +183,51 @@ import Layout from '../layouts/Layout.astro';
 						</div>
 					</div>
 
-					<div class="mb-6 relative z-10">
-						<label class="text-xs uppercase tracking-widest text-sable/60 mb-2 block">Mode de location</label>
+					<div class="mb-10 relative z-10">
+						<label class="text-xs uppercase tracking-[0.2em] text-sable/40 mb-3 block font-bold">Mode de location</label>
 						<div class="flex gap-4">
-							<button class="mode-btn flex-1 py-3 border border-sable/20 rounded-std text-sm hover:bg-sable hover:text-charbon transition-colors active" data-mode="saison">Saisonnière</button>
-							<button class="mode-btn flex-1 py-3 border border-sable/20 rounded-std text-sm hover:bg-sable hover:text-charbon transition-colors" data-mode="annuel">Annuelle</button>
+							<button class="mode-btn flex-1 py-4 border border-white/10 rounded-xl text-xs uppercase tracking-widest hover:bg-sable hover:text-charbon transition-all font-bold active" data-mode="saison">Saisonnière</button>
+							<button class="mode-btn flex-1 py-4 border border-white/10 rounded-xl text-xs uppercase tracking-widest hover:bg-sable hover:text-charbon transition-all font-bold" data-mode="annuel">Annuelle</button>
 						</div>
 					</div>
 
-					<div class="mb-8 relative z-10">
-						<div class="flex justify-between mb-2">
-							<label class="text-xs uppercase tracking-widest text-sable/60">Surface</label>
-							<span id="surface-val" class="text-or font-bold">60 m²</span>
+					<div class="mb-12 relative z-10">
+						<div class="flex justify-between mb-4">
+							<label class="text-xs uppercase tracking-[0.2em] text-sable/40 font-bold">Surface habitable</label>
+							<span id="surface-val" class="text-or font-bold font-serif text-2xl tracking-wider">60 m²</span>
 						</div>
-						<input type="range" id="surface-range" min="20" max="250" value="60" class="w-full h-1 bg-sable/20 rounded-lg appearance-none cursor-pointer accent-or"/>
+						<input type="range" id="surface-range" min="20" max="250" value="60" class="w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer accent-or"/>
 					</div>
 
-					<div class="bg-white/5 rounded-xl p-6 border border-white/10 relative z-10 mb-8">
-						<p class="text-xs uppercase tracking-widest text-sable/50 mb-1">Potentiel Revenus Nets <span class="text-or text-[9px] ml-1">(20% déduits)</span></p>
-						<div class="flex items-baseline gap-2">
-							<span id="revenue-display" class="text-5xl font-serif text-or">-- ---</span>
-							<span class="text-xl">€</span>
+					<div class="bg-white/5 rounded-2xl p-8 border border-white/10 relative z-10 mb-10">
+						<div class="flex justify-between text-[10px] uppercase tracking-widest text-sable/40 mb-2 font-bold border-b border-white/5 pb-2">
+							<span>Revenu annuel brut</span>
+							<span id="revenue-brut" class="text-sable">-- --- €</span>
 						</div>
-						<p id="disclaimer-text" class="text-[9px] text-sable/40 mt-3 italic leading-relaxed">
-							*Estimation indicative non contractuelle non contractuelle basée sur un taux d'occupation de 100% en haute saison.
-						</p>
+						<div class="flex justify-between text-[10px] uppercase tracking-widest text-sable/40 mb-6 font-bold">
+							<span>Frais de gestion (20%)</span>
+							<span id="commission-val" class="text-or/70">-- --- €</span>
+						</div>
+
+						<p class="text-[10px] uppercase tracking-[0.2em] text-sable/40 mb-3 font-bold text-center">Net propriétaire estimé</p>
+						<div class="flex items-baseline justify-center gap-3">
+							<span id="revenue-display" class="text-6xl md:text-7xl font-serif text-or">-- ---</span>
+							<span class="text-2xl font-light">€</span>
+						</div>
+						
+						<div id="info-bloc" class="mt-6 pt-4 border-t border-white/5">
+							<p id="period-text" class="text-[9px] text-or/60 uppercase tracking-widest font-bold mb-1 text-center">
+								Période : Saison Haute (Mai à Septembre)
+							</p>
+							<p id="disclaimer-text" class="text-[9px] text-sable/30 text-center italic leading-relaxed uppercase tracking-tighter">
+								*Source : Observatoire du Tourisme Arcachon & AirDNA 2024.
+							</p>
+						</div>
 					</div>
 
-					<button id="cta-simulator" class="w-full bg-sable text-charbon py-4 rounded-std font-bold uppercase tracking-widest hover:bg-or hover:text-white transition-colors relative z-10">
-						Recevoir mon étude détaillée
+					<button id="cta-simulator" class="w-full group relative py-6 bg-or text-charbon font-sans text-xs font-bold uppercase tracking-[0.2em] rounded-xl overflow-hidden shadow-lg shadow-or/20 hover:shadow-or/40 transition-all duration-500">
+						<span class="relative z-10 group-hover:text-white transition-colors">Recevoir mon étude détaillée</span>
+						<div class="absolute inset-0 -translate-x-[150%] skew-x-12 bg-white/30 group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out z-0"></div>
 					</button>
 				</div>
 
@@ -177,220 +235,259 @@ import Layout from '../layouts/Layout.astro';
 		</div>
 	</section>
 
-	<section id="contact" class="bg-sable text-charbon py-24 px-6 md:px-12 border-t border-charbon/5 scroll-mt-20">
-		<div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
+	<section id="contact" class="bg-[#F9F7F2] text-charbon py-32 px-6 md:px-12 border-t border-charbon/5 scroll-mt-20 relative overflow-hidden">
+		<div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-32 relative z-10">
 			
-			<div>
-				<span class="text-or text-xs font-sans tracking-[0.2em] uppercase mb-4 block">Démarrer</span>
-				<h3 class="font-serif text-3xl md:text-4xl mb-6">Lançons votre projet</h3>
-				<p class="font-sans text-charbon/70 mb-8 leading-relaxed">
-					Remplissez ce formulaire avec les détails de votre bien. Nous vous contacterons pour une visite d'estimation gratuite.
+			<div class="reveal-text">
+				<span class="text-or text-xs font-sans tracking-[0.3em] uppercase mb-4 block font-bold">Parlons de votre bien</span>
+				<h3 class="font-serif text-4xl md:text-6xl mb-8">Démarrons votre projet</h3>
+				<p class="font-sans text-charbon/60 mb-12 leading-relaxed text-xl font-light">
+					Remplissez ce formulaire avec les détails de votre demeure. Nous vous contacterons pour organiser une visite d'estimation gratuite et sans engagement.
 				</p>
-				<div class="space-y-6">
-					<div class="flex items-center gap-4">
-						<div class="w-10 h-10 rounded-full border border-or/30 flex items-center justify-center text-or">✉️</div>
-						<div><p class="text-xs uppercase tracking-widest text-charbon/50">Email</p><a href="mailto:bonjour@maisondesables.fr" class="font-serif text-xl text-charbon hover:text-or transition-colors">bonjour@maisondesables.fr</a></div>
+				<div class="space-y-8">
+					<div class="flex items-center gap-6">
+						<div class="w-12 h-12 rounded-full border border-or/30 flex items-center justify-center text-or font-serif italic text-xl font-bold">✉</div>
+						<div><p class="text-[10px] uppercase tracking-widest text-charbon/40 font-bold mb-1">Email</p><a href="mailto:contact@maison-des-sables.fr" class="font-serif text-2xl text-charbon hover:text-or transition-colors">contact@maison-des-sables.fr</a></div>
 					</div>
-					<div class="flex items-center gap-4">
-						<div class="w-10 h-10 rounded-full border border-or/30 flex items-center justify-center text-or">📞</div>
-						<div><p class="text-xs uppercase tracking-widest text-charbon/50">Téléphone</p><a href="tel:+33556000000" class="font-serif text-xl text-charbon hover:text-or transition-colors">+33 5 56 00 00 00</a></div>
+					<div class="flex items-center gap-6">
+						<div class="w-12 h-12 rounded-full border border-or/30 flex items-center justify-center text-or font-serif italic text-xl font-bold">☏</div>
+						<div><p class="text-[10px] uppercase tracking-widest text-charbon/40 font-bold mb-1">Téléphone</p><a href="tel:+33628946234" class="font-serif text-2xl text-charbon hover:text-or transition-colors">+33 6 28 94 62 34</a></div>
 					</div>
 				</div>
 			</div>
 
-			<form id="contact-form" class="space-y-6 bg-white p-10 rounded-[2rem] shadow-lg border border-charbon/5">
-				
+			<form id="contact-form" class="space-y-8 bg-white p-10 md:p-14 rounded-[3rem] shadow-xl border border-charbon/5 reveal-text">
 				<input type="hidden" name="property_type" id="hidden-type" value="">
 				<input type="hidden" name="surface" id="hidden-surface" value="">
 				
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 					<div class="group">
-						<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Nom</label>
-						<input type="text" name="name" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all" required/>
+						<label class="text-[10px] uppercase tracking-widest text-charbon/40 mb-3 block font-bold">Nom Complet</label>
+						<input type="text" name="name" class="w-full bg-transparent border-b border-charbon/10 py-3 text-charbon outline-none focus:border-or transition-all font-sans text-lg" required placeholder="Ex: Jean Dupont"/>
 					</div>
 					<div class="group">
-						<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Téléphone</label>
-						<input type="tel" name="phone" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all" required/>
+						<label class="text-[10px] uppercase tracking-widest text-charbon/40 mb-3 block font-bold">Téléphone</label>
+						<input type="tel" name="phone" class="w-full bg-transparent border-b border-charbon/10 py-3 text-charbon outline-none focus:border-or transition-all font-sans text-lg" required placeholder="06 .. .. .. .."/>
 					</div>
 				</div>
 				<div class="group">
-					<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Email</label>
-					<input type="email" name="email" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all" required/>
+					<label class="text-[10px] uppercase tracking-widest text-charbon/40 mb-3 block font-bold">Email de contact</label>
+					<input type="email" name="email" class="w-full bg-transparent border-b border-charbon/10 py-3 text-charbon outline-none focus:border-or transition-all font-sans text-lg" required placeholder="votre@mail.com"/>
 				</div>
 				
 				<div class="group">
-					<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Type de bien & Estimation</label>
-					<input type="text" name="property_details" id="input-type-bien" class="w-full bg-or/10 border-b border-or p-3 text-charbon font-bold outline-none" placeholder="Utilisez le simulateur ci-dessus..." />
+					<label class="text-[10px] uppercase tracking-widest text-charbon/40 mb-3 block font-bold">Type de bien & Estimation</label>
+					<input type="text" name="property_details" id="input-type-bien" class="w-full bg-or/5 border-b border-or/30 p-4 text-charbon font-serif italic text-xl outline-none rounded-t-xl" placeholder="Utilisez le simulateur ci-dessus..." />
 				</div>
 
 				<div class="group">
-					<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Expliquer votre projet</label>
-					<textarea name="message" rows="3" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all resize-none"></textarea>
+					<label class="text-[10px] uppercase tracking-widest text-charbon/40 mb-3 block font-bold">Votre Message</label>
+					<textarea name="message" rows="3" class="w-full bg-transparent border-b border-charbon/10 py-3 text-charbon outline-none focus:border-or transition-all resize-none font-sans text-lg" placeholder="Dites-nous en plus sur votre demeure..."></textarea>
 				</div>
-				<button type="submit" class="w-full bg-charbon text-sable py-4 rounded-std font-bold uppercase tracking-widest hover:bg-or hover:text-white transition-colors shadow-lg">Demander mon estimation</button>
+				<button type="submit" class="w-full group relative py-5 bg-charbon text-sable font-sans text-xs font-bold uppercase tracking-[0.2em] rounded-xl overflow-hidden shadow-lg transition-all duration-500 hover:-translate-y-1">
+					<span class="relative z-10 group-hover:text-white transition-colors">Demander mon estimation</span>
+					<div class="absolute inset-0 bg-or translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0"></div>
+				</button>
 			</form>
 
 		</div>
 	</section>
 
-	<footer class="bg-charbon text-sable py-12 text-center border-t border-white/10">
-		<p class="font-serif text-2xl mb-4">Maison des Sables</p>
+	<footer class="bg-charbon text-sable pt-24 pb-12 px-6 relative z-10 font-sans">
+		<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-sable/10 pb-12 mb-12">
+			<div class="md:col-span-1">
+				<h5 class="font-serif text-3xl mb-6 text-white tracking-wider">Maison des Sables</h5>
+				<p class="text-sm text-sable/50 max-w-xs leading-relaxed font-light italic">
+					Conciergerie & Service d'accompagnement pour séniors basée sur le Bassin d'Arcachon.
+				</p>
+			</div>
+			<div>
+				<h6 class="text-[10px] uppercase tracking-[0.2em] mb-8 font-bold text-or">Navigation</h6>
+				<ul class="space-y-4 text-xs font-medium text-sable/60 uppercase tracking-widest">
+					<li><a href="/#villas" class="hover:text-or transition-colors">Nos Villas</a></li>
+					<li><a href="/#services" class="hover:text-or transition-colors">Nos Services</a></li>
+					<li><a target="_blank" href="/login" class="hover:text-or transition-colors text-white">Espace Client</a></li>
+				</ul>
+			</div>
+			<div>
+				<h6 class="text-[10px] uppercase tracking-[0.2em] mb-8 font-bold text-or">Légal</h6>
+				<ul class="space-y-4 text-xs font-medium text-sable/60 uppercase tracking-widest">
+					<li><a target="_blank" href="/mentions-legales" class="hover:text-or transition-colors">Mentions Légales</a></li>
+					<li><a target="_blank" href="/politique-confidentialite" class="hover:text-or transition-colors">Confidentialité</a></li>
+					<li><a target="_blank" href="/cgv" class="hover:text-or transition-colors">CGV / CGU</a></li>
+				</ul>
+			</div>
+			<div>
+				<h6 class="text-[10px] uppercase tracking-[0.2em] mb-8 font-bold text-or">Contact</h6>
+				<ul class="space-y-4 text-xs font-medium text-sable/60 font-sans tracking-widest">
+					<li>contact@maison-des-sables.fr</li>
+					<li>+33 6 28 94 62 34</li>
+				</ul>
+			</div>
+		</div>
+		<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-[0.3em] text-sable/30 font-bold">
+			<p>Maison des Sables © 2026 .</p>
+			<p>Design & Dev par Bénétier Paul</p>
+		</div>
 	</footer>
+
 </Layout>
 
 <style>
-	.animate-fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; transform: translateY(20px); }
-	.animate-slow-zoom { animation: zoom 20s infinite alternate; }
-	.delay-100 { animation-delay: 0.1s; }
-	.delay-200 { animation-delay: 0.2s; }
-	@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-	@keyframes zoom { from { transform: scale(1); } to { transform: scale(1.1); } }
+	.animate-slow-zoom { animation: zoom 25s infinite alternate ease-in-out; }
+	@keyframes zoom { from { transform: scale(1); } to { transform: scale(1.15); } }
 
 	.mode-btn.active {
-		background-color: #F7F4EB; /* Sable */
+		background-color: #F9F7F2; /* Sable */
 		color: #1C1C1C; /* Charbon */
-		border-color: #F7F4EB;
+		border-color: transparent;
 	}
-	select option { background-color: #1C1C1C; color: #F7F4EB; }
+	select option { background-color: #1C1C1C; color: #F9F7F2; }
+
+	/* Chrome, Safari, Edge, Opera */
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+	/* Firefox */
+	input[type=number] { -moz-appearance: textfield; }
 </style>
 
 <script>
-	['astro:page-load', 'load'].forEach(event => {
-		window.addEventListener(event, () => {
-			
-			// --- 1. GESTION DU FORMULAIRE ---
-			const form = document.getElementById('contact-form') as HTMLFormElement;
+	import { gsap } from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	gsap.registerPlugin(ScrollTrigger);
 
-			if (form) {
-				form.addEventListener('submit', async (e) => {
-					e.preventDefault(); 
+	window.addEventListener('load', () => {
+		
+		// --- 1. REVEAL ANIMATIONS ---
+		const revealElements = document.querySelectorAll('.reveal-text');
+		revealElements.forEach(el => {
+			gsap.fromTo(el, 
+				{ y: 30, opacity: 0 },
+				{ y: 0, opacity: 1, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 90%" } }
+			);
+		});
 
-					const formData = new FormData(form);
-					const data = Object.fromEntries(formData);
-
-					// @ts-ignore
-					data.service_name = "Gestion Locative"; 
-					
-					try {
-						const response = await fetch('http://localhost:5000/api/contact/lead', {
+		// --- 2. GESTION DU FORMULAIRE ---
+		const form = document.getElementById('contact-form') as HTMLFormElement;
+		if (form) {
+			form.addEventListener('submit', async (e) => {
+				e.preventDefault(); 
+				const formData = new FormData(form);
+				const data = Object.fromEntries(formData);
+				// @ts-ignore
+				data.service_name = "Gestion Locative"; 
+				
+				try {
+					const response = await fetch('http://localhost:5000/api/contact/lead', {
 						method: 'POST',
 						headers: { 'Content-Type': 'application/json' },
 						body: JSON.stringify(data)
-						});
-
-						const result = await response.json();
-
-						if (response.ok) {
-							alert("✅ Demande envoyée ! Nous vous recontacterons très vite.");
-							form.reset();
-						} else {
-							alert("❌ Erreur : " + (result.error || "Problème inconnu"));
-						}
-					} catch (error) {
-						console.error(error);
-						alert("❌ Impossible de contacter le serveur (Vérifie qu'il est allumé !)");
+					});
+					if (response.ok) {
+						alert("✅ Votre demande a été transmise. Merci de votre confiance.");
+						form.reset();
+					} else {
+						alert("❌ Erreur technique. Merci de nous contacter par téléphone.");
 					}
-				});
-			}
-
-			// --- 2. LOGIQUE DU SIMULATEUR ---
-			const surfaceRange = document.getElementById('surface-range') as HTMLInputElement;
-			const surfaceVal = document.getElementById('surface-val');
-			const revenueDisplay = document.getElementById('revenue-display');
-			const modeBtns = document.querySelectorAll('.mode-btn');
-			const locationSelect = document.getElementById('location-select') as HTMLSelectElement;
-			const disclaimerText = document.getElementById('disclaimer-text');
-			const ctaSimulator = document.getElementById('cta-simulator');
-			
-			const inputTypeBien = document.getElementById('input-type-bien') as HTMLInputElement;
-			// Nouveaux éléments à remplir pour la BDD
-			const hiddenType = document.getElementById('hidden-type') as HTMLInputElement;
-			const hiddenSurface = document.getElementById('hidden-surface') as HTMLInputElement;
-
-			const contactSection = document.getElementById('contact');
-
-			let currentMode = 'saison';
-
-			// BASES DE PRIX 2025 (Estimation €/m2)
-			const PRIX_SAISON_M2_SEMAINE = 25; 
-			const PRIX_ANNUEL_M2_MOIS = 18;
-			const SEMAINES_SAISON = 17; 
-
-			modeBtns.forEach(btn => {
-				btn.addEventListener('click', () => {
-					modeBtns.forEach(b => b.classList.remove('active'));
-					btn.classList.add('active');
-					// @ts-ignore
-					currentMode = btn.dataset.mode;
-					calculate();
-				});
-			});
-
-			if(surfaceRange) {
-				surfaceRange.addEventListener('input', () => {
-					if(surfaceVal) surfaceVal.textContent = surfaceRange.value + ' m²';
-					calculate();
-				});
-			}
-
-			if(locationSelect) {
-				locationSelect.addEventListener('change', calculate);
-			}
-
-			function calculate() {
-				if(!surfaceRange || !revenueDisplay || !locationSelect) return;
-				const surface = parseInt(surfaceRange.value);
-				const locationMultiplier = parseFloat(locationSelect.value);
-				let grossRevenue = 0;
-				let netRevenue = 0;
-
-				if (currentMode === 'saison') {
-					grossRevenue = surface * PRIX_SAISON_M2_SEMAINE * SEMAINES_SAISON * locationMultiplier; 
-					netRevenue = grossRevenue * 0.8;
-
-					if(disclaimerText) {
-						disclaimerText.innerHTML = `
-							*Estimation indicative non contractuelle basée sur un taux d'occupation théorique de 100% en haute saison (01/06 au 01/10).<br>
-							Chaque bien étant unique, seule une visite technique nous permettra de valider ce potentiel.<br>
-							Sources : Moyennes de marché locales et données AirDNA 2024 pour biens Premium.
-						`;
-					}
-				} else {
-					grossRevenue = surface * PRIX_ANNUEL_M2_MOIS * 12 * locationMultiplier;
-					netRevenue = grossRevenue * 0.8;
-
-					if(disclaimerText) {
-						disclaimerText.innerHTML = `
-							*Estimation indicative non contractuelle hors charges pour une location meublée à l'année.<br>
-							Sources : Observatoire des Loyers et SeLoger (Zone tendue Bassin d'Arcachon).
-						`;
-					}
+				} catch (error) {
+					alert("❌ Serveur indisponible. Vérifiez votre connexion.");
 				}
-				
-				revenueDisplay.textContent = new Intl.NumberFormat('fr-FR').format(Math.round(netRevenue));
-			}
+			});
+		}
 
-			if(ctaSimulator) {
-				ctaSimulator.addEventListener('click', () => {
-					const modeLabel = currentMode === 'saison' ? "Saisonnière" : "Annuelle";
-					const locationLabel = locationSelect.options[locationSelect.selectedIndex].text.split('(')[0].trim();
-					
-					// Remplissage du champ visible
-					if(inputTypeBien) {
-						inputTypeBien.value = `Location ${modeLabel} à ${locationLabel} - ${surfaceRange.value}m²`;
-						inputTypeBien.parentElement.classList.add('animate-pulse');
-						setTimeout(() => inputTypeBien.parentElement.classList.remove('animate-pulse'), 1000);
-					}
+		// --- 3. LOGIQUE DU SIMULATEUR ---
+		const surfaceRange = document.getElementById('surface-range') as HTMLInputElement;
+		const surfaceVal = document.getElementById('surface-val');
+		const revenueDisplay = document.getElementById('revenue-display');
+		const revenueBrutDisplay = document.getElementById('revenue-brut');
+		const commissionValDisplay = document.getElementById('commission-val');
+		const periodText = document.getElementById('period-text');
 
-					// Remplissage des champs invisibles pour la BDD
-					if(hiddenType) hiddenType.value = currentMode === 'saison' ? "Saisonnier" : "Annuel";
-					if(hiddenSurface) hiddenSurface.value = surfaceRange.value;
-					
-					if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
-				});
-			}
+		const modeBtns = document.querySelectorAll('.mode-btn');
+		const locationSelect = document.getElementById('location-select') as HTMLSelectElement;
+		const disclaimerText = document.getElementById('disclaimer-text');
+		const ctaSimulator = document.getElementById('cta-simulator');
+		
+		const inputTypeBien = document.getElementById('input-type-bien') as HTMLInputElement;
+		const hiddenType = document.getElementById('hidden-type') as HTMLInputElement;
+		const hiddenSurface = document.getElementById('hidden-surface') as HTMLInputElement;
 
-			calculate(); 
+		let currentMode = 'saison';
+		const PRIX_SAISON_M2_SEMAINE = 25; 
+		const PRIX_ANNUEL_M2_MOIS = 18;
+		const SEMAINES_SAISON = 17; // Mai à Septembre incluant vacances scolaires
+
+		modeBtns.forEach(btn => {
+			btn.addEventListener('click', () => {
+				modeBtns.forEach(b => b.classList.remove('active'));
+				btn.classList.add('active');
+				// @ts-ignore
+				currentMode = btn.dataset.mode;
+				calculate();
+			});
 		});
+
+		if(surfaceRange) {
+			surfaceRange.addEventListener('input', () => {
+				if(surfaceVal) surfaceVal.textContent = surfaceRange.value + ' m²';
+				calculate();
+			});
+		}
+
+		if(locationSelect) locationSelect.addEventListener('change', calculate);
+
+		function calculate() {
+			if(!surfaceRange || !revenueDisplay || !locationSelect || !revenueBrutDisplay || !commissionValDisplay) return;
+			
+			const surface = parseInt(surfaceRange.value);
+			const locationMultiplier = parseFloat(locationSelect.value);
+			let grossRevenue = 0;
+
+			if (currentMode === 'saison') {
+				// Calcul : Surface * Prix moyen m² * Nombre de semaines * Multiplicateur zone
+				grossRevenue = surface * PRIX_SAISON_M2_SEMAINE * SEMAINES_SAISON * locationMultiplier; 
+				if(periodText) periodText.innerText = "Période : Saison Haute (Mai à Septembre)";
+				if(disclaimerText) disclaimerText.innerText = "*Source : Observatoire du Tourisme Arcachon & AirDNA 2024.";
+			} else {
+				// Calcul : Surface * Prix moyen m² * 12 mois * Multiplicateur zone
+				grossRevenue = surface * PRIX_ANNUEL_M2_MOIS * 12 * locationMultiplier;
+				if(periodText) periodText.innerText = "Période : Location Annuelle (12 mois)";
+				if(disclaimerText) disclaimerText.innerText = "*Source : Moyennes locales FNR / FNAIM Bassin d'Arcachon 2024.";
+			}
+
+			const commission = grossRevenue * 0.20;
+			const netRevenue = grossRevenue - commission;
+
+			// Mise à jour de l'affichage
+			const formatter = new Intl.NumberFormat('fr-FR');
+			revenueBrutDisplay.textContent = formatter.format(Math.round(grossRevenue)) + ' €';
+			commissionValDisplay.textContent = '-' + formatter.format(Math.round(commission)) + ' €';
+			revenueDisplay.textContent = formatter.format(Math.round(netRevenue));
+		}
+
+		if(ctaSimulator) {
+			ctaSimulator.addEventListener('click', () => {
+				const modeLabel = currentMode === 'saison' ? "Saisonnière" : "Annuelle";
+				const locationLabel = locationSelect.options[locationSelect.selectedIndex].text.split('(')[0].trim();
+				if(inputTypeBien) inputTypeBien.value = `Estimation ${modeLabel} à ${locationLabel} - ${surfaceRange.value}m²`;
+				if(hiddenType) hiddenType.value = currentMode === 'saison' ? "Saisonnier" : "Annuel";
+				if(hiddenSurface) hiddenSurface.value = surfaceRange.value;
+				document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+			});
+		}
+		calculate();
+	});
+
+	// Navbar changement au scroll
+	const navbar = document.querySelector("#navbar");
+	window.addEventListener("scroll", () => {
+		if (window.scrollY > 50) { 
+			navbar?.classList.add("bg-charbon/95", "py-4", "backdrop-blur-md");
+			navbar?.classList.remove("py-8");
+		} else { 
+			navbar?.classList.remove("bg-charbon/95", "py-4", "backdrop-blur-md");
+			navbar?.classList.add("py-8");
+		}
 	});
 </script>

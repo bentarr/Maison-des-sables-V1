@@ -1,324 +1,505 @@
 ---
 // ==============================================================================
-// PAGE : INTENDANCE (V4 - CONNECTÉE)
+// PAGE : INTENDANCE (V8 - MODALES MAGAZINE & LOGIQUE SÉPARÉE)
 // ==============================================================================
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Intendance & Résidence Secondaire | Maison des Sables">
 	
-	<nav class="fixed top-0 w-full z-50 px-6 md:px-12 py-8 flex justify-between items-center mix-blend-difference text-white transition-all duration-500">
-		<a href="/" class="font-serif text-xl tracking-wider font-semibold hover:text-or transition-colors">← Retour</a>
+	<nav id="navbar" class="fixed top-0 w-full z-50 px-6 md:px-12 py-8 flex justify-between items-center text-white transition-all duration-500 ease-in-out">
+		<a href="/" class="font-serif text-xl tracking-wider font-semibold hover:text-or transition-colors flex items-center gap-2">
+			<span class="text-sm">←</span> Retour
+		</a>
 		<a href="/" class="hidden md:block font-serif text-2xl tracking-wider font-bold">Maison des Sables</a>
-		<a href="#contact" class="border border-white/30 px-6 py-2 text-xs font-sans uppercase tracking-widest rounded-std hover:bg-white hover:text-charbon transition-all">Contact</a>
+		<a href="#contact" class="group relative px-6 py-2 border border-white/30 text-xs font-sans uppercase tracking-widest rounded-std overflow-hidden hover:border-white transition-all">
+			<span class="relative z-10 group-hover:text-charbon transition-colors">Contact</span>
+			<div class="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0"></div>
+		</a>
 	</nav>
 
-	<header class="relative h-[70vh] bg-charbon overflow-hidden flex items-center justify-center">
-		<div class="absolute inset-0 overflow-hidden">
-			<img src="/gestion.jpg" alt="Intendance" class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale-[20%] scale-105 animate-slow-zoom"/>
+	<header class="relative h-[85vh] bg-charbon overflow-hidden flex items-center justify-center">
+		<div class="absolute inset-0 z-0">
+			<img src="/res_secondaire.png" alt="Intendance" class="w-full h-full object-cover opacity-60 scale-105 animate-slow-zoom"/>
+			<div class="absolute inset-0 bg-gradient-to-b from-charbon/70 via-transparent to-[#F9F7F2]"></div>
 		</div>
-		<div class="absolute inset-0 bg-gradient-to-b from-charbon/60 via-transparent to-sable"></div>
 		
-		<div class="relative z-10 text-center px-4 mt-20 max-w-4xl">
-			<span class="inline-block py-1 px-3 border border-white/20 rounded-full text-[10px] font-sans tracking-[0.2em] uppercase text-white/80 mb-6 backdrop-blur-md">Propriétaires Résidants</span>
-			<h1 class="font-serif text-5xl md:text-8xl text-sable mb-8 leading-tight">Votre Maison,<br/><span class="italic text-or">Toujours Prête.</span></h1>
-			<p class="text-sable/80 max-w-xl mx-auto font-sans text-lg leading-relaxed">
+		<div class="relative z-10 text-center px-4 max-w-5xl">
+			<span class="inline-block py-1 px-4 border border-or/40 rounded-full text-[10px] font-sans tracking-[0.3em] uppercase text-or mb-8 backdrop-blur-md font-bold reveal-text">Propriétaires Résidants</span>
+			<h1 class="font-serif text-6xl md:text-8xl lg:text-[10rem] text-charbon mb-8 leading-[0.9]">
+				<div class="overflow-hidden"><span class="block reveal-text text-white">Votre Maison,</span></div>
+				<div class="overflow-hidden mt-2"><span class="block reveal-text italic text-or">Toujours Prête.</span></div>
+			</h1>
+			<p class="text-white/80 max-w-2xl mx-auto font-sans text-xl leading-relaxed reveal-text font-light">
 				Ne gâchez plus vos arrivées. Nous veillons, aérons et préparons votre résidence secondaire pour que chaque séjour soit des vacances dès la première seconde.
 			</p>
 		</div>
 	</header>
 
-	<section class="bg-sable text-charbon py-24 px-6 md:px-12">
-		<div class="max-w-7xl mx-auto">
+	<section class="bg-[#F9F7F2] text-charbon py-32 px-6 md:px-12 relative overflow-hidden">
+		<div class="max-w-7xl mx-auto relative z-10">
 			
 			<div class="text-center mb-16">
-				<span class="text-or text-xs font-sans tracking-[0.2em] uppercase mb-4 block">Sérénité Absolue</span>
-				<h3 class="font-serif text-4xl md:text-5xl mb-6">Nos Prestations</h3>
-				<p class="font-sans text-charbon/60 max-w-2xl mx-auto">
-					Découvrez comment nous protégeons et valorisons votre bien en votre absence.
-				</p>
+				<span class="text-or text-xs font-sans tracking-[0.3em] uppercase mb-4 block font-bold reveal-text">Sérénité Absolue</span>
+				<h3 class="font-serif text-4xl md:text-5xl mb-6 reveal-text">L'Excellence au Quotidien</h3>
+				<div class="w-20 h-px bg-or/30 mx-auto reveal-text"></div>
 			</div>
 
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 				
-				<div class="service-card group bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-charbon/5 hover:-translate-y-2" data-service="Vigilance">
+				<div class="service-card group bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-charbon/5 hover:-translate-y-2" data-modal-target="modal-gardiennage">
 					<div class="h-64 overflow-hidden relative">
-						<img src="/gestion.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Vigilance"/>
+						<img src="/card_gardiennage.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Vigilance"/>
 						<div class="absolute inset-0 bg-charbon/10 group-hover:bg-transparent transition-colors"></div>
 					</div>
-					<div class="p-8">
-						<div class="w-12 h-12 rounded-full bg-sable flex items-center justify-center text-xl mb-6 text-charbon">👁️</div>
-						<h4 class="font-serif text-2xl mb-4 text-charbon">Vigilance</h4>
-						<p class="text-sm text-charbon/70 leading-relaxed mb-6">
-							Passages réguliers pour vérifier l'absence d'effraction, de fuite ou de dégât. Un rapport photo vous est envoyé systématiquement.
+					<div class="p-8 text-center md:text-left">
+						<div class="w-12 h-12 rounded-full bg-[#F9F7F2] flex items-center justify-center text-xl mb-6 text-charbon mx-auto md:mx-0">👁️</div>
+						<h4 class="font-serif text-2xl mb-4 text-charbon">Le Gardiennage</h4>
+						<p class="text-lg text-charbon/80 leading-snug mb-8 font-light">
+							Une présence régulière et discrète pour préserver l'intégrité absolue de votre refuge.
 						</p>
-						<span class="text-xs font-bold uppercase tracking-widest text-or border-b border-or/20 pb-1 group-hover:border-or transition-colors">Sélectionner</span>
+						<span class="text-xs font-bold uppercase tracking-widest text-or border-b border-or/20 pb-1 group-hover:border-or transition-colors">En savoir plus</span>
 					</div>
 				</div>
 
-				<div class="service-card group bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-charbon/5 hover:-translate-y-2" data-service="Arrivée VIP">
+				<div class="service-card group bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-charbon/5 hover:-translate-y-2" data-modal-target="modal-souffle">
 					<div class="h-64 overflow-hidden relative">
-						<img src="/gestion.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 sepia-[30%]" alt="Arrivée VIP"/>
+						<img src="/card_souffle.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 sepia-[30%]" alt="Arrivée VIP"/>
 						<div class="absolute inset-0 bg-charbon/10 group-hover:bg-transparent transition-colors"></div>
 					</div>
-					<div class="p-8">
-						<div class="w-12 h-12 rounded-full bg-sable flex items-center justify-center text-xl mb-6 text-charbon">✨</div>
-						<h4 class="font-serif text-2xl mb-4 text-charbon">Arrivée VIP</h4>
-						<p class="text-sm text-charbon/70 leading-relaxed mb-6">
-							Sentez-vous en vacances dès la première seconde. Chauffage allumé, lits faits, frigo rempli selon vos désirs.
+					<div class="p-8 text-center md:text-left">
+						<div class="w-12 h-12 rounded-full bg-[#F9F7F2] flex items-center justify-center text-xl mb-6 text-charbon mx-auto md:mx-0">✨</div>
+						<h4 class="font-serif text-2xl mb-4 text-charbon">Le Souffle de Vie</h4>
+						<p class="text-lg text-charbon/80 leading-snug mb-8 font-light">
+							Chaleur, lumière, parfums : retrouvez l'âme de votre foyer instantanément dès votre arrivée.
 						</p>
-						<span class="text-xs font-bold uppercase tracking-widest text-or border-b border-or/20 pb-1 group-hover:border-or transition-colors">Sélectionner</span>
+						<span class="text-xs font-bold uppercase tracking-widest text-or border-b border-or/20 pb-1 group-hover:border-or transition-colors">En savoir plus</span>
 					</div>
 				</div>
 
-				<div class="service-card group bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-charbon/5 hover:-translate-y-2" data-service="Coordination">
+				<div class="service-card group bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-charbon/5 hover:-translate-y-2" data-modal-target="modal-orchestration">
 					<div class="h-64 overflow-hidden relative">
-						<img src="/gestion.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[50%]" alt="Coordination"/>
+						<img src="/card_orchestration.png" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[50%]" alt="Coordination"/>
 						<div class="absolute inset-0 bg-charbon/10 group-hover:bg-transparent transition-colors"></div>
 					</div>
-					<div class="p-8">
-						<div class="w-12 h-12 rounded-full bg-sable flex items-center justify-center text-xl mb-6 text-charbon">🛠️</div>
-						<h4 class="font-serif text-2xl mb-4 text-charbon">Coordination</h4>
-						<p class="text-sm text-charbon/70 leading-relaxed mb-6">
-							Gestion complète de vos prestataires (jardinier, pisciniste) et accès aux artisans pour les petits travaux en votre absence.
+					<div class="p-8 text-center md:text-left">
+						<div class="w-12 h-12 rounded-full bg-[#F9F7F2] flex items-center justify-center text-xl mb-6 text-charbon mx-auto md:mx-0">🛠️</div>
+						<h4 class="font-serif text-2xl mb-4 text-charbon">L'Orchestration</h4>
+						<p class="text-lg text-charbon/80 leading-snug mb-8 font-light">
+							Jardins, piscine, travaux : nous gérons le ballet des artisans dans l'ombre pour un lieu parfait.
 						</p>
-						<span class="text-xs font-bold uppercase tracking-widest text-or border-b border-or/20 pb-1 group-hover:border-or transition-colors">Sélectionner</span>
+						<span class="text-xs font-bold uppercase tracking-widest text-or border-b border-or/20 pb-1 group-hover:border-or transition-colors">En savoir plus</span>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</section>
 
-	<section class="bg-white py-24 px-6 md:px-12 border-t border-charbon/5">
-		<div class="max-w-7xl mx-auto">
-			<div class="text-center mb-16">
-				<span class="text-or text-xs font-sans tracking-[0.2em] uppercase mb-4 block">Abonnements</span>
-				<h3 class="font-serif text-4xl md:text-5xl text-charbon">Choisissez votre Sérénité</h3>
-				<p class="mt-6 text-charbon/60">Cliquez sur une formule pour la sélectionner.</p>
+	<div id="modal-gardiennage" class="modal fixed inset-0 z-[100] hidden items-center justify-center px-4">
+		<div class="modal-overlay absolute inset-0 bg-charbon/90 backdrop-blur-md transition-opacity duration-500"></div>
+		<div class="modal-content relative bg-[#F9F7F2] rounded-[1rem] md:rounded-[3rem] overflow-hidden max-w-5xl w-full shadow-2xl transform scale-95 opacity-0 transition-all duration-500 flex flex-col md:flex-row max-h-[90vh]">
+			<div class="w-full md:w-1/2 h-64 md:h-auto relative">
+				<img src="/card_gardiennage.png" class="absolute inset-0 w-full h-full object-cover" alt="Gardiennage"/>
+				<div class="absolute inset-0 bg-charbon/10"></div>
 			</div>
-
-			<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-				
-				<div class="plan-card group relative bg-sable p-10 rounded-[2rem] border border-transparent hover:border-or/50 cursor-pointer transition-all duration-300 hover:-translate-y-2" data-plan="Formule Essentiel">
-					<div class="flex justify-between items-start mb-8">
-						<h4 class="font-bold uppercase tracking-widest text-sm text-charbon/60">Essentiel</h4>
-						<div class="check-circle w-6 h-6 rounded-full border border-charbon/20 flex items-center justify-center transition-colors group-hover:bg-or group-hover:border-or">
-							<span class="check-icon text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity">✓</span>
-						</div>
-					</div>
-					<p class="text-5xl font-serif text-charbon mb-2">50€<span class="text-base text-charbon/40 font-sans">/mois</span></p>
-					<p class="text-sm text-charbon/60 mb-8 min-h-[3em]">Pour garder un œil sur votre bien.</p>
-					<ul class="space-y-4 text-sm text-charbon/80 border-t border-charbon/5 pt-8">
-						<li class="flex items-center"><span class="text-or mr-2">✓</span> 2 visites de vigilance / mois</li>
-						<li class="flex items-center"><span class="text-or mr-2">✓</span> Rapport photo</li>
-						<li class="flex items-center"><span class="text-or mr-2">✓</span> Gestion des clés</li>
-					</ul>
-				</div>
-
-				<div class="plan-card group relative bg-sable p-10 rounded-[2rem] border border-transparent hover:border-or/50 cursor-pointer transition-all duration-300 hover:-translate-y-2" data-plan="Formule Confort Total">
-					<div class="absolute top-0 right-0 bg-charbon text-white text-[10px] font-bold px-4 py-2 rounded-bl-[1rem]">POPULAIRE</div>
-					
-					<div class="flex justify-between items-start mb-8">
-						<h4 class="font-bold uppercase tracking-widest text-sm text-or">Confort Total</h4>
-						<div class="check-circle w-6 h-6 rounded-full border border-charbon/20 flex items-center justify-center transition-colors group-hover:bg-or group-hover:border-or">
-							<span class="check-icon text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity">✓</span>
-						</div>
-					</div>
-					<p class="text-5xl font-serif text-charbon mb-2">120€<span class="text-base text-charbon/40 font-sans">/mois</span></p>
-					<p class="text-sm text-charbon/60 mb-8 min-h-[3em]">La formule idéale pour profiter sans contraintes.</p>
-					<ul class="space-y-4 text-sm text-charbon/80 border-t border-charbon/5 pt-8">
-						<li class="flex items-center"><span class="text-or mr-2">✓</span> 4 visites de vigilance / mois</li>
-						<li class="flex items-center"><span class="text-or mr-2">✓</span> Préparation arrivée (x2/an)</li>
-						<li class="flex items-center"><span class="text-or mr-2">✓</span> Relève courrier & Arrosage</li>
-						<li class="flex items-center"><span class="text-or mr-2">✓</span> Astreinte tempête 24/7</li>
-					</ul>
-				</div>
-
-				<div class="plan-card group relative bg-sable p-10 rounded-[2rem] border border-transparent hover:border-or/50 cursor-pointer transition-all duration-300 hover:-translate-y-2" data-plan="Formule Prestige (Sur Devis)">
-					<div class="flex justify-between items-start mb-8">
-						<h4 class="font-bold uppercase tracking-widest text-sm text-charbon/60">Prestige</h4>
-						<div class="check-circle w-6 h-6 rounded-full border border-charbon/20 flex items-center justify-center transition-colors group-hover:bg-or group-hover:border-or">
-							<span class="check-icon text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity">✓</span>
-						</div>
-					</div>
-					<p class="text-4xl font-serif text-charbon mb-2 mt-2">Sur Devis</p>
-					<p class="text-sm text-charbon/60 mb-8 min-h-[3em]">Gestion intégrale 100% sur-mesure.</p>
-					<ul class="space-y-4 text-sm text-charbon/80 border-t border-charbon/5 pt-8">
-						<li class="flex items-center"><span class="text-or mr-2">✓</span> Visites illimitées</li>
-						<li class="flex items-center"><span class="text-or mr-2">✓</span> Conciergerie privée incluse</li>
-						<li class="flex items-center"><span class="text-or mr-2">✓</span> Suivi de travaux</li>
-					</ul>
-				</div>
-
-			</div>
-		</div>
-	</section>
-
-	<section id="contact" class="bg-sable text-charbon py-24 px-6 md:px-12 border-t border-charbon/5 scroll-mt-20">
-		<div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
-			<div>
-				<span class="text-or text-xs font-sans tracking-[0.2em] uppercase mb-4 block">Souscrire</span>
-				<h3 class="font-serif text-3xl md:text-4xl mb-6">Mise en place rapide</h3>
-				<p class="font-sans text-charbon/70 mb-8 leading-relaxed">
-					Une fois le formulaire envoyé, nous vous contactons pour organiser la première visite technique et la remise des clés.
+			<div class="w-full md:w-1/2 p-10 md:p-16 flex flex-col justify-center relative bg-white">
+				<button class="close-modal absolute top-8 right-8 text-charbon/40 hover:text-or transition-colors text-2xl">✕</button>
+				<span class="text-or text-xs font-sans tracking-[0.2em] uppercase mb-4 font-bold">Sécurité & Confiance</span>
+				<h3 class="font-serif text-3xl md:text-5xl text-charbon mb-8">Le Gardiennage</h3>
+				<p class="font-sans text-charbon/70 text-lg leading-relaxed font-light mb-8">
+					Une maison vide ne doit jamais sembler abandonnée. <br/><br/>
+					Nous assurons une présence régulière et discrète pour préserver l'intégrité de votre refuge. Plus qu'une surveillance (vérification des ouvertures, relevé de courrier, aération), c'est une attention constante portée aux moindres détails, pour que votre esprit reste léger, où que vous soyez.
 				</p>
-				<div class="space-y-8 mt-12">
-					<div class="flex items-start gap-6">
-						<div class="w-12 h-12 rounded-full bg-white border border-or/20 flex items-center justify-center text-or shrink-0">✉️</div>
-						<div><p class="text-xs uppercase tracking-widest text-charbon/40 mb-1">Email</p><a href="mailto:bonjour@maisondesables.fr" class="font-serif text-xl text-charbon hover:text-or transition-colors">bonjour@maisondesables.fr</a></div>
+				</div>
+		</div>
+	</div>
+
+	<div id="modal-souffle" class="modal fixed inset-0 z-[100] hidden items-center justify-center px-4">
+		<div class="modal-overlay absolute inset-0 bg-charbon/90 backdrop-blur-md transition-opacity duration-500"></div>
+		<div class="modal-content relative bg-[#F9F7F2] rounded-[1rem] md:rounded-[3rem] overflow-hidden max-w-5xl w-full shadow-2xl transform scale-95 opacity-0 transition-all duration-500 flex flex-col md:flex-row max-h-[90vh]">
+			<div class="w-full md:w-1/2 h-64 md:h-auto relative">
+				<img src="/card_souffle.png" class="absolute inset-0 w-full h-full object-cover sepia-[20%]" alt="Souffle de Vie"/>
+				<div class="absolute inset-0 bg-charbon/10"></div>
+			</div>
+			<div class="w-full md:w-1/2 p-10 md:p-16 flex flex-col justify-center relative bg-white">
+				<button class="close-modal absolute top-8 right-8 text-charbon/40 hover:text-or transition-colors text-2xl">✕</button>
+				<span class="text-or text-xs font-sans tracking-[0.2em] uppercase mb-4 font-bold">Expérience Sensorielle</span>
+				<h3 class="font-serif text-3xl md:text-5xl text-charbon mb-8">Le Souffle de Vie</h3>
+				<p class="font-sans text-charbon/70 text-lg leading-relaxed font-light mb-8">
+					Oubliez la froideur des maisons fermées. <br/><br/>
+					Nous réveillons votre demeure avant votre arrivée : chaleur douce, lumière tamisée, lits faits au carré, courses rangées dans le réfrigérateur. Franchissez le seuil et retrouvez instantanément l'âme de votre foyer, comme si vous ne l'aviez jamais quitté.
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div id="modal-orchestration" class="modal fixed inset-0 z-[100] hidden items-center justify-center px-4">
+		<div class="modal-overlay absolute inset-0 bg-charbon/90 backdrop-blur-md transition-opacity duration-500"></div>
+		<div class="modal-content relative bg-[#F9F7F2] rounded-[1rem] md:rounded-[3rem] overflow-hidden max-w-5xl w-full shadow-2xl transform scale-95 opacity-0 transition-all duration-500 flex flex-col md:flex-row max-h-[90vh]">
+			<div class="w-full md:w-1/2 h-64 md:h-auto relative">
+				<img src="/card_orchestration.png" class="absolute inset-0 w-full h-full object-cover grayscale-[30%]" alt="Orchestration"/>
+				<div class="absolute inset-0 bg-charbon/10"></div>
+			</div>
+			<div class="w-full md:w-1/2 p-10 md:p-16 flex flex-col justify-center relative bg-white">
+				<button class="close-modal absolute top-8 right-8 text-charbon/40 hover:text-or transition-colors text-2xl">✕</button>
+				<span class="text-or text-xs font-sans tracking-[0.2em] uppercase mb-4 font-bold">Maîtrise Technique</span>
+				<h3 class="font-serif text-3xl md:text-5xl text-charbon mb-8">L'Orchestration</h3>
+				<p class="font-sans text-charbon/70 text-lg leading-relaxed font-light mb-8">
+					La beauté de votre résidence exige une exigence de chaque instant. <br/><br/>
+					Jardins, piscine, maintenance technique : nous orchestrons le ballet des artisans dans l'ombre. Nous gérons les accès, surveillons les interventions et vérifions les finitions. Vous ne voyez que le résultat : un lieu parfait, figé dans sa splendeur.
+				</p>
+			</div>
+		</div>
+	</div>
+
+
+<section class="bg-white py-32 px-6 md:px-12 border-t border-charbon/5">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="text-or text-xs font-sans tracking-[0.2em] uppercase mb-4 block font-bold reveal-text">Abonnements</span>
+            <h3 class="font-serif text-4xl md:text-5xl text-charbon reveal-text">Choisissez votre Sérénité</h3>
+            <p class="mt-6 text-charbon/60 reveal-text">Cliquez sur une formule pour la sélectionner.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <div class="plan-card group relative bg-[#F9F7F2] p-10 rounded-[2rem] border border-transparent hover:border-or/50 cursor-pointer transition-all duration-300 hover:-translate-y-2 shadow-sm" data-plan="Formule Essentiel">
+                <div class="flex justify-between items-start mb-8">
+                    <h4 class="font-bold uppercase tracking-widest text-sm text-charbon/60">Essentiel</h4>
+                    <div class="check-circle w-6 h-6 rounded-full border border-charbon/20 flex items-center justify-center transition-colors group-hover:bg-or group-hover:border-or">
+                        <span class="check-icon text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity">✓</span>
+                    </div>
+                </div>
+                <p class="text-5xl font-serif text-charbon mb-2">69€<span class="text-base text-charbon/40 font-sans">/mois</span></p>
+                <p class="text-sm text-charbon/60 mb-8 min-h-[3em]">Pour garder un œil sur votre bien.</p>
+                
+                <ul class="space-y-4 text-base text-charbon/80 border-t border-charbon/5 pt-8">
+                    <li class="flex items-start">
+                        <span class="text-or mr-3 font-bold mt-1">✓</span>
+                        <span><strong class="text-charbon font-bold">2 visites de vigilance</strong> / mois avec rapports photos/vidéos</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-or mr-3 font-bold mt-1">✓</span>
+                        <span>Gestion des <strong class="text-charbon font-bold">doubles de clés</strong></span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-or mr-3 font-bold mt-1">✓</span>
+                        <span><strong class="text-charbon font-bold">Relève courrier</strong> & Arrosage</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-or mr-3 font-bold mt-1">✓</span>
+                        <span><strong class="text-charbon font-bold">Astreinte tempête 24/7</strong> avec comptes rendus</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-or mr-3 font-bold mt-1">✓</span>
+                        <span><strong class="text-charbon font-bold">Conformité Assurance</strong> (Preuve de passage régulier)</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="plan-card group relative bg-[#F9F7F2] p-10 rounded-[2rem] border border-transparent hover:border-or/50 cursor-pointer transition-all duration-300 hover:-translate-y-2 shadow-sm" data-plan="Formule Confort Total">
+                <div class="absolute top-0 right-0 bg-charbon text-white text-[10px] font-bold px-4 py-2 rounded-bl-[1rem]">POPULAIRE</div>
+                <div class="flex justify-between items-start mb-8">
+                    <h4 class="font-bold uppercase tracking-widest text-sm text-or">Confort Total</h4>
+                    <div class="check-circle w-6 h-6 rounded-full border border-charbon/20 flex items-center justify-center transition-colors group-hover:bg-or group-hover:border-or">
+                        <span class="check-icon text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity">✓</span>
+                    </div>
+                </div>
+                <p class="text-5xl font-serif text-charbon mb-2">119€<span class="text-base text-charbon/40 font-sans">/mois</span></p>
+                <p class="text-sm text-charbon/60 mb-8 min-h-[3em]">La formule idéale pour profiter sans contraintes.</p>
+                
+                <ul class="space-y-4 text-base text-charbon/80 border-t border-charbon/5 pt-8">
+                    <li class="flex items-start">
+                        <span class="text-or mr-3 font-bold mt-1">✓</span>
+                        <span class="italic">Pack Essentiel inclus</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-or mr-3 font-bold mt-1">✓</span>
+                        <span><strong class="text-charbon font-bold">4 visites de vigilance</strong> / mois (1 passage / semaine)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-or mr-3 font-bold mt-1">✓</span>
+                        <span>Préparation <strong class="text-charbon font-bold">"Arrivée VIP"</strong> (Chauffage, volets, eau... x4/an)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-or mr-3 font-bold mt-1">✓</span>
+                        <span>Service <strong class="text-charbon font-bold">"Frigo Plein"</strong> (Courses rangées pour votre arrivée)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-or mr-3 font-bold mt-1">✓</span>
+                        <span>Gestion de <strong class="text-charbon font-bold">linge</strong> arrivée/départ</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-or mr-3 font-bold mt-1">✓</span>
+                        <span><strong class="text-charbon font-bold">Accueil des artisans</strong> (EDF, colis, travaux...)</span>
+                    </li>       
+                </ul>
+            </div>
+
+            <div class="plan-card group relative bg-[#F9F7F2] p-10 rounded-[2rem] border border-transparent hover:border-or/50 cursor-pointer transition-all duration-300 hover:-translate-y-2 shadow-sm" data-plan="Formule Prestige (Sur Devis)">
+                <div class="flex justify-between items-start mb-8">
+                    <h4 class="font-bold uppercase tracking-widest text-sm text-charbon/60">Prestige</h4>
+                    <div class="check-circle w-6 h-6 rounded-full border border-charbon/20 flex items-center justify-center transition-colors group-hover:bg-or group-hover:border-or">
+                        <span class="check-icon text-white text-xs opacity-0 group-hover:opacity-100 transition-opacity">✓</span>
+                    </div>
+                </div>  
+                <p class="text-4xl font-serif text-charbon mb-2 mt-2">Sur Devis</p>
+                <p class="text-sm text-charbon/60 mb-8 min-h-[3em]">Services à la carte & Sur-mesure.</p>
+                
+                <ul class="space-y-4 text-base text-charbon/80 border-t border-charbon/5 pt-8">
+                    <li class="flex items-start">
+                        <span class="text-or mr-3 font-bold mt-1">✓</span>
+                        <span><strong class="text-charbon font-bold">Suivi de travaux</strong> - Petits travaux & Bricolage</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-or mr-3 font-bold mt-1">✓</span>
+                        <span>Gestion <strong class="text-charbon font-bold">sinistre</strong></span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-or mr-3 font-bold mt-1">✓</span>
+                        <span><strong class="text-charbon font-bold">Ménage complet</strong> de sortie</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-or mr-3 font-bold mt-1">✓</span>
+                        <span>Transfert <strong class="text-charbon font-bold">Gare / Aéroport</strong> ➔ Domicile</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-or mr-3 font-bold mt-1">✓</span>
+                        <span><strong class="text-charbon font-bold">Chef privé</strong> à domicile</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-or mr-3 font-bold mt-1">✓</span>
+                        <span>Location et livraison de <strong class="text-charbon font-bold">vélos</strong></span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-or mr-3 font-bold mt-1">✓</span>
+                        <span>Réservation <strong class="text-charbon font-bold">journée bateau</strong></span>
+                    </li>               
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+	<section id="contact" class="bg-[#F9F7F2] text-charbon py-32 px-6 md:px-12 border-t border-charbon/5 scroll-mt-20">
+		<div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-32 relative z-10">
+			
+			<div class="reveal-text">
+				<span class="text-or text-xs font-sans tracking-[0.3em] uppercase mb-4 block font-bold">Confiez-nous vos clés</span>
+				<h3 class="font-serif text-4xl md:text-6xl mb-8">Devis Intendance</h3>
+				<p class="font-sans text-charbon/60 mb-12 leading-relaxed text-lg font-light">
+					Décrivez-nous vos besoins (fréquence de passage, services souhaités) et nous vous proposerons une formule adaptée.
+				</p>
+				<div class="space-y-8">
+					<div class="flex items-center gap-6">
+						<div class="w-12 h-12 rounded-full border border-or/30 flex items-center justify-center text-or font-serif italic text-xl font-bold">✉</div>
+						<div><p class="text-[10px] uppercase tracking-widest text-charbon/40 font-bold mb-1">Email</p><a href="mailto:contact@maison-des-sables.fr" class="font-serif text-2xl text-charbon hover:text-or transition-colors">contact@maison-des-sables.fr</a></div>
 					</div>
-					<div class="flex items-start gap-6">
-						<div class="w-12 h-12 rounded-full bg-white border border-or/20 flex items-center justify-center text-or shrink-0">📞</div>
-						<div><p class="text-xs uppercase tracking-widest text-charbon/40 mb-1">Téléphone</p><a href="tel:+33556000000" class="font-serif text-xl text-charbon hover:text-or transition-colors">+33 5 56 00 00 00</a></div>
+					<div class="flex items-center gap-6">
+						<div class="w-12 h-12 rounded-full border border-or/30 flex items-center justify-center text-or font-serif italic text-xl font-bold">☏</div>
+						<div><p class="text-[10px] uppercase tracking-widest text-charbon/40 font-bold mb-1">Téléphone</p><a href="tel:+33628946234" class="font-serif text-2xl text-charbon hover:text-or transition-colors">+33 6 28 94 62 34</a></div>
 					</div>
 				</div>
 			</div>
 
-			<form id="contact-form" class="space-y-6 bg-white p-10 rounded-[2rem] shadow-lg border border-charbon/5">
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+			<form id="contact-form" class="space-y-8 bg-white p-10 md:p-14 rounded-[3rem] shadow-xl border border-charbon/5 reveal-text">
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 					<div class="group">
-						<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Nom</label>
-						<input type="text" name="name" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all" required/>
+						<label class="text-[10px] uppercase tracking-widest text-charbon/40 mb-3 block font-bold">Nom Complet</label>
+						<input type="text" name="name" class="w-full bg-transparent border-b border-charbon/10 py-3 text-charbon outline-none focus:border-or transition-all font-sans" required placeholder="Jean Dupont"/>
 					</div>
 					<div class="group">
-						<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Téléphone</label>
-						<input type="tel" name="phone" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all" required/>
+						<label class="text-[10px] uppercase tracking-widest text-charbon/40 mb-3 block font-bold">Téléphone</label>
+						<input type="tel" name="phone" class="w-full bg-transparent border-b border-charbon/10 py-3 text-charbon outline-none focus:border-or transition-all font-sans" required placeholder="06 .. .. .. .."/>
 					</div>
 				</div>
 				<div class="group">
-					<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Email</label>
-					<input type="email" name="email" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all" required/>
+					<label class="text-[10px] uppercase tracking-widest text-charbon/40 mb-3 block font-bold">Email de contact</label>
+					<input type="email" name="email" class="w-full bg-transparent border-b border-charbon/10 py-3 text-charbon outline-none focus:border-or transition-all font-sans" required placeholder="votre@mail.com"/>
 				</div>
 				
 				<div class="group">
-					<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Formule Sélectionnée</label>
-					<input type="text" name="property_details" id="selected-plan-input" class="w-full bg-or/10 border-b border-or p-3 text-charbon font-bold outline-none" value="Aucune formule sélectionnée" readonly/>
+					<label class="text-[10px] uppercase tracking-widest text-charbon/40 mb-3 block font-bold">Formule Sélectionnée</label>
+					<input type="text" name="plan_context" id="selected-plan-input" class="w-full bg-or/5 border-b border-or/30 p-3 text-charbon font-serif italic text-lg outline-none" value="Aucune formule sélectionnée" readonly/>
 				</div>
 
 				<div class="group">
-					<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block">Commentaires additionnels</label>
-					<textarea name="message" rows="3" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all resize-none"></textarea>
+					<label class="text-[10px] uppercase tracking-widest text-charbon/40 mb-3 block font-bold">Message</label>
+					<textarea name="message" rows="3" class="w-full bg-transparent border-b border-charbon/10 py-3 text-charbon outline-none focus:border-or transition-all resize-none font-sans" placeholder="Dites-nous en plus..."></textarea>
 				</div>
-				<button type="submit" class="w-full bg-charbon text-sable py-4 rounded-std font-bold uppercase tracking-widest hover:bg-or hover:text-white transition-colors shadow-lg hover:shadow-or/30">Envoyer ma demande</button>
+				<button type="submit" class="w-full group relative py-5 bg-charbon text-sable font-sans text-xs font-bold uppercase tracking-[0.2em] rounded-xl overflow-hidden shadow-lg transition-all duration-500 hover:-translate-y-1">
+					<span class="relative z-10 group-hover:text-white transition-colors">Demander mon devis</span>
+					<div class="absolute inset-0 bg-or translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0"></div>
+				</button>
 			</form>
 		</div>
 	</section>
 
-	<footer class="bg-charbon text-sable py-12 text-center border-t border-white/10">
-		<p class="font-serif text-2xl mb-4">Maison des Sables</p>
+	<footer class="bg-charbon text-sable pt-24 pb-12 px-6 relative z-10 font-sans">
+		<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-sable/10 pb-12 mb-12">
+			<div class="md:col-span-1">
+				<h5 class="font-serif text-3xl mb-6 text-white tracking-wider">Maison des Sables</h5>
+				<p class="text-sm text-sable/50 max-w-xs leading-relaxed font-light italic">
+					Conciergerie & Service d'accompagnement pour séniors basée sur le Bassin d'Arcachon.
+				</p>
+			</div>
+			<div>
+				<h6 class="text-[10px] uppercase tracking-[0.2em] mb-8 font-bold text-or">Navigation</h6>
+				<ul class="space-y-4 text-xs font-medium text-sable/60 uppercase tracking-widest">
+					<li><a href="/#villas" class="hover:text-or transition-colors">Nos Villas</a></li>
+					<li><a href="/#services" class="hover:text-or transition-colors">Nos Services</a></li>
+					<li><a target="_blank" href="/login" class="hover:text-or transition-colors text-white">Espace Client</a></li>
+				</ul>
+			</div>
+			<div>
+				<h6 class="text-[10px] uppercase tracking-[0.2em] mb-8 font-bold text-or">Légal</h6>
+				<ul class="space-y-4 text-xs font-medium text-sable/60 uppercase tracking-widest">
+					<li><a target="_blank" href="/mentions-legales" class="hover:text-or transition-colors">Mentions Légales</a></li>
+					<li><a target="_blank" href="/politique-confidentialite" class="hover:text-or transition-colors">Confidentialité</a></li>
+					<li><a target="_blank" href="/cgv" class="hover:text-or transition-colors">CGV / CGU</a></li>
+				</ul>
+			</div>
+			<div>
+				<h6 class="text-[10px] uppercase tracking-[0.2em] mb-8 font-bold text-or">Contact</h6>
+				<ul class="space-y-4 text-xs font-medium text-sable/60 font-sans tracking-widest">
+					<li>contact@maison-des-sables.fr</li>
+					<li>+33 6 28 94 62 34</li>
+				</ul>
+			</div>
+		</div>
+		<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-[0.3em] text-sable/30 font-bold">
+			<p>Maison des Sables © 2026 .</p>
+			<p>Design & Dev par Bénétier Paul</p>
+		</div>
 	</footer>
+
 </Layout>
 
 <style>
-	.animate-fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; transform: translateY(20px); }
-	.animate-slow-zoom { animation: zoom 20s infinite alternate; }
-	.delay-100 { animation-delay: 0.1s; }
-	@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-	@keyframes zoom { from { transform: scale(1); } to { transform: scale(1.1); } }
+	.animate-slow-zoom { animation: zoom 25s infinite alternate ease-in-out; }
+	@keyframes zoom { from { transform: scale(1); } to { transform: scale(1.15); } }
+
+	.plan-card.active {
+		border: 1px solid #D4AF37;
+		background-color: white;
+		transform: translateY(-10px);
+		box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+	}
 </style>
 
 <script>
-	['astro:page-load', 'load'].forEach(event => {
-		window.addEventListener(event, () => {
-			
-			// --- 1. CONNEXION CERVEAU ---
-			const form = document.getElementById('contact-form') as HTMLFormElement;
-			if (form) {
-				form.addEventListener('submit', async (e) => {
-					e.preventDefault(); 
-					const formData = new FormData(form);
-					const data = Object.fromEntries(formData);
+	import { gsap } from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	gsap.registerPlugin(ScrollTrigger);
 
-					// @ts-ignore
-					data.service_name = "Intendance"; 
-					
-					try {
-						const response = await fetch('http://localhost:5000/api/contact/lead', {
-							method: 'POST',
-							headers: { 'Content-Type': 'application/json' },
-							body: JSON.stringify(data)
-						});
-						const result = await response.json();
-						if (response.ok) {
-							alert("✅ Demande envoyée ! Nous vous recontacterons très vite.");
-							form.reset();
-						} else {
-							alert("❌ Erreur : " + (result.error || "Problème inconnu"));
-						}
-					} catch (error) {
-						console.error(error);
-						alert("❌ Impossible de contacter le serveur.");
-					}
-				});
-			}
-
-			// --- 2. UI LOGIQUE ---
-			const serviceCards = document.querySelectorAll('.service-card');
-			const formInput = document.getElementById('selected-plan-input') as HTMLInputElement;
-			const contactSection = document.getElementById('contact');
-
-			serviceCards.forEach(card => {
-				card.addEventListener('click', () => {
-					// @ts-ignore
-					const serviceName = card.dataset.service;
-					if(formInput) {
-						formInput.value = `Service : ${serviceName}`;
-						formInput.parentElement.classList.add('animate-pulse');
-						setTimeout(() => formInput.parentElement.classList.remove('animate-pulse'), 1000);
-					}
-					if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
-				});
-			});
-
-			// SÉLECTION DES PRIX (ABONNEMENTS)
-			const cards = document.querySelectorAll('.plan-card');
-
-			cards.forEach(card => {
-				card.addEventListener('click', () => {
-					// @ts-ignore
-					const planName = card.dataset.plan;
-
-					// Reset Visuals
-					cards.forEach(c => {
-						c.classList.remove('ring-2', 'ring-or', 'scale-105', 'opacity-100');
-						c.classList.add('opacity-50');
-						const circle = c.querySelector('.check-circle');
-						const icon = c.querySelector('.check-icon');
-						if(circle) {
-							circle.classList.remove('bg-or', 'border-or');
-							circle.classList.add('border-charbon/20');
-						}
-						if(icon) {
-							icon.classList.remove('opacity-100');
-							icon.classList.add('opacity-0');
-						}
-					});
-
-					// Active Visuals
-					card.classList.remove('opacity-50');
-					card.classList.add('ring-2', 'ring-or', 'scale-105', 'opacity-100');
-					const activeCircle = card.querySelector('.check-circle');
-					const activeIcon = card.querySelector('.check-icon');
-					if(activeCircle) {
-						activeCircle.classList.remove('border-charbon/20');
-						activeCircle.classList.add('bg-or', 'border-or');
-					}
-					if(activeIcon) {
-						activeIcon.classList.remove('opacity-0');
-						activeIcon.classList.add('opacity-100');
-					}
-
-					// Update Form
-					if(formInput) {
-						formInput.value = planName;
-						formInput.parentElement.classList.add('animate-pulse');
-						setTimeout(() => formInput.parentElement.classList.remove('animate-pulse'), 1000);
-					}
-					if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
-				});
-			});
-
+	window.addEventListener('load', () => {
+		
+		// --- 1. ANIMATIONS GSAP ---
+		const revealElements = document.querySelectorAll('.reveal-text');
+		revealElements.forEach(el => {
+			gsap.fromTo(el, 
+				{ y: 30, opacity: 0 },
+				{ y: 0, opacity: 1, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 90%" } }
+			);
 		});
+
+		// --- 2. GESTION DES MODALES ---
+		const openModalBtns = document.querySelectorAll('[data-modal-target]');
+		const closeBtns = document.querySelectorAll('.close-modal, .modal-overlay');
+		const formInput = document.getElementById('selected-plan-input') as HTMLInputElement;
+		const contactSection = document.getElementById('contact');
+
+		function openModal(modalId: string) {
+			const modal = document.getElementById(modalId);
+			if (modal) {
+				modal.classList.remove('hidden');
+				modal.classList.add('flex');
+				const content = modal.querySelector('.modal-content');
+				// @ts-ignore
+				setTimeout(() => { content.classList.remove('scale-95', 'opacity-0'); content.classList.add('scale-100', 'opacity-100'); }, 10);
+			}
+		}
+
+		function closeModal() {
+			const modals = document.querySelectorAll('.modal');
+			modals.forEach(modal => {
+				const content = modal.querySelector('.modal-content');
+				if (content) {
+					content.classList.remove('scale-100', 'opacity-100');
+					content.classList.add('scale-95', 'opacity-0');
+				}
+				setTimeout(() => {
+					modal.classList.add('hidden');
+					modal.classList.remove('flex');
+				}, 300);
+			});
+		}
+
+		openModalBtns.forEach(btn => {
+			btn.addEventListener('click', () => {
+				// @ts-ignore
+				const targetId = btn.dataset.modalTarget;
+				openModal(targetId);
+			});
+		});
+
+		closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
+
+		// --- 3. SÉLECTION DEPUIS CARTE ABONNEMENT (UNIQUEMENT) ---
+		const planCards = document.querySelectorAll('.plan-card');
+		planCards.forEach(card => {
+			card.addEventListener('click', () => {
+				// @ts-ignore
+				const planName = card.dataset.plan;
+				planCards.forEach(c => c.classList.remove('active'));
+				card.classList.add('active');
+				if(formInput) formInput.value = `Intendance : ${planName}`;
+				contactSection?.scrollIntoView({ behavior: 'smooth' });
+			});
+		});
+
+		// --- 4. LOGIQUE D'ENVOI DU FORMULAIRE ---
+		const form = document.getElementById('contact-form') as HTMLFormElement;
+		if (form) {
+			form.addEventListener('submit', async (e) => {
+				e.preventDefault(); 
+				const formData = new FormData(form);
+				const data: any = Object.fromEntries(formData);
+				
+				// ASTUCE : On combine Intendance + la formule choisie dans le nom du service
+				const formule = data.plan_context || "Demande Générale";
+				data.service_name = `${formule}`;
+				
+				delete data.plan_context;
+				
+				try {
+					const response = await fetch('http://localhost:5000/api/contact/lead', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify(data)
+					});
+					if (response.ok) {
+						alert("✅ Votre demande a été transmise. Merci.");
+						form.reset();
+					} else {
+						alert("❌ Erreur technique.");
+					}
+				} catch (error) {
+					alert("❌ Serveur indisponible.");
+				}
+			});
+		}
+	});
+
+	// Navbar changement au scroll
+	const navbar = document.querySelector("#navbar");
+	window.addEventListener("scroll", () => {
+		if (window.scrollY > 50) { 
+			navbar?.classList.add("bg-charbon/95", "py-4", "backdrop-blur-md");
+			navbar?.classList.remove("py-8");
+		} else { 
+			navbar?.classList.remove("bg-charbon/95", "py-4", "backdrop-blur-md");
+			navbar?.classList.add("py-8");
+		}
 	});
 </script>

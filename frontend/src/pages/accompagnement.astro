@@ -1,338 +1,457 @@
 ---
 // ==============================================================================
-// PAGE : ACCOMPAGNEMENT (V4 - CONNECTÉE)
+// PAGE : ACCOMPAGNEMENT (V37 - INSTRUCTION UX AGRANDIE + HARMONISATION TOTALE)
 // ==============================================================================
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Main dans la Main | Maison des Sables">
 	
-	<nav class="fixed top-0 w-full z-50 px-6 md:px-12 py-8 flex justify-between items-center mix-blend-difference text-white transition-all duration-500">
-		<a href="/" class="font-serif text-xl tracking-wider font-semibold hover:text-or transition-colors">← Retour</a>
+	<nav id="navbar" class="fixed top-0 w-full z-50 px-6 md:px-12 py-8 flex justify-between items-center text-white transition-all duration-500 ease-in-out">
+		<a href="/" class="font-serif text-xl tracking-wider font-semibold hover:text-or transition-colors flex items-center gap-2">
+			<span class="text-sm">←</span> Retour
+		</a>
 		<a href="/" class="hidden md:block font-serif text-2xl tracking-wider font-bold">Maison des Sables</a>
-		<a href="#contact" class="border border-white/30 px-6 py-2 text-xs font-sans uppercase tracking-widest rounded-std hover:bg-white hover:text-charbon transition-all">Contact</a>
+		<a href="#contact" class="group relative px-6 py-2 border border-white/30 text-xs font-sans uppercase tracking-widest rounded-std overflow-hidden hover:border-white transition-all">
+			<span class="relative z-10 group-hover:text-charbon transition-colors">Contact</span>
+			<div class="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0"></div>
+		</a>
 	</nav>
 
-	<header class="relative h-[70vh] bg-sable overflow-hidden flex items-center justify-center">
+	<header class="relative h-[85vh] bg-charbon overflow-hidden flex items-center justify-center">
+		<div class="absolute inset-0 z-0">
+			<img src="/aide_accompagnement.png" alt="Accompagnement" class="w-full h-full object-cover opacity-60 scale-105 animate-slow-zoom"/>
+			<div class="absolute inset-0 bg-gradient-to-b from-charbon/80 via-transparent to-[#F9F7F2]"></div>
+		</div>
 		
-		<img src="/main_dans_la_main.png" alt="Logo Main dans la Main" class="absolute inset-0 w-full h-full object-contain opacity-5 animate-slow-zoom p-20 invert"/>
-		
-		<div class="absolute inset-0 bg-gradient-to-b from-sable/0 via-sable/50 to-sable"></div>
-		
-		<div class="relative z-10 text-center px-4 mt-20 max-w-4xl">
-			<span class="inline-block py-1 px-3 border border-charbon/10 rounded-full text-[10px] font-sans tracking-[0.2em] uppercase text-charbon/60 mb-6 backdrop-blur-md">Bienveillance & Lien Social</span>
-			<h1 class="font-serif text-6xl md:text-8xl lg:text-9xl text-charbon mb-8 leading-tight">Main dans<br/><span class="italic text-or">la Main.</span></h1>
-			<p class="text-charbon/70 max-w-xl mx-auto font-sans text-lg leading-relaxed animate-fade-in-up delay-200">
+		<div class="relative z-10 text-center px-4 max-w-5xl">
+			<span class="inline-block py-1 px-4 border border-or/40 rounded-full text-[10px] font-sans tracking-[0.3em] uppercase text-or mb-8 backdrop-blur-md font-bold reveal-text">Bienveillance & Lien Social</span>
+			<h1 class="font-serif text-6xl md:text-8xl lg:text-[10rem] text-charbon mb-8 leading-[0.9]">
+				<div class="overflow-hidden"><span class="block reveal-text text-white">Main dans</span></div>
+				<div class="overflow-hidden mt-2"><span class="block reveal-text italic text-or">la Main.</span></div>
+			</h1>
+			<p class="text-white/80 max-w-2xl mx-auto font-sans text-xl leading-relaxed reveal-text font-light">
 				Parce que nos aînés méritent une attention particulière. Nous offrons une présence rassurante, discrète et chaleureuse pour faciliter le quotidien.
 			</p>
 		</div>
 	</header>
 
-	<section class="bg-sable text-charbon py-24 px-6 md:px-12">
-		<div class="max-w-[1600px] mx-auto">
-			
-			<div class="text-center mb-16">
-				<span class="text-or text-xs font-sans tracking-[0.2em] uppercase mb-4 block">Une Présence de Confiance</span>
-				<h3 class="font-serif text-4xl md:text-6xl mb-6">Pour chaque instant</h3>
-				<p class="font-sans text-charbon/60 max-w-2xl mx-auto text-lg">
-					Nous tissons un lien unique. Sélectionnez un service pour nous faire part de vos besoins.
-				</p>
+	<section class="bg-[#F9F7F2] text-charbon py-32 px-0 md:px-12 relative overflow-hidden">
+		<div class="max-w-[1600px] mx-auto relative z-10">
+			<div class="text-center mb-16 px-6">
+				<span class="text-or text-xs font-sans tracking-[0.3em] uppercase mb-4 block font-bold reveal-text">Une Présence de Confiance</span>
+				<h3 class="font-serif text-4xl md:text-6xl mb-6 reveal-text text-charbon">Pour chaque instant</h3>
+				<div class="w-20 h-px bg-or/30 mx-auto reveal-text"></div>
+				<p class="md:hidden text-[10px] uppercase tracking-widest text-charbon/40 mt-4 animate-pulse">← Glisser pour découvrir →</p>
 			</div>
 
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-				
-				<div class="service-card group bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-charbon/5 hover:-translate-y-2" data-service="Compagnie">
-					<div class="h-56 p-10 bg-charbon/5 flex items-center justify-center relative overflow-hidden">
-						<img src="/main_dans_la_main.png" class="w-full h-full object-contain opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-700" alt="Compagnie"/>
+			<div class="flex overflow-x-auto snap-x snap-mandatory gap-8 px-6 pb-12 md:grid md:grid-cols-2 lg:grid-cols-4 md:overflow-visible md:pb-0 no-scrollbar">
+				<div class="service-card min-w-[85vw] md:min-w-0 snap-center bg-white rounded-[2.5rem] overflow-hidden shadow-lg border border-charbon/5 h-full flex flex-col group hover:border-or/40 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+					<div class="h-72 overflow-hidden relative shrink-0">
+						<img src="/card_lien.png" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 group-hover:brightness-110 group-hover:contrast-110" alt="Lien & Partage"/>
+						<div class="absolute inset-0 bg-charbon/10 group-hover:bg-transparent transition-colors"></div>
 					</div>
-					<div class="p-8">
-						<h4 class="font-serif text-2xl mb-4 text-charbon">Compagnie</h4>
-						<p class="text-sm text-charbon/70 leading-relaxed mb-6 h-20">
-							Rompre l'isolement par des moments simples : lecture, jeux, promenades ou partage d'un thé.
-						</p>
-						<span class="text-xs font-bold uppercase tracking-widest text-or border-b border-or/20 pb-1 group-hover:border-or transition-colors">Choisir</span>
-					</div>
-				</div>
-
-				<div class="service-card group bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-charbon/5 hover:-translate-y-2" data-service="Aide Quotidien">
-					<div class="h-56 p-10 bg-charbon/5 flex items-center justify-center relative overflow-hidden">
-						<img src="/main_dans_la_main.png" class="w-full h-full object-contain opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-700" alt="Quotidien"/>
-					</div>
-					<div class="p-8">
-						<h4 class="font-serif text-2xl mb-4 text-charbon">Quotidien</h4>
-						<p class="text-sm text-charbon/70 leading-relaxed mb-6 h-20">
-							Faciliter la vie de tous les jours : petites courses, pharmacie, aide au rangement léger.
-						</p>
-						<span class="text-xs font-bold uppercase tracking-widest text-or border-b border-or/20 pb-1 group-hover:border-or transition-colors">Choisir</span>
+					<div class="p-10 flex-1 flex flex-col relative">
+						<h4 class="font-serif text-3xl mb-4 text-charbon group-hover:text-or transition-colors duration-300">Lien & Partage</h4>
+						<div class="w-12 h-px bg-charbon/10 mb-6 group-hover:w-full group-hover:bg-or/20 transition-all duration-700"></div>
+						<p class="text-lg text-charbon/70 leading-relaxed mb-8 font-light flex-1">Cultiver la joie de l'échange. Des moments de convivialité partagés : une lecture, une promenade ou simplement le plaisir d'une conversation.</p>
+						<ul class="space-y-4 text-sm font-bold text-charbon/80 uppercase tracking-wide mt-auto">
+							<li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rotate-45 bg-or shrink-0"></span> Lecture & Jeux</li>
+							<li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rotate-45 bg-or shrink-0"></span> Promenades (avec ou sans chien)</li>
+							<li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rotate-45 bg-or shrink-0"></span> Organisation évènement collectif</li>
+						</ul>
 					</div>
 				</div>
 
-				<div class="service-card group bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-charbon/5 hover:-translate-y-2" data-service="Aide Administrative">
-					<div class="h-56 p-10 bg-charbon/5 flex items-center justify-center relative overflow-hidden">
-						<img src="/main_dans_la_main.png" class="w-full h-full object-contain opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-700" alt="Administratif"/>
+				<div class="service-card min-w-[85vw] md:min-w-0 snap-center bg-white rounded-[2.5rem] overflow-hidden shadow-lg border border-charbon/5 h-full flex flex-col group hover:border-or/40 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+					<div class="h-72 overflow-hidden relative shrink-0">
+						<img src="/card_quotidien.png" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 group-hover:brightness-110 group-hover:contrast-110 sepia-[30%]" alt="Sérénité Quotidienne"/>
+						<div class="absolute inset-0 bg-charbon/10 group-hover:bg-transparent transition-colors"></div>
 					</div>
-					<div class="p-8">
-						<h4 class="font-serif text-2xl mb-4 text-charbon">Administratif</h4>
-						<p class="text-sm text-charbon/70 leading-relaxed mb-6 h-20">
-							Sérénité papier : aide au tri du courrier, prise de rendez-vous médicaux, classement.
-						</p>
-						<span class="text-xs font-bold uppercase tracking-widest text-or border-b border-or/20 pb-1 group-hover:border-or transition-colors">Choisir</span>
-					</div>
-				</div>
-
-				<div class="service-card group bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer border border-charbon/5 hover:-translate-y-2" data-service="Aide Numérique">
-					<div class="h-56 p-10 bg-charbon/5 flex items-center justify-center relative overflow-hidden">
-						<img src="/main_dans_la_main.png" class="w-full h-full object-contain opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-700" alt="Numérique"/>
-					</div>
-					<div class="p-8">
-						<h4 class="font-serif text-2xl mb-4 text-charbon">Numérique</h4>
-						<p class="text-sm text-charbon/70 leading-relaxed mb-6 h-20">
-							Rester connecté avec la famille : aide tablette, téléphone, visio avec les petits-enfants.
-						</p>
-						<span class="text-xs font-bold uppercase tracking-widest text-or border-b border-or/20 pb-1 group-hover:border-or transition-colors">Choisir</span>
+					<div class="p-10 flex-1 flex flex-col relative">
+						<h4 class="font-serif text-3xl mb-4 text-charbon group-hover:text-or transition-colors duration-300">Sérénité Quotidienne</h4>
+						<div class="w-12 h-px bg-charbon/10 mb-6 group-hover:w-full group-hover:bg-or/20 transition-all duration-700"></div>
+						<p class="text-lg text-charbon/70 leading-relaxed mb-8 font-light flex-1">Préserver l'autonomie en douceur. Nous veillons au confort matériel du foyer pour ne garder que le meilleur du quotidien.</p>
+						<ul class="space-y-4 text-sm font-bold text-charbon/80 uppercase tracking-wide mt-auto">
+							<li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rotate-45 bg-or shrink-0"></span> Petites Courses</li>
+							<li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rotate-45 bg-or shrink-0"></span> Organisation Pharmacie</li>
+							<li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rotate-45 bg-or shrink-0"></span> Rangement léger</li>
+						</ul>
 					</div>
 				</div>
 
-			</div>
-
-		</div>
-	</section>
-
-	<section class="bg-white py-24 px-6 md:px-12 border-t border-charbon/5">
-		<div class="max-w-4xl mx-auto">
-			<div class="text-center mb-12">
-				<span class="text-or text-xs font-sans tracking-[0.2em] uppercase mb-4 block">Tarification</span>
-				<h3 class="font-serif text-4xl text-charbon mb-8">Formules adaptées</h3>
-				
-				<div class="inline-flex bg-sable rounded-full p-1 border border-charbon/10">
-					<button id="btn-ponctuel" class="px-8 py-3 rounded-full text-sm font-bold uppercase tracking-wide transition-all duration-300 bg-charbon text-white shadow-md">À la Carte</button>
-					<button id="btn-abonnement" class="px-8 py-3 rounded-full text-sm font-bold uppercase tracking-wide transition-all duration-300 text-charbon/60 hover:text-charbon">Abonnements</button>
-				</div>
-			</div>
-
-			<div class="relative min-h-[400px]">
-				
-				<div id="content-ponctuel" class="transition-all duration-500 opacity-100 translate-y-0 absolute inset-0">
-					<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-						<div class="plan-card bg-sable p-8 rounded-[2rem] border border-transparent hover:border-or cursor-pointer transition-all hover:-translate-y-1" data-plan="Visite Courtoisie (1h)">
-							<div class="flex justify-between items-center mb-4">
-								<h4 class="font-bold text-charbon">Visite de Courtoisie</h4>
-								<span class="text-2xl font-serif text-or">35€</span>
-							</div>
-							<p class="text-xs text-charbon/60 mb-4">1 heure de présence • Discussion, lecture, promenade</p>
-							<div class="w-full h-[1px] bg-charbon/10 mb-4"></div>
-							<p class="text-[10px] uppercase tracking-widest text-charbon/40">Crédit d'impôt 50% possible</p>
-						</div>
-
-						<div class="plan-card bg-sable p-8 rounded-[2rem] border border-transparent hover:border-or cursor-pointer transition-all hover:-translate-y-1" data-plan="Aide Administrative (1h)">
-							<div class="flex justify-between items-center mb-4">
-								<h4 class="font-bold text-charbon">Aide Administrative</h4>
-								<span class="text-2xl font-serif text-or">45€</span>
-							</div>
-							<p class="text-xs text-charbon/60 mb-4">1 heure de gestion • Papiers, rdv, numérique</p>
-							<div class="w-full h-[1px] bg-charbon/10 mb-4"></div>
-							<p class="text-[10px] uppercase tracking-widest text-charbon/40">Crédit d'impôt 50% possible</p>
-						</div>
+				<div class="service-card min-w-[85vw] md:min-w-0 snap-center bg-white rounded-[2.5rem] overflow-hidden shadow-lg border border-charbon/5 h-full flex flex-col group hover:border-or/40 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+					<div class="h-72 overflow-hidden relative shrink-0">
+						<img src="/card_assistance.png" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 group-hover:brightness-110 group-hover:contrast-110 grayscale-[50%]" alt="Assistance Privée"/>
+						<div class="absolute inset-0 bg-charbon/10 group-hover:bg-transparent transition-colors"></div>
+					</div>
+					<div class="p-10 flex-1 flex flex-col relative">
+						<h4 class="font-serif text-3xl mb-4 text-charbon group-hover:text-or transition-colors duration-300">Assistance Privée</h4>
+						<div class="w-12 h-px bg-charbon/10 mb-6 group-hover:w-full group-hover:bg-or/20 transition-all duration-700"></div>
+						<p class="text-lg text-charbon/70 leading-relaxed mb-8 font-light flex-1">La tranquillité d'esprit absolue. Tri, rendez-vous ou classement : nous transformons la complexité administrative en simplicité.</p>
+						<ul class="space-y-4 text-sm font-bold text-charbon/80 uppercase tracking-wide mt-auto">
+							<li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rotate-45 bg-or shrink-0"></span> Tri du courrier</li>
+							<li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rotate-45 bg-or shrink-0"></span> Prise de rendez-vous</li>
+							<li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rotate-45 bg-or shrink-0"></span> Organisation Administrative</li>
+						</ul>
 					</div>
 				</div>
 
-				<div id="content-abonnement" class="transition-all duration-500 opacity-0 translate-y-10 absolute inset-0 pointer-events-none">
-					<div class="bg-charbon text-sable p-10 rounded-[2rem] shadow-2xl relative overflow-hidden cursor-pointer plan-card border border-or/20 hover:border-or" data-plan="Pack Semaine Sereine">
-						<div class="absolute top-0 right-0 bg-or text-charbon text-[10px] font-bold px-4 py-2 rounded-bl-std">BEST SELLER</div>
-						<div class="flex flex-col md:flex-row justify-between items-center gap-8 relative z-10">
-							<div>
-								<h4 class="font-serif text-3xl mb-2">Pack "Semaine Sereine"</h4>
-								<p class="text-sable/60 text-sm">L'esprit tranquille pour la famille et le bénéficiaire.</p>
-							</div>
-							<div class="text-center md:text-right">
-								<p class="text-5xl font-serif text-or mb-1">150€<span class="text-sm text-sable/40">/semaine</span></p>
-								<p class="text-[10px] uppercase tracking-widest text-sable/40">Soit 75€ après crédit d'impôt</p>
-							</div>
-						</div>
-						<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 pt-8 border-t border-white/10">
-							<div class="flex items-center"><span class="text-or mr-2">✓</span> 3 visites de 1h / semaine</div>
-							<div class="flex items-center"><span class="text-or mr-2">✓</span> Compte-rendu famille</div>
-							<div class="flex items-center"><span class="text-or mr-2">✓</span> Astreinte téléphonique</div>
-						</div>
+				<div class="service-card min-w-[85vw] md:min-w-0 snap-center bg-white rounded-[2.5rem] overflow-hidden shadow-lg border border-charbon/5 h-full flex flex-col group hover:border-or/40 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+					<div class="h-72 overflow-hidden relative shrink-0">
+						<img src="/card_visio.png" class="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 group-hover:brightness-110 group-hover:contrast-110 invert-[10%]" alt="Connexion Familiale"/>
+						<div class="absolute inset-0 bg-charbon/10 group-hover:bg-transparent transition-colors"></div>
+					</div>
+					<div class="p-10 flex-1 flex flex-col relative">
+						<h4 class="font-serif text-3xl mb-4 text-charbon group-hover:text-or transition-colors duration-300">Connexion Familiale</h4>
+						<div class="w-12 h-px bg-charbon/10 mb-6 group-hover:w-full group-hover:bg-or/20 transition-all duration-700"></div>
+						<p class="text-lg text-charbon/70 leading-relaxed mb-8 font-light flex-1">La technologie, trait d'union avec vos proches. Nous effaçons la barrière technique pour que les appels vidéo redeviennent un jeu d'enfant.</p>
+						<ul class="space-y-4 text-sm font-bold text-charbon/80 uppercase tracking-wide mt-auto">
+							<li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rotate-45 bg-or shrink-0"></span> Utilisation de tablette/téléphone</li>
+							<li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rotate-45 bg-or shrink-0"></span> Appel vidéo famille ou ami</li>
+							<li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rotate-45 bg-or shrink-0"></span> Divertissement sur Internet</li>
+						</ul>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</section>
 
-	<section id="contact" class="bg-sable text-charbon py-24 px-6 md:px-12 border-t border-charbon/5 scroll-mt-20">
-		<div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
-			
-			<div>
-				<span class="text-or text-xs font-sans tracking-[0.2em] uppercase mb-4 block">Prendre Rendez-vous</span>
-				<h3 class="font-serif text-3xl md:text-4xl mb-6">Une écoute attentive</h3>
-				<p class="font-sans text-charbon/70 mb-8 leading-relaxed">
-					Définissons ensemble le rythme et les besoins pour accompagner au mieux vos proches. Premier RDV gratuit à domicile.
-				</p>
+	<section class="bg-white py-32 px-6 md:px-12 border-t border-charbon/5">
+		<div class="max-w-[1800px] mx-auto">
+			<div class="text-center mb-16 relative">
+				<span class="text-or text-xs font-sans tracking-[0.3em] uppercase mb-4 block font-bold reveal-text">Tarification</span>
+				<h3 class="font-serif text-4xl md:text-5xl text-charbon mb-8 reveal-text">Nos Formules d'Accompagnement</h3>
 				
-				<div class="space-y-8 mt-12">
-					<div class="flex items-start gap-6">
-						<div class="w-12 h-12 rounded-full bg-white border border-or/20 flex items-center justify-center text-or shrink-0">✉️</div>
-						<div>
-							<p class="text-xs uppercase tracking-widest text-charbon/40 mb-1">Email</p>
-							<a href="mailto:bonjour@maisondesables.fr" class="font-serif text-xl text-charbon hover:text-or transition-colors">bonjour@maisondesables.fr</a>
+                <div class="flex flex-col items-center gap-4 mb-8 reveal-text">
+                    <p class="text-charbon/60 max-w-2xl mx-auto font-light text-lg italic">Des solutions bienveillantes pour maintenir le lien et simplifier le quotidien de vos proches.</p>
+                    <div class="bg-or/10 border border-or/20 px-6 py-2.5 rounded-full flex items-center gap-3 animate-pulse">
+                        <span class="text-sm text-or font-bold uppercase tracking-widest">Sélectionnez une formule pour pré-remplir votre demande</span>
+                        <span class="text-or text-lg">↴</span>
+                    </div>
+                </div>
+				
+				<div class="inline-flex bg-[#F9F7F2] rounded-full p-1 border border-charbon/5 reveal-text">
+					<button id="btn-abonnement" class="px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-500 bg-charbon text-white shadow-lg">Abonnements</button>
+					<button id="btn-ponctuel" class="px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-500 text-charbon/40 hover:text-charbon">À la Carte</button>
+				</div>
+			</div>
+
+			<div class="relative min-h-[500px]">
+				<div id="content-abonnement" class="block animate-fade-in">
+					<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+						
+						<div class="plan-card relative bg-[#F9F7F2] p-10 rounded-[2.5rem] border border-charbon/5 hover:border-or/30 cursor-pointer transition-all duration-300 hover:-translate-y-2 shadow-sm group flex flex-col h-full" data-plan="Formule Équilibre">
+							<h4 class="font-serif font-bold uppercase tracking-widest text-2xl text-stone-800 mb-4 group-hover:text-or transition-colors">Formule Équilibre</h4>
+							<div class="min-h-[60px] mb-6"><p class="text-lg text-charbon/60 font-light italic">"Briser l’isolement et rassurer la famille."</p></div>
+							<div class="flex items-baseline gap-4 mb-2">
+								<span class="text-2xl text-charbon/30 line-through decoration-or decoration-1">79€</span>
+								<span class="text-5xl font-serif text-charbon">39,50€</span>
+								<span class="text-sm text-charbon/40">/mois</span>
+							</div>
+							<p class="text-xs text-charbon/40 mb-8 font-bold uppercase tracking-wide">Après crédit d'impôt</p>
+							<div class="w-full h-px bg-charbon/10 mb-8 group-hover:bg-or/30 transition-colors"></div>
+							<ul class="space-y-4 text-base text-charbon/80 leading-relaxed flex-1">
+								<li class="flex items-start gap-3"><span class="text-or mt-1 font-bold">◆</span> <span><strong>2 Visites de Convivialité</strong> (Café, jeux, discussion)</span></li>
+								<li class="flex items-start gap-3"><span class="text-or mt-1 font-bold">◆</span> <span><strong>Lien & Partage</strong> (Promenades quartier)</span></li>
+								<li class="flex items-start gap-3"><span class="text-or mt-1 font-bold">◆</span> <span><strong>Connexion Familiale</strong> (Aide WhatsApp/Visio)</span></li>
+								<li class="flex items-start gap-3"><span class="text-or mt-1 font-bold">◆</span> <span><strong>Compte-rendu "Sourire"</strong> après passage</span></li>
+							</ul>
+						</div>
+
+						<div class="plan-card relative bg-[#F9F7F2] text-charbon p-10 rounded-[2.5rem] border border-charbon/5 hover:border-or/30 cursor-pointer transition-all duration-300 hover:-translate-y-2 shadow-sm group overflow-hidden flex flex-col h-full" data-plan="Formule Confort">
+							<div class="absolute top-0 right-0 bg-or text-charbon text-[10px] font-bold px-5 py-2 rounded-bl-[1.5rem] uppercase tracking-widest z-20">Recommandée</div>
+							<div class="relative z-10 flex flex-col h-full">
+								<h4 class="font-serif font-bold uppercase tracking-widest text-2xl text-stone-800 mb-4 group-hover:text-or transition-colors">Formule Confort</h4>
+								<div class="min-h-[60px] mb-6"><p class="text-lg text-charbon/60 font-light italic">"Sérénité absolue & Gestion complète du quotidien."</p></div>
+								<div class="flex items-baseline gap-4 mb-2">
+									<span class="text-2xl text-charbon/30 line-through decoration-or decoration-1">159€</span>
+									<span class="text-5xl font-serif text-charbon">79,50€</span>
+									<span class="text-sm text-charbon/40">/mois</span>
+								</div>
+								<p class="text-xs text-charbon/40 mb-8 font-bold uppercase tracking-wide">Après crédit d'impôt</p>
+								<div class="w-full h-px bg-charbon/10 mb-8 group-hover:bg-or/30 transition-colors"></div>
+								<ul class="space-y-4 text-base text-charbon/80 leading-relaxed flex-1">
+									<li class="flex items-start gap-3"><span class="text-or mt-1 font-bold">◆</span> <span><strong>Tout le contenu Équilibre</strong></span></li>
+									<li class="flex items-start gap-3"><span class="text-or mt-1 font-bold">◆</span> <span><strong>4 Visites / mois</strong> (Présence Hebdomadaire)</span></li>
+									<li class="flex items-start gap-3"><span class="text-or mt-1 font-bold">◆</span> <span><strong>Sérénité Quotidienne</strong> (Courses, Pharma, Rangement)</span></li>
+									<li class="flex items-start gap-3"><span class="text-or mt-1 font-bold">◆</span> <span><strong>Assistance Privée</strong> (Administratif & RDV)</span></li>
+									<li class="flex items-start gap-3 p-3 bg-or/5 rounded-lg border border-or/20"><span class="text-or mt-1 font-bold">★</span> <span><strong>Option Sécurité Incluse :</strong> Levée de doute & Déplacement rapide si inquiétude.</span></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="bg-charbon border border-white/10 rounded-[2.5rem] p-10 relative overflow-hidden flex flex-col justify-center h-full shadow-2xl">
+							<div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 mix-blend-overlay"></div>
+							<div class="relative z-10">
+								<span class="inline-block py-1 px-4 border border-or/40 rounded-full text-[10px] font-sans tracking-[0.2em] uppercase text-or mb-6 font-bold bg-white/5 backdrop-blur-sm">Dispositif d'État</span>
+								<h5 class="font-serif text-2xl text-white mb-4 leading-tight">L'Avance Immédiate <br/><span class="text-white/60 text-lg font-sans font-light normal-case">Service de l'Urssaf & des Finances Publiques</span></h5>
+								<p class="text-sm text-white/70 mb-8 leading-relaxed font-light border-l-2 border-or pl-4">Ce n'est <strong>pas un abonnement supplémentaire</strong>, mais un droit qui divise votre facture par deux, instantanément et gratuitement.</p>
+								<ul class="space-y-6 text-white/80 text-sm">
+									<li class="flex items-start gap-4"><div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-or font-bold shrink-0 text-xs">1</div><div><p class="font-bold text-xs uppercase tracking-wide text-white mb-1">Mise en place automatique</p><p class="text-white/60">Nous créons votre compte Urssaf gratuitement dès la signature.</p></div></li>
+									<li class="flex items-start gap-4"><div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-or font-bold shrink-0 text-xs">2</div><div><p class="font-bold text-xs uppercase tracking-wide text-white mb-1">Paiement réduit de 50%</p><p class="text-white/60">L'Urssaf ne prélève que votre reste à charge sur votre compte.</p></div></li>
+									<li class="flex items-start gap-4"><div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-or font-bold shrink-0 text-xs">3</div><div><p class="font-bold text-xs uppercase tracking-wide text-white mb-1">Sans avance de frais</p><p class="text-white/60">Vous n'avez rien à avancer, c'est l'État qui complète.</p></div></li>
+								</ul>
+							</div>
 						</div>
 					</div>
-					<div class="flex items-start gap-6">
-						<div class="w-12 h-12 rounded-full bg-white border border-or/20 flex items-center justify-center text-or shrink-0">📞</div>
-						<div>
-							<p class="text-xs uppercase tracking-widest text-charbon/40 mb-1">Téléphone</p>
-							<a href="tel:+33556000000" class="font-serif text-xl text-charbon hover:text-or transition-colors">+33 5 56 00 00 00</a>
+				</div>
+
+				<div id="content-ponctuel" class="hidden animate-fade-in">
+					<div class="max-w-6xl mx-auto mb-16 bg-charbon border border-white/10 rounded-[2.5rem] p-10 md:p-12 relative overflow-hidden shadow-2xl">
+						<div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-5 mix-blend-overlay"></div>
+						<div class="relative z-10 flex flex-col md:flex-row items-center gap-12">
+							<div class="md:w-1/3 text-center md:text-left">
+								<span class="inline-block py-1 px-4 border border-or/40 rounded-full text-[10px] font-sans tracking-[0.2em] uppercase text-or font-bold bg-white/5 backdrop-blur-sm mb-4">Avantage Fiscal</span>
+								<h5 class="font-serif text-3xl text-white leading-tight">Dispositif <br/>"Avance Immédiate"</h5>
+							</div>
+							<div class="md:w-2/3 border-l border-white/10 pl-0 md:pl-12">
+								<p class="text-xl text-white/90 font-serif leading-relaxed mb-6">L'État finance 50% de vos prestations via les services de l'<strong>Urssaf</strong> et des <strong>Finances Publiques</strong>.</p>
+								<div class="space-y-4">
+									<p class="text-lg text-white/70 font-light leading-relaxed">C'est simple et automatique : l'avantage fiscal est déduit <strong>immédiatement</strong> de votre facture.</p>
+									<p class="text-base text-white font-bold italic underline decoration-or decoration-2 underline-offset-8">Nous nous occupons de toute l'inscription pour vous, gratuitement.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+						<div class="plan-card bg-[#F9F7F2] p-8 rounded-[2.5rem] border border-charbon/5 hover:border-or/30 cursor-pointer transition-all duration-300 hover:-translate-y-2 shadow-sm group flex flex-col h-full" data-plan="Visite Conviviale (1h)">
+							<div class="mb-6">
+								<h4 class="font-serif font-bold uppercase tracking-widest text-2xl text-stone-800 group-hover:text-or transition-colors">Visite Conviviale</h4>
+								<span class="inline-block py-1 px-3 bg-or/10 rounded-full text-[10px] uppercase tracking-widest text-or font-bold mt-2">Durée : 1 Heure</span>
+							</div>
+							<div class="flex flex-col mb-6">
+								<div class="flex items-baseline gap-3">
+									<span class="text-xl text-charbon/30 line-through decoration-or decoration-1">35€</span>
+									<span class="text-5xl font-serif text-charbon">17,50€</span>
+								</div>
+								<p class="text-[10px] uppercase font-bold text-or tracking-wider mt-1">-(50% de réduction immédiate)</p>
+							</div>
+							<div class="w-full h-px bg-charbon/10 mb-8 group-hover:bg-or/30 transition-colors"></div>
+							<ul class="space-y-4 text-base text-charbon/80 leading-relaxed flex-1">
+								<li class="flex items-start gap-3"><span class="text-or mt-1 font-bold">◆</span> <span>Échange & Discussion</span></li>
+								<li class="flex items-start gap-3"><span class="text-or mt-1 font-bold">◆</span> <span>Jeux de société & Lecture</span></li>
+								<li class="flex items-start gap-3"><span class="text-or mt-1 font-bold">◆</span> <span>Partage d'un café</span></li>
+							</ul>
+						</div>
+
+						<div class="plan-card bg-[#F9F7F2] p-8 rounded-[2.5rem] border border-charbon/5 hover:border-or/30 cursor-pointer transition-all duration-300 hover:-translate-y-2 shadow-sm group flex flex-col h-full" data-plan="Entretien & Logistique (1h)">
+							<div class="mb-6">
+								<h4 class="font-serif font-bold uppercase tracking-widest text-2xl text-stone-800 group-hover:text-or transition-colors">Entretien & Logistique</h4>
+								<span class="inline-block py-1 px-3 bg-or/10 rounded-full text-[10px] uppercase tracking-widest text-or font-bold mt-2">Durée : 1 Heure</span>
+							</div>
+							<div class="flex flex-col mb-6">
+								<div class="flex items-baseline gap-3">
+									<span class="text-xl text-charbon/30 line-through decoration-or decoration-1">45€</span>
+									<span class="text-5xl font-serif text-charbon">22,50€</span>
+								</div>
+								<p class="text-[10px] uppercase font-bold text-or tracking-wider mt-1">-(50% de réduction immédiate)</p>
+							</div>
+							<div class="w-full h-px bg-charbon/10 mb-8 group-hover:bg-or/30 transition-colors"></div>
+							<ul class="space-y-4 text-base text-charbon/80 leading-relaxed flex-1">
+								<li class="flex items-start gap-3"><span class="text-or mt-1 font-bold">◆</span> <span>Visio & Aide numérique</span></li>
+								<li class="flex items-start gap-3"><span class="text-or mt-1 font-bold">◆</span> <span>Petit bricolage & Foyer</span></li>
+								<li class="flex items-start gap-3"><span class="text-or mt-1 font-bold">◆</span> <span>Réglages TV / Box Internet</span></li>
+							</ul>
+						</div>
+
+						<div class="plan-card bg-[#F9F7F2] p-8 rounded-[2.5rem] border border-charbon/5 hover:border-or/30 cursor-pointer transition-all duration-300 hover:-translate-y-2 shadow-sm group flex flex-col h-full" data-plan="Sortie & Courses (1h)">
+							<div class="mb-6">
+								<h4 class="font-serif font-bold uppercase tracking-widest text-2xl text-stone-800 group-hover:text-or transition-colors">Sortie & Courses</h4>
+								<span class="inline-block py-1 px-3 bg-or/10 rounded-full text-[10px] uppercase tracking-widest text-or font-bold mt-2">Durée : 1 Heure</span>
+							</div>
+							<div class="flex flex-col mb-6">
+								<div class="flex items-baseline gap-3">
+									<span class="text-xl text-charbon/30 line-through decoration-or decoration-1">40€</span>
+									<span class="text-5xl font-serif text-charbon">20,00€</span>
+								</div>
+								<p class="text-[10px] uppercase font-bold text-or tracking-wider mt-1">-(50% de réduction immédiate)</p>
+							</div>
+							<div class="w-full h-px bg-charbon/10 mb-8 group-hover:bg-or/30 transition-colors"></div>
+							<ul class="space-y-4 text-base text-charbon/80 leading-relaxed flex-1">
+								<li class="flex items-start gap-3"><span class="text-or mt-1 font-bold">◆</span> <span>Accompagnement au bras</span></li>
+								<li class="flex items-start gap-3"><span class="text-or mt-1 font-bold">◆</span> <span>Courses de proximité</span></li>
+								<li class="flex items-start gap-3"><span class="text-or mt-1 font-bold">◆</span> <span>RDV Médical / Coiffeur</span></li>
+							</ul>
+						</div>
+
+						<div class="plan-card relative bg-[#F9F7F2] p-8 rounded-[2.5rem] border border-or/20 hover:border-or/50 cursor-pointer transition-all duration-300 hover:-translate-y-2 shadow-sm group flex flex-col h-full overflow-hidden" data-plan="Demande Sur Mesure">
+							<div class="absolute -right-4 -top-4 w-24 h-24 bg-or/10 rounded-full blur-2xl group-hover:bg-or/20 transition-all"></div>
+							<div class="mb-6 relative z-10">
+								<h4 class="font-serif font-bold uppercase tracking-widest text-2xl text-stone-800 group-hover:text-or transition-colors italic">Besoin <br/>Sur Mesure</h4>
+								<span class="inline-block py-1 px-3 bg-charbon text-white rounded-full text-[10px] uppercase tracking-widest font-bold mt-2">Devis Gratuit</span>
+							</div>
+							<div class="flex items-baseline gap-3 mb-6 relative z-10"><span class="text-4xl font-serif text-charbon italic">Flexibilité</span></div>
+							<div class="w-full h-px bg-or/20 mb-8 group-hover:bg-or/40 transition-colors relative z-10"></div>
+							<ul class="space-y-4 text-base text-charbon/80 leading-relaxed flex-1 relative z-10 italic">
+								<li class="flex items-start gap-3"><span class="text-or mt-1 font-bold">◆</span> <span>Horaires atypiques ?</span></li>
+								<li class="flex items-start gap-3"><span class="text-or mt-1 font-bold">◆</span> <span>Demandes combinées ?</span></li>
+								<li class="flex items-start gap-3"><span class="text-or mt-1 font-bold">◆</span> <span>Étude personnalisée</span></li>
+							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
+	</section>
 
-			<form id="contact-form" class="space-y-6 bg-white p-10 rounded-[2rem] shadow-lg border border-charbon/5">
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-					<div class="group">
-						<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block group-focus-within:text-or">Nom</label>
-						<input type="text" name="name" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all" required/>
+	<section id="contact" class="bg-[#F9F7F2] text-charbon py-32 px-6 md:px-12 border-t border-charbon/5 scroll-mt-20 relative overflow-hidden">
+		<div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-32 relative z-10">
+			<div class="reveal-text">
+				<span class="text-or text-xs font-sans tracking-[0.3em] uppercase mb-4 block font-bold">Prendre Rendez-vous</span>
+				<h3 class="font-serif text-4xl md:text-6xl mb-8">Une écoute attentive</h3>
+				<p class="font-sans text-charbon/70 mb-12 leading-relaxed text-xl font-light">Définissons ensemble le rythme et les besoins pour accompagner au mieux vos proches. Premier RDV gratuit à domicile.</p>
+				<div class="space-y-8">
+					<div class="flex items-center gap-6">
+						<div class="w-12 h-12 rounded-full border border-or/30 flex items-center justify-center text-or font-serif italic text-xl font-bold">✉</div>
+						<div><p class="text-xs uppercase tracking-widest text-charbon/40 font-bold mb-1">Email</p><a href="mailto:contact@maison-des-sables.fr" class="font-serif text-2xl text-charbon hover:text-or transition-colors">contact@maison-des-sables.fr</a></div>
 					</div>
-					<div class="group">
-						<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block group-focus-within:text-or">Téléphone</label>
-						<input type="tel" name="phone" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all" required/>
+					<div class="flex items-center gap-6">
+						<div class="w-12 h-12 rounded-full border border-or/30 flex items-center justify-center text-or font-serif italic text-xl font-bold">☏</div>
+						<div><p class="text-xs uppercase tracking-widest text-charbon/40 font-bold mb-1">Téléphone</p><a href="tel:+33628946234" class="font-serif text-2xl text-charbon hover:text-or transition-colors">+33 6 28 94 62 34</a></div>
 					</div>
 				</div>
-				
-				<div class="group">
-					<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block group-focus-within:text-or">Email</label>
-					<input type="email" name="email" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all" required/>
-				</div>
+			</div>
 
-				<div class="group">
-					<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block group-focus-within:text-or">Intérêt pour</label>
-					<input type="text" name="property_details" id="input-interest" class="w-full bg-or/10 border-b border-or p-3 text-charbon font-bold outline-none" placeholder="Sélectionnez un service ou tarif..." />
+			<form id="contact-form" class="space-y-8 bg-white p-10 md:p-14 rounded-[3rem] shadow-xl border border-charbon/5 reveal-text">
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+					<div class="group"><label class="text-xs uppercase tracking-widest text-charbon/40 mb-3 block font-bold">Nom Complet</label><input type="text" name="name" class="w-full bg-transparent border-b border-charbon/10 py-4 text-charbon outline-none focus:border-or transition-all font-sans text-lg" required placeholder="Ex: Jean Dupont"/></div>
+					<div class="group"><label class="text-xs uppercase tracking-widest text-charbon/40 mb-3 block font-bold">Téléphone</label><input type="tel" name="phone" class="w-full bg-transparent border-b border-charbon/10 py-4 text-charbon outline-none focus:border-or transition-all font-sans text-lg" required placeholder="06 .. .. .. .."/></div>
 				</div>
-
-				<div class="group">
-					<label class="text-xs uppercase tracking-widest text-charbon/40 mb-2 block group-focus-within:text-or">Expliquer votre projet</label>
-					<textarea name="message" rows="3" class="w-full bg-sable/30 border-b border-charbon/10 p-3 text-charbon outline-none focus:border-or transition-all resize-none"></textarea>
-				</div>
-
-				<button type="submit" class="w-full bg-charbon text-sable py-4 rounded-std font-bold uppercase tracking-widest hover:bg-or hover:text-white transition-colors shadow-lg hover:shadow-or/30">
-					Nous contacter
+				<div class="group"><label class="text-xs uppercase tracking-widest text-charbon/40 mb-3 block font-bold">Email de contact</label><input type="email" name="email" class="w-full bg-transparent border-b border-charbon/10 py-4 text-charbon outline-none focus:border-or transition-all font-sans text-lg" required placeholder="votre@mail.com"/></div>
+				<div class="group"><label class="text-xs uppercase tracking-widest text-charbon/40 mb-3 block font-bold">Intérêt pour</label><input type="text" name="property_details" id="selected-plan-input" class="w-full bg-or/5 border-b border-or/30 p-4 text-charbon font-serif italic text-xl outline-none" value="Sélectionnez un service..." readonly/></div>
+				<div class="group"><label class="text-xs uppercase tracking-widest text-charbon/40 mb-3 block font-bold">Expliquer votre projet</label><textarea name="message" rows="4" class="w-full bg-transparent border-b border-charbon/10 py-3 text-charbon outline-none focus:border-or transition-all resize-none font-sans text-lg" placeholder="Je souhaiterais une compagnie pour ma mère..."></textarea></div>
+				<button type="submit" class="w-full group relative py-5 bg-charbon text-sable font-sans text-xs font-bold uppercase tracking-[0.2em] rounded-xl overflow-hidden shadow-lg transition-all duration-500 hover:-translate-y-1">
+					<span class="relative z-10 group-hover:text-white transition-colors">Nous contacter</span>
+					<div class="absolute inset-0 bg-or translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] z-0"></div>
 				</button>
 			</form>
-
 		</div>
 	</section>
 
-	<footer class="bg-charbon text-sable py-12 text-center border-t border-white/10">
-		<p class="font-serif text-2xl mb-4">Maison des Sables</p>
+	<footer class="bg-charbon text-sable pt-24 pb-12 px-6 relative z-10 font-sans">
+		<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-sable/10 pb-12 mb-12">
+			<div class="md:col-span-1">
+				<h5 class="font-serif text-3xl mb-6 text-white tracking-wider">Maison des Sables</h5>
+				<p class="text-sm text-sable/50 max-w-xs leading-relaxed font-light italic">Conciergerie & Service d'accompagnement pour séniors basée sur le Bassin d'Arcachon.</p>
+			</div>
+			<div>
+				<h6 class="text-[10px] uppercase tracking-[0.2em] mb-8 font-bold text-or">Navigation</h6>
+				<ul class="space-y-4 text-xs font-medium text-sable/60 uppercase tracking-widest">
+					<li><a href="/#villas" class="hover:text-or transition-colors">Nos Villas</a></li>
+					<li><a href="/#services" class="hover:text-or transition-colors">Nos Services</a></li>
+					<li><a target="_blank" href="/login" class="hover:text-or transition-colors text-white">Espace Client</a></li>
+				</ul>
+			</div>
+			<div>
+				<h6 class="text-[10px] uppercase tracking-[0.2em] mb-8 font-bold text-or">Légal</h6>
+				<ul class="space-y-4 text-xs font-medium text-sable/60 uppercase tracking-widest">
+					<li><a target="_blank" href="/mentions-legales" class="hover:text-or transition-colors">Mentions Légales</a></li>
+					<li><a target="_blank" href="/politique-confidentialite" class="hover:text-or transition-colors">Confidentialité</a></li>
+					<li><a target="_blank" href="/cgv" class="hover:text-or transition-colors">CGV / CGU</a></li>
+				</ul>
+			</div>
+			<div>
+				<h6 class="text-[10px] uppercase tracking-[0.2em] mb-8 font-bold text-or">Contact</h6>
+				<ul class="space-y-4 text-xs font-medium text-sable/60 font-sans tracking-widest">
+					<li>contact@maison-des-sables.fr</li>
+					<li>+33 6 28 94 62 34</li>
+				</ul>
+			</div>
+		</div>
+		<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-[0.3em] text-sable/30 font-bold">
+			<p>Maison des Sables © 2026 .</p>
+			<p>Design & Dev par Paul Bénétier</p>
+		</div>
 	</footer>
+
 </Layout>
 
 <style>
-	.animate-fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; transform: translateY(20px); }
-	.animate-slow-zoom { animation: zoom 20s infinite alternate; }
-	.delay-100 { animation-delay: 0.1s; }
-	.delay-200 { animation-delay: 0.2s; }
-	.delay-300 { animation-delay: 0.3s; }
-	@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-	@keyframes zoom { from { transform: scale(1); } to { transform: scale(1.1); } }
+	.animate-slow-zoom { animation: zoom 25s infinite alternate ease-in-out; }
+	@keyframes zoom { from { transform: scale(1); } to { transform: scale(1.15); } }
+	.animate-fade-in { animation: fadeIn 0.5s ease-out forwards; }
+	@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+	input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+	input[type=number] { -moz-appearance: textfield; }
 </style>
 
 <script>
-	['astro:page-load', 'load'].forEach(event => {
-		window.addEventListener(event, () => {
-			
-			// --- 1. CONNEXION CERVEAU (FORMULAIRE) ---
-			const form = document.getElementById('contact-form') as HTMLFormElement;
-			if (form) {
-				form.addEventListener('submit', async (e) => {
-					e.preventDefault(); 
-					const formData = new FormData(form);
-					const data = Object.fromEntries(formData);
+	import { gsap } from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	gsap.registerPlugin(ScrollTrigger);
 
-					// @ts-ignore
-					data.service_name = "Accompagnement"; // Nom spécifique pour cette page
-					
-					try {
-						const response = await fetch('http://localhost:5000/api/contact/lead', {
-							method: 'POST',
-							headers: { 'Content-Type': 'application/json' },
-							body: JSON.stringify(data)
-						});
-						const result = await response.json();
-						if (response.ok) {
-							alert("✅ Demande envoyée ! Nous vous recontacterons très vite.");
-							form.reset();
-						} else {
-							alert("❌ Erreur : " + (result.error || "Problème inconnu"));
-						}
-					} catch (error) {
-						console.error(error);
-						alert("❌ Impossible de contacter le serveur.");
-					}
-				});
-			}
-
-			// --- 2. UI LOGIQUE (Services & Tarifs) ---
-			
-			// CLIC SUR LES SERVICES
-			const serviceCards = document.querySelectorAll('.service-card');
-			const inputInterest = document.getElementById('input-interest') as HTMLInputElement;
-			const contactSection = document.getElementById('contact');
-
-			serviceCards.forEach(card => {
-				card.addEventListener('click', () => {
-					// @ts-ignore
-					const serviceName = card.dataset.service;
-					fillForm(`Service : ${serviceName}`);
-				});
-			});
-
-			// SWITCHER TARIFS
-			const btnPonctuel = document.getElementById('btn-ponctuel');
-			const btnAbonnement = document.getElementById('btn-abonnement');
-			const contentPonctuel = document.getElementById('content-ponctuel');
-			const contentAbonnement = document.getElementById('content-abonnement');
-
-			if(btnPonctuel && btnAbonnement && contentPonctuel && contentAbonnement) {
-				btnPonctuel.addEventListener('click', () => {
-					btnPonctuel.classList.add('bg-charbon', 'text-white');
-					btnPonctuel.classList.remove('text-charbon/60');
-					btnAbonnement.classList.remove('bg-charbon', 'text-white');
-					btnAbonnement.classList.add('text-charbon/60');
-					contentPonctuel.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
-					contentAbonnement.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
-				});
-
-				btnAbonnement.addEventListener('click', () => {
-					btnAbonnement.classList.add('bg-charbon', 'text-white');
-					btnAbonnement.classList.remove('text-charbon/60');
-					btnPonctuel.classList.remove('bg-charbon', 'text-white');
-					btnPonctuel.classList.add('text-charbon/60');
-					contentAbonnement.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
-					contentPonctuel.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
-				});
-			}
-
-			// CLIC SUR LES TARIFS
-			document.querySelectorAll('.plan-card').forEach(card => {
-				card.addEventListener('click', () => {
-					// @ts-ignore
-					const plan = card.dataset.plan;
-					fillForm(`Formule : ${plan}`);
-				});
-			});
-
-			function fillForm(text) {
-				if(inputInterest) {
-					inputInterest.value = text;
-					inputInterest.parentElement.classList.add('animate-pulse');
-					setTimeout(() => inputInterest.parentElement.classList.remove('animate-pulse'), 1000);
-				}
-				if(contactSection) contactSection.scrollIntoView({ behavior: 'smooth' });
-			}
-
+	window.addEventListener('load', () => {
+		const revealElements = document.querySelectorAll('.reveal-text');
+		revealElements.forEach(el => {
+			gsap.fromTo(el, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 90%" } });
 		});
+
+		const form = document.getElementById('contact-form') as HTMLFormElement;
+		if (form) {
+			form.addEventListener('submit', async (e) => {
+				e.preventDefault(); 
+				const formData = new FormData(form);
+				const data: any = Object.fromEntries(formData);
+				const choix = data.property_details !== "Sélectionnez un service..." ? data.property_details : "Demande Générale";
+				data.service_name = `Main dans la Main : ${choix}`;
+				delete data.property_details; 
+				try {
+					const response = await fetch('http://localhost:5000/api/contact/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+					if (response.ok) { alert("✅ Votre demande a été transmise. Merci de votre confiance."); form.reset(); } 
+					else { alert("❌ Erreur technique. Merci de nous contacter par téléphone."); }
+				} catch (error) { alert("❌ Serveur indisponible. Vérifiez votre connexion."); }
+			});
+		}
+
+		const planCards = document.querySelectorAll('.plan-card');
+		const formInput = document.getElementById('selected-plan-input') as HTMLInputElement;
+		const contactSection = document.getElementById('contact');
+
+		planCards.forEach(card => {
+			card.addEventListener('click', () => {
+				planCards.forEach(c => {
+					c.classList.remove('ring-4', 'ring-or/50', 'border-or', 'bg-white', 'shadow-2xl');
+					c.classList.add('border-transparent', 'bg-[#F9F7F2]', 'shadow-sm');
+				});
+				card.classList.remove('border-transparent', 'bg-[#F9F7F2]', 'shadow-sm');
+				card.classList.add('ring-4', 'ring-or/50', 'border-or', 'bg-white', 'shadow-2xl');
+				// @ts-ignore
+				const planName = card.dataset.plan;
+				if(formInput) formInput.value = `${planName}`;
+				contactSection?.scrollIntoView({ behavior: 'smooth' });
+			});
+		});
+
+		const btnPonctuel = document.getElementById('btn-ponctuel');
+		const btnAbonnement = document.getElementById('btn-abonnement');
+		const contentPonctuel = document.getElementById('content-ponctuel');
+		const contentAbonnement = document.getElementById('content-abonnement');
+
+		if(btnPonctuel && btnAbonnement && contentPonctuel && contentAbonnement) {
+			btnPonctuel.addEventListener('click', () => {
+				btnPonctuel.classList.add('bg-charbon', 'text-white');
+				btnPonctuel.classList.remove('text-charbon/40');
+				btnAbonnement.classList.remove('bg-charbon', 'text-white');
+				btnAbonnement.classList.add('text-charbon/40');
+				contentPonctuel.classList.remove('hidden');
+				contentAbonnement.classList.add('hidden');
+			});
+			btnAbonnement.addEventListener('click', () => {
+				btnAbonnement.classList.add('bg-charbon', 'text-white');
+				btnAbonnement.classList.remove('text-charbon/40');
+				btnPonctuel.classList.remove('bg-charbon', 'text-white');
+				btnPonctuel.classList.add('text-charbon/40');
+				contentAbonnement.classList.remove('hidden');
+				contentPonctuel.classList.add('hidden');
+			});
+		}
+	});
+
+	const navbar = document.querySelector("#navbar");
+	window.addEventListener("scroll", () => {
+		if (window.scrollY > 50) { navbar?.classList.add("bg-charbon/95", "py-4", "backdrop-blur-md"); navbar?.classList.remove("py-8"); } 
+		else { navbar?.classList.remove("bg-charbon/95", "py-4", "backdrop-blur-md"); navbar?.classList.add("py-8"); }
 	});
 </script>

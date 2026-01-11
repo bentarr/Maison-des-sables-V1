@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Confidentialité | Maison des Sables">
+	<main class="pt-40 pb-32 px-6 bg-[#F9F7F2] min-h-screen text-charbon relative overflow-hidden font-sans">
+		
+
+
+		<div class="max-w-4xl mx-auto relative z-10">
+			<header class="mb-24 reveal-text">
+				<span class="block text-or text-xs tracking-[0.4em] uppercase mb-6 font-bold">Éthique</span>
+				<h1 class="font-serif text-5xl md:text-7xl mb-12">Confidentialité</h1>
+				<div class="w-24 h-px bg-or/30"></div>
+			</header>
+
+			<div class="space-y-20">
+				
+				<section class="reveal-text">
+					<h2 class="font-serif text-2xl mb-8 italic text-charbon/90">Politique RGPD</h2>
+					<div class="space-y-4 text-charbon/70 leading-relaxed font-light">
+						<p>Nous traitons vos données personnelles avec la même rigueur que nous entretenons vos demeures. Les informations collectées via nos formulaires sont strictement réservées à l'usage de Maison des Sables pour le traitement de vos demandes de services.</p>
+					</div>
+				</section>
+
+				<section class="reveal-text">
+					<h2 class="font-serif text-2xl mb-8 italic text-charbon/90">Protection des Données</h2>
+					<div class="space-y-4 text-charbon/70 leading-relaxed font-light">
+						<p>Maison des Sables s'engage à ne jamais céder, vendre ou louer vos informations à des tiers. Vos données sont conservées de manière sécurisée pendant la durée nécessaire à l'exécution de nos contrats de conciergerie et d'intendance.</p>
+					</div>
+				</section>
+
+				<section class="reveal-text">
+					<h2 class="font-serif text-2xl mb-8 italic text-charbon/90">Vos Droits</h2>
+					<div class="space-y-4 text-charbon/70 leading-relaxed font-light">
+						<p>Conformément au Règlement Général sur la Protection des Données, vous disposez d'un droit d'accès, de modification et d'oubli total. Pour exercer ce droit, un simple message suffit à l'adresse suivante : **contact@maison-des-sables.fr**.</p>
+					</div>
+				</section>
+
+			</div>
+
+			<footer class="mt-32 pt-12 border-t border-charbon/10 flex justify-between items-center reveal-text">
+				<a href="/" class="group flex items-center gap-4 text-or text-[10px] font-bold uppercase tracking-[0.3em] transition-colors hover:text-charbon">
+					<span class="w-8 h-px bg-or group-hover:w-12 group-hover:bg-charbon transition-all"></span>
+					Retour à l'accueil
+				</a>
+				<p class="text-[10px] uppercase tracking-widest text-charbon/30 font-medium">Maison des Sables © 2026</p>
+			</footer>
+		</div>
+	</main>
+</Layout>
+
+<script>
+	import { gsap } from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	gsap.registerPlugin(ScrollTrigger);
+
+	const revealElements = document.querySelectorAll('.reveal-text');
+	revealElements.forEach(el => {
+		gsap.fromTo(el, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 90%" } });
+	});
+</script>

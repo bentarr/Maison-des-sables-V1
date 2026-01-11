@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Mentions Légales | Maison des Sables">
+	<main class="pt-40 pb-32 px-6 bg-[#F9F7F2] min-h-screen text-charbon relative overflow-hidden font-sans">
+		
+
+
+		<div class="max-w-4xl mx-auto relative z-10">
+			<header class="mb-24 reveal-text">
+				<span class="block text-or text-xs tracking-[0.4em] uppercase mb-6 font-bold">Transparence</span>
+				<h1 class="font-serif text-5xl md:text-7xl mb-12">Mentions Légales</h1>
+				<div class="w-24 h-px bg-or/30"></div>
+			</header>
+
+			<div class="space-y-20">
+				
+				<section class="reveal-text">
+					<h2 class="font-serif text-2xl mb-8 italic text-charbon/90">Édition & Direction</h2>
+					<div class="space-y-4 text-charbon/70 leading-relaxed font-light">
+						<p>Le site **maison-des-sables.fr** est édité par la structure Maison des Sables, [EI], dont le siège social est situé à Arcachon (33120).</p>
+						<p>SIRET : 99166265100017</p>
+						<p>Directeur de la publication : SILVAIN Louise</p>
+						<p>Directeur de l'édition internet : BENETIER Paul</p>
+					</div>
+				</section>
+
+				<section class="reveal-text">
+					<h2 class="font-serif text-2xl mb-8 italic text-charbon/90">Hébergement d'Exception</h2>
+					<div class="space-y-4 text-charbon/70 leading-relaxed font-light">
+						<p>L'infrastructure technique est assurée par : o2switch</p>
+						<p>[Chem. des Pardiaux, 63000 Clermont-Ferrand, France]</p>
+						<p>Site web : https://www.o2switch.fr</p>
+						<p>Le stockage des données est exclusivement réalisé sur des serveurs situés en Europe, garantissant sécurité et confidentialité.</p>
+					</div>
+				</section>
+
+				<section class="reveal-text">
+					<h2 class="font-serif text-2xl mb-8 italic text-charbon/90">Propriété Intellectuelle</h2>
+					<div class="space-y-4 text-charbon/70 leading-relaxed font-light">
+						<p>L'ensemble des visuels, textes, vidéos et architectures numériques présents sur ce site sont la propriété exclusive de Maison des Sables. Toute reproduction constitue une contrefaçon sanctionnée par le Code de la propriété intellectuelle.</p>
+					</div>
+				</section>
+
+			</div>
+
+			<footer class="mt-32 pt-12 border-t border-charbon/10 flex justify-between items-center reveal-text">
+				<a href="/" class="group flex items-center gap-4 text-or text-[10px] font-bold uppercase tracking-[0.3em] transition-colors hover:text-charbon">
+					<span class="w-8 h-px bg-or group-hover:w-12 group-hover:bg-charbon transition-all"></span>
+					Retour à l'accueil
+				</a>
+				<p class="text-[10px] uppercase tracking-widest text-charbon/30 font-medium">Maison des Sables © 2026</p>
+			</footer>
+		</div>
+	</main>
+</Layout>
+
+<script>
+	import { gsap } from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	gsap.registerPlugin(ScrollTrigger);
+
+	const revealElements = document.querySelectorAll('.reveal-text');
+	revealElements.forEach(el => {
+		gsap.fromTo(el, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 90%" } });
+	});
+</script>
