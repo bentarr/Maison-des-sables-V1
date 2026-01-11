@@ -1,4 +1,4 @@
-// emailService.js (LOGIQUE INTELLIGENTE CORRIGÉE)
+// emailService.js (LOGIQUE INTELLIGENTE CORRIGÉE AVEC DATES)
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
@@ -39,20 +39,22 @@ const sendTransactionalEmail = async (toEmail, subject, htmlContent) => {
 /**
  * Template intelligent
  * DISTINCTION : On regarde si "property_details" est rempli pour savoir si c'est une estimation.
+ * GESTION DATES : On affiche le bloc dates si elles sont fournies (Villas).
  */
 const sendNewLeadEmail = async (leadData) => {
-    const { email, name, phone, message, service_name, property_details } = leadData;
+    // MODIFICATION : On récupère "dates" depuis leadData
+    const { email, name, phone, message, service_name, property_details, dates } = leadData;
     
-    // CORRECTION ICI : On ne regarde pas le nom du service, mais si on a des détails de bien !
-    // Si property_details existe, c'est le simulateur. Sinon, c'est le contact simple.
     const isEstimation = property_details && property_details.length > 0;
     
-    const subject = isEstimation ? `💰 Nouvelle Estimation : ${name}` : `🔔 Nouveau Prospect : ${name}`;
+    // Si c'est une location de villa avec dates, on adapte l'objet
+    const isBooking = dates && dates.length > 0;
+
+    let subject = `🔔 Nouveau Prospect : ${name}`;
+    if (isEstimation) subject = `💰 Nouvelle Estimation : ${name}`;
+    if (isBooking) subject = `📅 Demande Réservation Villa : ${name}`;
     
-    // Si c'est une estimation, on affiche "TYPE DE BIEN". Sinon "VOTRE BESOIN".
     const labelBesoin = isEstimation ? "TYPE DE BIEN & ESTIMATION" : "VOTRE BESOIN";
-    
-    // Si c'est une estimation, on affiche le détail du calcul. Sinon le nom du service choisi dans la liste.
     const valeurBesoin = isEstimation ? property_details : service_name;
 
     const htmlContent = `
@@ -68,6 +70,13 @@ const sendNewLeadEmail = async (leadData) => {
                 <p style="margin: 0; font-size: 10px; text-transform: uppercase; color: #9CA3AF; letter-spacing: 1px;">${labelBesoin}</p>
                 <p style="margin: 5px 0 0 0; font-weight: bold; font-size: 16px;">${valeurBesoin || 'Non spécifié'}</p>
             </div>
+
+            ${isBooking ? `
+            <div style="margin-top: 20px; border-left: 3px solid #D4AF37; padding-left: 10px; background: #fffdf9; padding: 10px;">
+                <p style="margin: 0; font-size: 10px; text-transform: uppercase; color: #D4AF37; letter-spacing: 1px; font-weight: bold;">DATES SÉJOUR :</p>
+                <p style="margin: 5px 0 0 0; font-weight: bold; font-size: 18px; color: #1C1C1C;">${dates}</p>
+            </div>
+            ` : ''}
             
             <div style="background: #F9F7F2; padding: 15px; border-radius: 5px; margin-top: 20px;">
                 <p style="margin-top: 0; font-size: 10px; text-transform: uppercase; color: #9CA3AF;">MESSAGE :</p>

@@ -12,8 +12,8 @@ const { sendTransactionalEmail, sendNewLeadEmail } = require('./emailService');
 
 const handleNewLead = async (req, res, pool) => {
     try {
-        // MODIFICATION : On récupère property_details (le champ input du simulateur)
-        const { email, name, phone, message, service_name, type_bien, surface, property_details, property_type } = req.body;
+        // MODIFICATION : Ajout de "dates" dans la déstructuration du body
+        const { email, name, phone, message, service_name, type_bien, surface, property_details, property_type, dates } = req.body;
         // On récupère l'instance Socket.IO
         const io = req.io; 
 
@@ -23,10 +23,11 @@ const handleNewLead = async (req, res, pool) => {
         const finalType = type_bien || property_type;
         const finalSurface = surface || null;
 
+        // On insère également les dates dans la base de données (si ta colonne existe, sinon on l'ajoute au message)
         await pool.query(
             `INSERT INTO leads (email, name, phone, type_bien, surface, service_interest, message)
              VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-            [email, name, phone, finalType, finalSurface, service_name, message]
+            [email, name, phone, finalType, finalSurface, service_name, message + (dates ? ` [Dates souhaitées : ${dates}]` : "")]
         );
 
         // Notifier les admins
@@ -42,14 +43,15 @@ const handleNewLead = async (req, res, pool) => {
             );
         }
 
-        // ✨ ENVOI DU MAIL : On passe property_details à la fonction
+        // ✨ ENVOI DU MAIL : On passe maintenant "dates" à la fonction
         sendNewLeadEmail({ 
             email, 
             name, 
             phone, 
             message, 
             service_name, 
-            property_details 
+            property_details,
+            dates // <--- Ajouté ici pour l'email
         }).catch(err => {
             console.error("🔴 Erreur envoi mail notification Lead:", err.message);
         });

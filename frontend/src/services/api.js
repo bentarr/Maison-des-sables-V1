@@ -1,7 +1,7 @@
 // src/services/api.js
 
 // ON REMET LE /api ICI
-const BASE_URL = 'http://localhost:5000/api'; 
+const BASE_URL = 'https://maison-des-sables.fr/api'; 
 
 function getToken() {
   if (typeof window !== 'undefined') {

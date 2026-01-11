@@ -22,7 +22,7 @@ const NotificationBell = () => {
   useEffect(() => {
     if (!token) return;
 
-    const socket = io('http://localhost:5000', {
+    const socket = io('https://maison-des-sables.fr', {
         auth: { token: token },
         transports: ['websocket'] 
     });
