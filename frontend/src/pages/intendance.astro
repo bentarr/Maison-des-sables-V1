@@ -335,39 +335,45 @@ import Layout from '../layouts/Layout.astro';
 		</div>
 	</section>
 
-	<footer class="bg-charbon text-sable pt-24 pb-12 px-6 relative z-10 font-sans">
+	<footer class="bg-charbon text-sable pt-24 pb-12 px-6 relative z-10">
 		<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-sable/10 pb-12 mb-12">
 			<div class="md:col-span-1">
-				<h5 class="font-serif text-3xl mb-6 text-white tracking-wider">Maison des Sables</h5>
-				<p class="text-sm text-sable/50 max-w-xs leading-relaxed font-light italic">
-					Conciergerie & Service d'accompagnement pour séniors basée sur le Bassin d'Arcachon.
+				<h5 class="font-serif text-3xl mb-6 text-white">Maison des Sables</h5>
+				<p class="font-sans text-sm text-sable/60 max-w-sm leading-relaxed">
+					Conciergerie & Service d'accompagnement pour séniors basée à Arcachon.
 				</p>
 			</div>
 			<div>
-				<h6 class="text-[10px] uppercase tracking-[0.2em] mb-8 font-bold text-or">Navigation</h6>
-				<ul class="space-y-4 text-xs font-medium text-sable/60 uppercase tracking-widest">
-					<li><a href="/#villas" class="hover:text-or transition-colors">Nos Villas</a></li>
-					<li><a href="/#services" class="hover:text-or transition-colors">Nos Services</a></li>
-					<li><a target="_blank" href="/login" class="hover:text-or transition-colors text-white">Espace Client</a></li>
-				</ul>
+			    <h6 class="font-sans text-xs uppercase tracking-widest mb-6 font-bold text-or">Navigation</h6>
+			    <ul class="space-y-4 font-sans text-sm text-sable/70">
+			        <li><a href="#villas" class="hover:text-or transition-colors">Nos Villas</a></li>
+			        <li><a href="#services" class="hover:text-or transition-colors">Nos Services</a></li>
+			
+			        <li class="group flex items-center gap-3">
+			            <span class="cursor-default">Espace Client</span>
+			            <span class="opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out translate-x-[-5px] group-hover:translate-x-0 text-[9px] px-2 py-0.5 border border-or/30 text-or rounded-full uppercase tracking-tighter font-bold">
+			                Ouverture Prochaine
+			            </span>
+			        </li>
+			    </ul>
 			</div>
 			<div>
-				<h6 class="text-[10px] uppercase tracking-[0.2em] mb-8 font-bold text-or">Légal</h6>
-				<ul class="space-y-4 text-xs font-medium text-sable/60 uppercase tracking-widest">
+				<h6 class="font-sans text-xs uppercase tracking-widest mb-6 font-bold text-or">Légal</h6>
+				<ul class="space-y-4 font-sans text-sm text-sable/70">
 					<li><a target="_blank" href="/mentions-legales" class="hover:text-or transition-colors">Mentions Légales</a></li>
 					<li><a target="_blank" href="/politique-confidentialite" class="hover:text-or transition-colors">Confidentialité</a></li>
 					<li><a target="_blank" href="/cgv" class="hover:text-or transition-colors">CGV / CGU</a></li>
 				</ul>
 			</div>
 			<div>
-				<h6 class="text-[10px] uppercase tracking-[0.2em] mb-8 font-bold text-or">Contact</h6>
-				<ul class="space-y-4 text-xs font-medium text-sable/60 font-sans tracking-widest">
+				<h6 class="font-sans text-xs uppercase tracking-widest mb-6 font-bold text-or">Contact</h6>
+				<ul class="space-y-4 font-sans text-sm text-sable/70">
 					<li>contact@maison-des-sables.fr</li>
 					<li>+33 6 28 94 62 34</li>
 				</ul>
 			</div>
 		</div>
-		<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-[0.3em] text-sable/30 font-bold">
+		<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-widest text-sable/40 font-sans">
 			<p>Maison des Sables © 2026 .</p>
 			<p>Design & Dev par Bénétier Paul</p>
 		</div>

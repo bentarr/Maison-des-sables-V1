@@ -12,4 +12,9 @@ export default defineConfig({
     tailwind(), 
     react()
   ]
+  ,redirects: {
+    '/login': '/',
+    '/dashboard': '/',
+    '/admin': '/',
+  }
 });
